@@ -23,6 +23,10 @@ Women: {numWomen}
 
 <pre>{JSON.stringify(members, null, 4)}</pre>
 
+<footer>
+    <a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a>
+</footer>
+
 <style>
     /* CSS */
 .button-85 {
