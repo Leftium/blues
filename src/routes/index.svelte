@@ -10,7 +10,7 @@
     <center>
         <h1>{title}</h1>
 
-        <div><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
+        <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
             <button class="button-85">신청</button>
         </a></div>
 
@@ -25,9 +25,8 @@
 
     <ul class=members-container>
         {#each members as member}
-            <li class=member>
+            <li class="{`member ${member.sex}`}">
                 <div>{member.name}</div>
-                <div>{member.sex}</div>
             </li>
         {/each}
     </ul>
@@ -35,6 +34,7 @@
     <div>
         <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
     </div>
+
 </main>
 
 
@@ -48,7 +48,7 @@
         background-color: white;
         margin: auto;
         max-width: 90vw;
-        width: 640px;
+        width: 592px;
 
         background-color: #fff;
         border: 1px solid #dadce0;
@@ -58,21 +58,65 @@
         padding-top: 22px;
     }
 
+    .cta {
+        margin-bottom: 20px;;
+    }
+
     ul.members-container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0px;
+
+        gap: 5px;
     }
 
     li.member {
-        background-color: #dadce0;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
         list-style: none;
-        display: inline-block;
-        width: 212px;
-        height: 212px;
+        display: block;
+        width: 144px;
+        height: 144px;
         text-align: center;
 
+        border: 0px solid green;
+
+        font-size: xx-large;
+        font-weight: 900;
+
+        display: flex;
+        justify-content: center;
+
+	position: relative;
+    }
+
+    li.member div {
+        align-self: center;
+        z-index: 100;
+    }
+
+    li.member::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: .6;
+        content: "";
+
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+    }
+
+    li.male::before {
+        background-image: url("img/man-dancing.png");
+
+    }
+
+    li.female::before {
+        background-image: url("img/woman-dancing.png");
     }
 
     /* CSS */

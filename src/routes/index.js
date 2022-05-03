@@ -30,9 +30,11 @@ export async function get() {
 
 
         if (sex == '남(men)') {
+            sex = 'male';
             numMen++;
         }
         if (sex == '여(women)') {
+            sex = 'female';
             numWomen++;
         }
 
