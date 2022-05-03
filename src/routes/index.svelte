@@ -111,12 +111,12 @@
     }
 
     li.male::before {
-        background-image: url("img/man-dancing.png");
+        background-image: url("/img/man-dancing.png");
 
     }
 
     li.female::before {
-        background-image: url("img/woman-dancing.png");
+        background-image: url("/img/woman-dancing.png");
     }
 
     /* CSS */
