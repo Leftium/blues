@@ -23,7 +23,14 @@
         </div>
     </center>
 
-    <pre>{JSON.stringify(members, null, 4)}</pre>
+    <ul class=members-container>
+        {#each members as member}
+            <li class=member>
+                <div>{member.name}</div>
+                <div>{member.sex}</div>
+            </li>
+        {/each}
+    </ul>
 
     <div>
         <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
@@ -49,6 +56,23 @@
         margin-bottom: 12px;
         padding: 24px;
         padding-top: 22px;
+    }
+
+    ul.members-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0px;
+    }
+
+    li.member {
+        background-color: #dadce0;
+        list-style: none;
+        display: inline-block;
+        width: 212px;
+        height: 212px;
+        text-align: center;
+
     }
 
     /* CSS */
