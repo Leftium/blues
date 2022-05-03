@@ -6,28 +6,51 @@
     export let members;
 </script>
 
+<main>
+    <center>
+        <h1>{title}</h1>
 
-<h1>{title}</h1>
+        <div><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
+            <button class="button-85">신청</button>
+        </a></div>
 
-<div><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
-    <button class="button-85" role="button">신청</button>
-</a></div>
+        <div>
+        Total: {numTotal}
 
-<div>
-Total: {numTotal}
+        Men: {numMen}
 
-Men: {numMen}
+        Women: {numWomen}
+        </div>
+    </center>
 
-Women: {numWomen}
-</div>
+    <pre>{JSON.stringify(members, null, 4)}</pre>
 
-<pre>{JSON.stringify(members, null, 4)}</pre>
+    <div>
+        <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
+    </div>
+</main>
 
-<footer>
-    <a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a>
-</footer>
 
 <style>
+    :global(body) {
+        background-color: rgb(241, 237, 237);
+        font-family: sans-serif;
+    }
+
+    main {
+        background-color: white;
+        margin: auto;
+        max-width: 90vw;
+        width: 640px;
+
+        background-color: #fff;
+        border: 1px solid #dadce0;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        padding: 24px;
+        padding-top: 22px;
+    }
+
     /* CSS */
 .button-85 {
   padding: 0.6em 2em;
@@ -42,6 +65,10 @@ Women: {numWomen}
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .button-85:before {
