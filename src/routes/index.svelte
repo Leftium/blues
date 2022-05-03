@@ -7,32 +7,35 @@
 </script>
 
 <main>
-    <center>
-        <h1>{title}</h1>
+    <div class=wrapper>
+        <center>
+            <h1>{title}</h1>
 
-        <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
-            <button class="button-85">신청</button>
-        </a></div>
+            <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
+                <button class="button-85">신청</button>
+            </a></div>
+
+            <div>
+            Total: {numTotal}
+
+            Men: {numMen}
+
+            Women: {numWomen}
+            </div>
+        </center>
+
+        <ul class=members-container>
+            {#each members as member}
+                <li class="{`member ${member.sex}`}">
+                    <div>{member.name}</div>
+                </li>
+            {/each}
+        </ul>
+
 
         <div>
-        Total: {numTotal}
-
-        Men: {numMen}
-
-        Women: {numWomen}
+            <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
         </div>
-    </center>
-
-    <ul class=members-container>
-        {#each members as member}
-            <li class="{`member ${member.sex}`}">
-                <div>{member.name}</div>
-            </li>
-        {/each}
-    </ul>
-
-    <div>
-        <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
     </div>
 
 </main>
@@ -41,7 +44,9 @@
 <style>
     :global(body) {
         background-color: rgb(241, 237, 237);
+        margin: 0;
         font-family: sans-serif;
+
     }
 
     main {
@@ -54,12 +59,17 @@
         border: 1px solid #dadce0;
         border-radius: 8px;
         margin-bottom: 12px;
+    }
+
+    div.wrapper {
+        margin: 0;
         padding: 24px;
         padding-top: 22px;
     }
 
     .cta {
-        margin-bottom: 20px;;
+        margin-bottom: 20px;
+        width: 90%;
     }
 
     ul.members-container {
@@ -69,6 +79,7 @@
         padding: 0px;
 
         gap: 5px;
+        justify-content: center;
     }
 
     li.member {
@@ -76,8 +87,8 @@
 
         list-style: none;
         display: block;
-        width: 144px;
-        height: 144px;
+        width: 132px;
+        height: 132px;
         text-align: center;
 
         border: 0px solid green;
