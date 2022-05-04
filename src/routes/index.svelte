@@ -125,22 +125,26 @@
         display: block;
         width: 132px;
         height: 132px;
-        text-align: center;
 
         border: 0px solid green;
 
         font-size: xx-large;
-        font-weight: 900;
 
         display: flex;
-        justify-content: center;
 
-	position: relative;
+        position: relative;
+
+        text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
+
     }
 
     li.member div {
-        align-self: center;
+        overflow: hidden;
         z-index: 100;
+        width: 100%;
+        text-align: right;
+        margin-right: 4px;
+        margin-top: 4px;
     }
 
     li.member::before {
@@ -149,12 +153,12 @@
         left: 0;
         bottom: 0;
         right: 0;
-        opacity: .6;
+        opacity: 1;
         content: "";
 
         background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100%;
+        background-position: 90% -20%;
+        background-size: 150%;
     }
 
     li.male::before {
