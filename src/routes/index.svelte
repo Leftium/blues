@@ -6,13 +6,23 @@
     export let members;
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</svelte:head>
+
 <main>
     <div class=wrapper>
         <center>
+
+            <div>
+                <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
+                <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
+                <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+            </div>
             <h1>{title}</h1>
 
             <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
-                <button class="button-85">신청</button>
+                <button class="button-85">신청 및 자세한 정보</button>
             </a></div>
 
             <div>
@@ -47,6 +57,32 @@
         margin: 0;
         font-family: sans-serif;
 
+    }
+
+    .fa {
+        padding: 10px;
+        font-size: 25px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 8px;
+        border-radius: 50%;
+    }
+
+    .fa-facebook {
+        background: #3B5998;
+        color: white;
+    }
+
+    .fa-instagram {
+        background: #125688;
+        color: white;
+    }
+
+    .fa-coffee {
+        background: #03C75A;
+        color: white;
     }
 
     main {
