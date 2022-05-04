@@ -16,11 +16,11 @@
             </a></div>
 
             <div>
-            Total: {numTotal}
+            Total:{numTotal}
 
-            Men: {numMen}
+            Men:{numMen}
 
-            Women: {numWomen}
+            Women:{numWomen}
             </div>
         </center>
 
