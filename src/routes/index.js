@@ -25,8 +25,9 @@ export async function get() {
     let numTotal = json.values.length;
 
     for (const item of json?.values) {
-        let name = item[2];
-        let sex  = item[5];
+        let name  = item[2];
+        let sex   = item[5];
+        let isNew = '';
 
 
         if (sex == '남(men)') {
@@ -38,7 +39,11 @@ export async function get() {
             numWomen++;
         }
 
-        members.unshift({ name, sex });
+        if (item[7]) {
+            isNew = 'new'
+        }
+
+        members.unshift({ name, sex, isNew });
     }
 
     return {
