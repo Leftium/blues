@@ -38,7 +38,7 @@ export async function get() {
             numWomen++;
         }
 
-        members.push({ name, sex });
+        members.unshift({ name, sex });
     }
 
     return {
