@@ -139,6 +139,20 @@
 
     }
 
+    @media (max-width: 353px) {
+        ul.members-container {
+            gap: 2%;
+        }
+        li.member {
+            width: 49%;
+            height: 0;
+            padding-bottom: 49%;
+        }
+        li.member div {
+            padding-bottom: 49%;
+        }
+    }
+
     li.new {
         text-shadow: 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen;
     }
