@@ -9,7 +9,7 @@
 <svelte:head>
     <title>{title}</title>
 
-    <meta property="og:image" content="https://www.modu-blues.com/img/cloud9-800.jpg">
+    <meta property="og:image" content="https://www.modu-blues.com/img/cloud9.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </svelte:head>
