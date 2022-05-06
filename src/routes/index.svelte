@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-    <title>{title}</title>
+    <title>{title + '!'}</title>
 
     <meta property="og:image" content="https://www.modu-blues.com/img/cloud9-800.jpg">
 
