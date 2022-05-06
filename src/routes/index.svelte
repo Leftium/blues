@@ -147,6 +147,8 @@
             width: 49%;
             height: 0;
             padding-bottom: 49%;
+
+            font-size: large;
         }
         li.member div {
             padding-bottom: 49%;
