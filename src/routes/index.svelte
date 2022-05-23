@@ -163,33 +163,24 @@
 
     li.member div {
         overflow: hidden;
-        z-index: 100;
         width: 100%;
         text-align: right;
         margin-right: 4px;
         margin-top: 4px;
     }
 
-    li.member::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        opacity: 1;
-        content: "";
-
+    li.member {
         background-repeat: no-repeat;
         background-position: 90% -20%;
         background-size: 150%;
     }
 
-    li.male::before {
+    li.male {
         background-image: url("/img/man-dancing.png");
 
     }
 
-    li.female::before {
+    li.female {
         background-image: url("/img/woman-dancing.png");
     }
 
