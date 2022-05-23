@@ -24,8 +24,12 @@
             let options = {
                 x: window.scrollX,
                 y: window.scrollY,
-                width: window.innerWidth,
-                height: window.innerHeight
+                deviceWidth: 500,
+                width: 500,
+                height: Math.min(500*1.6 + 45, mainElement.offsetHeight - 30)
+
+
+
             }
 
             html2canvas(mainElement, options).then(function(canvas){
@@ -69,7 +73,7 @@
         </div>
     </center>
 
-        <ul class=members-container>
+        <ul class=members-container class:sharingStyle>
             {#each members as member}
                 <li class="{`member ${member.sex} ${member.isNew}`}">
                     <span>{member.name}</span>
@@ -81,7 +85,7 @@
         <div>
             <center>
                 <a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a>
-                | <a href="{shareLink}">Share</a>
+                | <a href="{shareLink}" sveltekit:reload>Share</a>
             </center>
         </div>
 
@@ -130,7 +134,7 @@
     main {
         background-color: white;
     }
-    @media (min-width: 500px) {
+    @media (min-width: 501px) {
         main {
             margin: auto;
             max-width: 90vw;
@@ -195,6 +199,10 @@
         position: relative;
 
         text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
+    }
+
+    ul.sharingStyle li.member {
+       box-shadow: none;
     }
 
     @media (max-width: 353px) {
