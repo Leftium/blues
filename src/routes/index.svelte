@@ -24,9 +24,7 @@
             let options = {
                 x: window.scrollX,
                 y: window.scrollY,
-                deviceWidth: 500,
-                width: 500,
-                height: Math.min(500*1.6 + 45, mainElement.offsetHeight - 30)
+                height: Math.min(500*1.6, mainElement.offsetHeight - 30)
 
 
 
