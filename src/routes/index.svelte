@@ -1,4 +1,6 @@
 <script>
+    import html2canvas from 'html2canvas';
+
     export let title;
     export let numTotal;
     export let numMen;
@@ -8,11 +10,34 @@
     import { page } from '$app/stores'
 
     let sharingStyle = $page.url.searchParams.has('share');
+    let mainElement;
 
 
     let shareLink = new URL($page.url);
 
     shareLink.searchParams.set('share', '1');
+
+    function handleClickTitle() {
+        console.log('handleClickTitle')
+        if (sharingStyle) { // Only on sharing version.
+
+            let options = {
+                x: window.scrollX,
+                y: window.scrollY,
+                width: window.innerWidth,
+                height: window.innerHeight
+            }
+
+            html2canvas(mainElement, options).then(function(canvas){
+                canvas.toBlob((blob) => {
+                    navigator.clipboard.write([
+                        new ClipboardItem({ "image/png": blob })
+                    ]);
+                }, "image/png");
+            });
+        }
+
+    }
 
 </script>
 
@@ -24,14 +49,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </svelte:head>
 
-<main>
+<main bind:this={mainElement}>
     <center>
         <div class:sharingStyle>
             <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
             <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
             <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
         </div>
-        <h1 class=title>{title}</h1>
+        <h1 class=title on:click={handleClickTitle}>{title}</h1>
 
         <div class=cta class:sharingStyle ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
             <button class="button-85">신청 및 자세한 정보</button>
