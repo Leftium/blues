@@ -40,7 +40,7 @@
         <ul class=members-container>
             {#each members as member}
                 <li class="{`member ${member.sex} ${member.isNew}`}">
-                    <div>{member.name}</div>
+                    <span>{member.name}</span>
                 </li>
             {/each}
         </ul>
@@ -90,14 +90,18 @@
 
     main {
         background-color: white;
-        margin: auto;
-        max-width: 90vw;
-        width: 592px;
+    }
+    @media (min-width: 500px) {
+        main {
+            margin: auto;
+            max-width: 90vw;
+            width: 592px;
 
-        background-color: #fff;
-        border: 1px solid #dadce0;
-        border-radius: 8px;
-        margin-bottom: 12px;
+            background-color: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
     }
 
     .title {
@@ -117,7 +121,7 @@
         flex-wrap: wrap;
         padding: 0px;
 
-        gap: 5px;
+        gap: 1%;
         justify-content: center;
     }
 
@@ -126,19 +130,19 @@
 
         list-style: none;
         display: block;
-        width: 132px;
-        height: 132px;
+        width: 24%;
+        height: 0;
+        padding-bottom: 24%;
 
         border: 0px solid green;
 
-        font-size: xx-large;
+        font-size: large;
 
         display: flex;
 
         position: relative;
 
         text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
-
     }
 
     @media (max-width: 353px) {
@@ -146,14 +150,14 @@
             gap: 2%;
         }
         li.member {
-            width: 49%;
+            width: 32%;
             height: 0;
-            padding-bottom: 49%;
+            padding-bottom: 32%;
 
             font-size: large;
         }
-        li.member div {
-            padding-bottom: 49%;
+        li.member span {
+            padding-bottom: 32%;
         }
     }
 
@@ -161,15 +165,17 @@
         text-shadow: 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen;
     }
 
-    li.member div {
-        overflow: hidden;
+    li.member span {
         width: 100%;
         text-align: right;
+        font-weight: bold;
         margin-right: 4px;
         margin-top: 4px;
+        padding-bottom: 24%;
     }
 
     li.member {
+        overflow: hidden;
         background-repeat: no-repeat;
         background-position: 90% -20%;
         background-size: 150%;
