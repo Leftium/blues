@@ -33,11 +33,17 @@
             }
 
             html2canvas(mainElement, options).then(function(canvas){
-                canvas.toBlob((blob) => {
-                    navigator.clipboard.write([
-                        new ClipboardItem({ "image/png": blob })
-                    ]);
-                }, "image/png");
+                try {
+                    canvas.toBlob((blob) => {
+                        navigator.clipboard.write([
+                            new ClipboardItem({ "image/png": blob })
+                        ]);
+                    }, "image/png");
+                    alert('Successfully copied!');
+                } catch (error) {
+                    alert(error.name + error.message);
+
+                }
             });
         }
 
