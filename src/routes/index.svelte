@@ -167,11 +167,11 @@
     }
 
     .totals .men {
-        color: #268bd2;
+        color: blue;
     }
 
     .totals .women {
-        color: pink;
+        color: #FE2EA0;
     }
 
     ul.members-container {
@@ -192,6 +192,7 @@
         width: 24%;
         height: 0;
         padding-bottom: 24%;
+        margin-bottom: 1%;
 
         border: 0px solid green;
 
@@ -246,11 +247,18 @@
 
     li.male {
         background-image: url("/img/grinemo/01.png");
+    }
 
+    li.male span {
+        color: blue;
     }
 
     li.female {
         background-image: url("/img/grinemo/02.png");
+    }
+
+    li.female span {
+        color: #FE2EA0;
     }
 
     /* CSS */
