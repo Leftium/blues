@@ -39,10 +39,9 @@
                             new ClipboardItem({ "image/png": blob })
                         ]);
                     }, "image/png");
-                    alert('Successfully copied!');
+                    console.log('Successfully copied!');
                 } catch (error) {
-                    alert(error.name + error.message);
-
+                    console.log(error.name, error.message);
                 }
             });
         }
