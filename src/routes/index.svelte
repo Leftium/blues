@@ -28,12 +28,10 @@
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
 
-        <div>
-            Total:{numTotal}
+        <div class=totals>
+            <span class=total>신청자&nbsp;총:{numTotal}</span>
 
-            Men:{numMen}
-
-            Women:{numWomen}
+            <span class=men>남:{numMen}</span>&nbsp;<span class=women>여:{numWomen}</span>
         </div>
     </center>
 
@@ -113,6 +111,19 @@
     .cta {
         margin-bottom: 20px;
         width: 90%;
+    }
+
+    .totals {
+        font-size: 1.2em;
+        font-weight: bolder;
+    }
+
+    .totals .men {
+        color: #268bd2;
+    }
+
+    .totals .women {
+        color: pink;
     }
 
     ul.members-container {
