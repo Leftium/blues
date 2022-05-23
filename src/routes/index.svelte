@@ -78,7 +78,7 @@
 
         <ul class=members-container class:sharingStyle>
             {#each members as member}
-                <li class="{`member ${member.sex} ${member.isNew}`}">
+                <li class="{`member ${member.sex} ${member.isNew}`}" style="background-image: url(/img/grinemo/{`${member.num}`}.png)">
                     <span>{member.name}</span>
                 </li>
             {/each}
@@ -240,17 +240,17 @@
     li.member {
         overflow: hidden;
         background-repeat: no-repeat;
-        background-position: 90% -20%;
-        background-size: 150%;
+        background-position: 0% 0%;
+        background-size: 100%;
     }
 
     li.male {
-        background-image: url("/img/man-dancing.png");
+        background-image: url("/img/grinemo/01.png");
 
     }
 
     li.female {
-        background-image: url("/img/woman-dancing.png");
+        background-image: url("/img/grinemo/02.png");
     }
 
     /* CSS */

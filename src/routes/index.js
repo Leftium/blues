@@ -40,10 +40,15 @@ export async function get() {
         }
 
         if (item[7]) {
-            isNew = 'new'
+            isNew = 'new';
         }
 
-        members.unshift({ name, sex, isNew });
+        let num = Math.floor(Math.random()*32)+1;
+        if (num < 10) {
+            num = '0' + num;
+        }
+
+        members.unshift({ name, sex, isNew, num });
     }
 
     return {
