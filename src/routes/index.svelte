@@ -4,6 +4,16 @@
     export let numMen;
     export let numWomen;
     export let members;
+
+    import { page } from '$app/stores'
+
+    let sharingStyle = $page.url.searchParams.has('share');
+
+
+    let shareLink = new URL($page.url);
+
+    shareLink.searchParams.set('share', '1');
+
 </script>
 
 <svelte:head>
@@ -16,15 +26,14 @@
 
 <main>
     <center>
-
-        <div>
+        <div class:sharingStyle>
             <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
             <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
             <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
         </div>
         <h1 class=title>{title}</h1>
 
-        <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
+        <div class=cta class:sharingStyle ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
 
@@ -45,7 +54,10 @@
 
 
         <div>
-            <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
+            <center>
+                <a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a>
+                | <a href="{shareLink}">Share</a>
+            </center>
         </div>
 
 
@@ -58,6 +70,10 @@
         margin: 0;
         font-family: sans-serif;
 
+    }
+
+    .sharingStyle {
+        display: none;
     }
 
     .fa {
