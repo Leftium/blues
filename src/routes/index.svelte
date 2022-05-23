@@ -15,28 +15,27 @@
 </svelte:head>
 
 <main>
-    <div class=wrapper>
-        <center>
+    <center>
 
-            <div>
-                <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
-                <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
-                <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
-            </div>
-            <h1>{title}</h1>
+        <div>
+            <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
+            <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
+            <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+        </div>
+        <h1 class=title>{title}</h1>
 
-            <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
-                <button class="button-85">신청 및 자세한 정보</button>
-            </a></div>
+        <div class=cta ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
+            <button class="button-85">신청 및 자세한 정보</button>
+        </a></div>
 
-            <div>
+        <div>
             Total:{numTotal}
 
             Men:{numMen}
 
             Women:{numWomen}
-            </div>
-        </center>
+        </div>
+    </center>
 
         <ul class=members-container>
             {#each members as member}
@@ -50,7 +49,7 @@
         <div>
             <center><a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a></center>
         </div>
-    </div>
+
 
 </main>
 
@@ -101,10 +100,10 @@
         margin-bottom: 12px;
     }
 
-    div.wrapper {
-        margin: 0;
-        padding: 24px;
-        padding-top: 22px;
+    .title {
+        font-size: 1.6em;
+        margin-left: .5em;
+        margin-right: .5em;
     }
 
     .cta {
