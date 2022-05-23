@@ -192,6 +192,7 @@
         width: 24%;
         height: 0;
         padding-bottom: 24%;
+        margin-bottom: 1%;
 
         border: 0px solid green;
 
