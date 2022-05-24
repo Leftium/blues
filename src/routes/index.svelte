@@ -176,7 +176,6 @@
 
     ul.members-container {
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         padding: 0px;
 
@@ -185,24 +184,44 @@
     }
 
     li.member {
+        display: flex;
+        overflow: hidden;
+
+        width: 24%;
+        aspect-ratio: 1 / 1;
+
+        margin-bottom: 1%;
+
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         list-style: none;
-        display: block;
-        width: 24%;
-        height: 0;
-        padding-bottom: 24%;
-        margin-bottom: 1%;
-
-        border: 0px solid green;
 
         font-size: large;
 
-        display: flex;
-
-        position: relative;
-
         text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
+
+        background-repeat: no-repeat;
+        background-position: 0% 0%;
+        background-size: 100%;
+    }
+
+    li.member span {
+        width: 100%;
+        align-self: flex-end;
+
+        margin-right: 4%;
+        margin-bottom: 4%;
+
+        text-align: right;
+        font-weight: bold;
+    }
+
+    li.male span {
+        color: blue;
+    }
+
+    li.female span {
+        color: #FE2EA0;
     }
 
     ul.sharingStyle li.member {
@@ -210,55 +229,13 @@
     }
 
     @media (max-width: 353px) {
-        ul.members-container {
-            gap: 2%;
-        }
         li.member {
             width: 32%;
-            height: 0;
-            padding-bottom: 32%;
-
-            font-size: large;
-        }
-        li.member span {
-            padding-bottom: 32%;
         }
     }
 
     li.new {
         text-shadow: 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen;
-    }
-
-    li.member span {
-        width: 100%;
-        text-align: right;
-        font-weight: bold;
-        margin-right: 4px;
-        margin-top: 4px;
-        padding-bottom: 24%;
-    }
-
-    li.member {
-        overflow: hidden;
-        background-repeat: no-repeat;
-        background-position: 0% 0%;
-        background-size: 100%;
-    }
-
-    li.male {
-        background-image: url("/img/grinemo/01.png");
-    }
-
-    li.male span {
-        color: blue;
-    }
-
-    li.female {
-        background-image: url("/img/grinemo/02.png");
-    }
-
-    li.female span {
-        color: #FE2EA0;
     }
 
     /* CSS */
