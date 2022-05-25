@@ -78,7 +78,7 @@
 
         <ul class=members-container class:sharingStyle>
             {#each members as member}
-                <li class="{`member ${member.sex} ${member.isNew}`}" style="background-image: url(/img/grinemo/{`${member.num}`}.png)">
+                <li class="{`member ${member.sex} ${member.isNew}`}" style="background-image: url(/img/kelly/{`${member.num}`}.jpg)">
                     <span>{member.name}</span>
                 </li>
             {/each}
@@ -196,7 +196,7 @@
 
         list-style: none;
 
-        font-size: large;
+        font-size: x-large;
 
         text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
 
