@@ -62,7 +62,7 @@ export async function get() {
         if (candidates.length == 0) {
             // Fill array with integers 1 to length.
             // https://stackoverflow.com/a/33352604/117030
-            candidates = Array.from({length: 12}, (_, i) => i + 1);
+            candidates = Array.from({length: 13}, (_, i) => i + 1);
 
             shuffleArray(candidates);
         }
