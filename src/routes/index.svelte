@@ -187,6 +187,8 @@
         display: flex;
         overflow: hidden;
 
+        border-radius: 0.5em;
+
         width: 24%;
         aspect-ratio: 1 / 1;
 
