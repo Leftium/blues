@@ -192,13 +192,11 @@
 
         margin-bottom: 1%;
 
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
         list-style: none;
 
-        font-size: 140%;
+        font-size: 1.2em;
 
-        text-shadow: 0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray,0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray,0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray;
+        text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
 
 
         background-repeat: no-repeat;
