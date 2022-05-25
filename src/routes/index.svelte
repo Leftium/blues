@@ -198,7 +198,8 @@
 
         font-size: 140%;
 
-        text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
+        text-shadow: 0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray,0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray,0 0 0.2em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray, 0 0 0.5em lightgray;
+
 
         background-repeat: no-repeat;
         background-position: 0% 0%;
