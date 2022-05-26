@@ -78,7 +78,7 @@
 
         <ul class=members-container class:sharingStyle>
             {#each members as member}
-                <li class="{`member ${member.sex} ${member.isNew}`}">
+                <li class="{`member ${member.sex} ${member.isNew}`}" style="background-image: url(/img/kelly/{`${member.num}`}.jpg)">
                     <span>{member.name}</span>
                 </li>
             {/each}
@@ -167,16 +167,15 @@
     }
 
     .totals .men {
-        color: #268bd2;
+        color: blue;
     }
 
     .totals .women {
-        color: pink;
+        color: #FE2EA0;
     }
 
     ul.members-container {
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         padding: 0px;
 
@@ -185,73 +184,53 @@
     }
 
     li.member {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: flex;
+        overflow: hidden;
 
-        list-style: none;
-        display: block;
+        border-radius: 0.5em;
+
         width: 24%;
-        height: 0;
-        padding-bottom: 24%;
+        aspect-ratio: 1 / 1;
+
         margin-bottom: 1%;
 
-        border: 0px solid green;
+        list-style: none;
 
-        font-size: large;
-
-        display: flex;
-
-        position: relative;
+        font-size: 1.2em;
 
         text-shadow: 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white,0 0 0.2em white, 0 0 0.5em white, 0 0 0.5em white, 0 0 0.5em white;
+
+
+        background-repeat: no-repeat;
+        background-position: 0% 0%;
+        background-size: 100%;
+    }
+
+    li.member span {
+        width: 100%;
+        align-self: flex-end;
+
+        margin-right: 4%;
+        margin-bottom: 4%;
+
+        text-align: right;
+        font-weight: bold;
+    }
+
+    li.male span {
+        color: blue;
+    }
+
+    li.female span {
+        color: #FE2EA0;
     }
 
     ul.sharingStyle li.member {
        box-shadow: none;
     }
 
-    @media (max-width: 353px) {
-        ul.members-container {
-            gap: 2%;
-        }
-        li.member {
-            width: 32%;
-            height: 0;
-            padding-bottom: 32%;
-
-            font-size: large;
-        }
-        li.member span {
-            padding-bottom: 32%;
-        }
-    }
-
     li.new {
         text-shadow: 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen;
-    }
-
-    li.member span {
-        width: 100%;
-        text-align: right;
-        font-weight: bold;
-        margin-right: 4px;
-        margin-top: 4px;
-        padding-bottom: 24%;
-    }
-
-    li.member {
-        overflow: hidden;
-        background-repeat: no-repeat;
-        background-position: 90% -20%;
-        background-size: 150%;
-    }
-
-    li.male {
-        background-image: url("/img/man-dancing.png");
-
-    }
-
-    li.female {
-        background-image: url("/img/woman-dancing.png");
     }
 
     /* CSS */
