@@ -70,9 +70,9 @@
         </a></div>
 
         <div class=totals>
-            <span class=total>신청자&nbsp;총:{numTotal}</span>
+            <span class=total>신청자&nbsp;{numTotal}명</span>
 
-            <span class=men>남:{numMen}</span>&nbsp;<span class=women>여:{numWomen}</span>
+            <span class=men>남&nbsp;{numMen}명</span>&nbsp;<span class=women>여&nbsp;{numWomen}명</span>
         </div>
     </center>
 
