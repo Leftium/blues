@@ -37,6 +37,8 @@ export async function get() {
     let numWomen = 0;
     let numTotal = json.values.length;
 
+    json?.values.reverse()
+
     let candidates = [];
     for (const item of json?.values) {
         let name  = item[2];
@@ -72,7 +74,7 @@ export async function get() {
             num = '0' + num;
         }
 
-        members.unshift({ name, sex, isNew, num });
+        members.push({ name, sex, isNew, num });
     }
 
     return {
