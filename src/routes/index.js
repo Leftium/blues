@@ -8,14 +8,6 @@ const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_
 
 let random = null;
 
-// https://stackoverflow.com/a/12646864/117030
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
 export async function get() {
     let resp = await fetch(URL_FORM);
     let text = await resp.text();
@@ -39,7 +31,7 @@ export async function get() {
 
     json?.values.reverse()
 
-    let candidates = [];
+    let recents = [];
     for (const item of json?.values) {
         let name  = item[2];
         let sex   = item[5];
@@ -59,17 +51,20 @@ export async function get() {
             isNew = 'new';
         }
 
+        let candidates = [];
 
-
-        if (candidates.length == 0) {
-            // Fill array with integers 1 to length.
-            // https://stackoverflow.com/a/33352604/117030
-            candidates = Array.from({length: 16}, (_, i) => i + 1);
-
-            shuffleArray(candidates);
+        for (let i=1; i<=16; i++) {
+            if (!recents.includes(i)) {
+                candidates.push(i);
+            }
         }
 
-        let num = candidates.pop();
+        let num = candidates[Math.floor(random() * candidates.length)];
+        recents.push(num);
+        if (recents.length > 9) {
+            recents.shift()
+        }
+
         if (num < 10) {
             num = '0' + num;
         }
