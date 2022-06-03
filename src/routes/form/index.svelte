@@ -1,4 +1,6 @@
 <script>
+    import GoogleFormInput from '$lib/components/GoogleFormInput.svelte'
+
     export let title;
     export let text;
     export let html;
@@ -20,7 +22,9 @@
         {@html html}
     </div>
     <pre>
-        {JSON.stringify(formParams, null, 4)}
+        {#each formParams as formParam}
+            <GoogleFormInput params={formParam}></GoogleFormInput>
+        {/each}
     </pre>
     <div>
         <center>
