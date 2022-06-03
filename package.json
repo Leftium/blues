@@ -15,6 +15,7 @@
     "@sveltejs/kit": "next",
     "cheerio": "^1.0.0-rc.11",
     "html2canvas": "^1.4.1",
+    "markdown-it": "^13.0.1",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
     "typescript": "~4.6.2"

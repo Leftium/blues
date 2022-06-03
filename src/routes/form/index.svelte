@@ -2,6 +2,7 @@
     export let title;
     export let text;
     export let html;
+    export let formUrl;
 </script>
 
 <svelte:head>
@@ -16,6 +17,11 @@
         <h1 class=title >{title}</h1>
 
         {@html html}
+    </div>
+    <div>
+        <center>
+            <a href="{formUrl}">구글 양식 보기</a>
+        </center>
     </div>
 </main>
 
@@ -53,6 +59,18 @@
     div.info {
         padding: 1em;
         font-size: 1.2em;
+    }
+
+    .info :global(h1),
+    .info :global(h2),
+    .info :global(h3),
+    .info :global(h4),
+    .info :global(h5) {
+        margin-bottom: 0.2em;
+    }
+    .info :global(p) {
+        margin-top: 0.2em;
+
     }
 
     .info :global(legend) {
