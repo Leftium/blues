@@ -9,11 +9,30 @@
     export let formParams;
 
     let form=null;
+    let submitResultMessage = '';
+    let submitError = false;
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         let formData = new FormData(e.target);
-        console.log({formAction})
-        console.log(Array.from(formData.entries()));
+
+        let formEntries = Object.fromEntries(formData.entries());
+
+        let resp = await fetch('/form/submitGoogleForm', {
+            method: 'POST',
+            body: JSON.stringify({
+                formAction,
+                formEntries
+            })
+        })
+
+        if (resp.status == 200) {
+            submitResultMessage = '신청 완료!'
+            submitError = false;
+        } else {
+            submitResultMessage = `신청 오류: ${resp.status} ${resp.statusText}`;
+            submitError = true;
+        }
+
     }
 
 </script>
@@ -31,12 +50,14 @@
 
         {@html html}
     </div>
-    <form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
-        {#each formParams as formParam}
-            <GoogleFormInput params={formParam}></GoogleFormInput>
-        {/each}
-        <input type=submit>
-    </form>
+    {#if formParams.length}
+        <form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
+            {#each formParams as formParam}
+                <GoogleFormInput params={formParam}></GoogleFormInput>
+            {/each}
+            <input type=submit><span class='result' class:submitError >{submitResultMessage}</span>
+        </form>
+    {/if}
     <div>
         <center>
             <a href="{formUrl}">구글 양식 보기</a>
@@ -94,5 +115,13 @@
 
     .info :global(legend) {
         font-weight: bolder;
+    }
+
+    span.result {
+        color: green;
+    }
+
+    span.result.submitError {
+        color: red;
     }
 </style>
