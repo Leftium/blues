@@ -3,6 +3,7 @@
     export let text;
     export let html;
     export let formUrl;
+    export let formParams;
 </script>
 
 <svelte:head>
@@ -18,6 +19,9 @@
 
         {@html html}
     </div>
+    <pre>
+        {JSON.stringify(formParams, null, 4)}
+    </pre>
     <div>
         <center>
             <a href="{formUrl}">구글 양식 보기</a>

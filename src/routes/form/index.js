@@ -17,6 +17,32 @@ export async function get({ url }) {
     let title = $('meta[property="og:title"]').attr('content')       || '';
     let text  = $('meta[property="og:description"]').attr('content') || '';
 
+    let inputDivs = $('[data-params]');
+    let formParams = [];
+
+    function extractOptions(options) {
+        let result = [];
+        for (let option of options) {
+            if (option[0] != '') {
+                result.push(option[0]);
+            }
+        }
+        return result;
+    }
+
+    for (let div of inputDivs) {
+        let string = div.attribs['data-params'].replace(/^[^[]*/, '[');
+        let arrays = JSON.parse(string);
+        formParams.push({
+            //string,
+            name: arrays[0][1],
+            entry: arrays[0][4][0][0],
+            required: arrays[0][4][0][2],
+            description: arrays[0][2],
+            options: extractOptions(arrays[0][4][0][1])
+        });
+    }
+
     let html = text;
 
     // Linkify 확인.
@@ -67,7 +93,8 @@ export async function get({ url }) {
             title,
             text,
             html,
-            formUrl
+            formUrl,
+            formParams
         }
     }
 
