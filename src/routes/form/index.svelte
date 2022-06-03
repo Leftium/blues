@@ -5,12 +5,14 @@
     export let text;
     export let html;
     export let formUrl;
+    export let formAction;
     export let formParams;
 
     let form=null;
 
     function handleSubmit(e) {
         let formData = new FormData(e.target);
+        console.log({formAction})
         console.log(Array.from(formData.entries()));
     }
 

@@ -5,7 +5,7 @@ import MarkdownIt from 'markdown-it';
 const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform'
 
 export async function get({ url }) {
-    const formUrl   = url.searchParams.get('u') || URL_FORM;
+    const formUrl    = url.searchParams.get('u') || URL_FORM;
     const noMarkdown = url.searchParams.has('nomd') || false;
 
 
@@ -14,8 +14,9 @@ export async function get({ url }) {
 
     let $ = cheerio.load(formHtml);
 
-    let title = $('meta[property="og:title"]').attr('content')       || '';
-    let text  = $('meta[property="og:description"]').attr('content') || '';
+    const title      = $('meta[property="og:title"]').attr('content')       || '';
+    const text       = $('meta[property="og:description"]').attr('content') || '';
+    const formAction = $('form').attr('action')                             || '';
 
     let inputDivs = $('[data-params]');
     let formParams = [];
@@ -94,6 +95,7 @@ export async function get({ url }) {
             text,
             html,
             formUrl,
+            formAction,
             formParams
         }
     }
