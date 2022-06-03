@@ -6,6 +6,14 @@
     export let html;
     export let formUrl;
     export let formParams;
+
+    let form=null;
+
+    function handleSubmit(e) {
+        let formData = new FormData(e.target);
+        console.log(Array.from(formData.entries()));
+    }
+
 </script>
 
 <svelte:head>
@@ -21,11 +29,12 @@
 
         {@html html}
     </div>
-    <pre>
+    <form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
         {#each formParams as formParam}
             <GoogleFormInput params={formParam}></GoogleFormInput>
         {/each}
-    </pre>
+        <input type=submit>
+    </form>
     <div>
         <center>
             <a href="{formUrl}">구글 양식 보기</a>

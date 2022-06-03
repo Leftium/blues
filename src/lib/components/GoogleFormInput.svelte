@@ -19,13 +19,13 @@
     {#if type == 'radio'}
         {#each params.options as option}
             <label>
-                <input type='radio' bind:group={group} name={params.name} value={option}>
+                <input type='radio' bind:group={group} name="entry.{params.entry}" value={option}>
                 {option}
             </label>
         {/each}
     {:else}
         <label>
-            <input>
+            <input name="entry.{params.entry}">
         </label>
     {/if}
 
@@ -38,8 +38,7 @@
     }
 
     h2 {
-        margin-top: 1.6em;
-        margin-bottom: -0.6em;
+        margin-bottom: 0.2em;
     }
 
 </style>
