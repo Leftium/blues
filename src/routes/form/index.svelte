@@ -52,10 +52,10 @@
 
     div.info {
         padding: 1em;
+        font-size: 1.2em;
     }
 
     .info :global(legend) {
         font-weight: bolder;
     }
-
 </style>
