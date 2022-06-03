@@ -13,6 +13,7 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "cheerio": "^1.0.0-rc.11",
     "html2canvas": "^1.4.1",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
