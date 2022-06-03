@@ -12,6 +12,10 @@
     let submitResultMessage = '';
     let submitError = false;
 
+    function handleChange(e) {
+        submitResultMessage = '';
+    }
+
     async function handleSubmit(e) {
         let formData = new FormData(e.target);
 
@@ -53,7 +57,7 @@
     {#if formParams.length}
         <form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
             {#each formParams as formParam}
-                <GoogleFormInput params={formParam}></GoogleFormInput>
+                <GoogleFormInput params={formParam} onChange={handleChange} />
             {/each}
             <input type=submit><span class='result' class:submitError >{submitResultMessage}</span>
         </form>
