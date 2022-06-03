@@ -19,8 +19,37 @@ export async function get({ url }) {
 
     let html = text;
 
-    // Make <h2> tags before adding other tags.
-    html = html.replace(/<(.+)>\n/mg, '## $1\n');
+    // Linkify 확인.
+    html = html.replace(/(.*신청\s*확인.*)\n^(https:..docs.google.com.*)/m, '[$1]($2)');
+
+    let lines = html.split('\n').map((line) => {
+        let newLine = line;
+
+        // Convert ~~~ line to <hr>.
+        newLine = newLine.replace(/^\s*~{6,}\s/, '\n---\n');
+
+        // Linkify 장소.
+        let locationLink = 'https://map.kakao.com/?itemId=1259064592';
+        newLine = newLine.replace(/(장소:\s*)(홍대 나인빠)/, `$1 [$2](${locationLink})`);
+
+        // Make <h3> tags before adding other tags.
+        newLine = newLine.replace(/\<(.+)\>/, '### $1\n');
+
+        // Make labels bold.
+        let lineBeforeBolding = newLine;
+        if (!line.includes('오후') ) {
+            newLine = newLine.replace(/^(- )?(\s*)?([^:]*?:)/, '$1$2**$3**');
+            newLine = newLine.replace(/^(- )?(\d{4})(\s+)/, '$1**$2**$3');
+
+            // Don't put <b> tag in middle of URL.
+            if(/https:\*\*/.test(newLine) || /#{1,5}/.test(newLine)) {
+                newLine = lineBeforeBolding;
+            }
+        }
+
+        return newLine;
+    });
+    html = lines.join('\n');
 
     if (!noMarkdown) {
         const md = new MarkdownIt({
@@ -30,37 +59,8 @@ export async function get({ url }) {
         html = md.render(html);
     }
 
-    // Make fieldsets.
+    // Make fieldsets after <br>'s were added.
     html = html.replace(/<p>~{3,}([^~]+)~{3,}\s*<br>\n(.*?)\<.p\>\n/sg, '<fieldset><legend>$1</legend>$2</fieldset>\n');
-
-    // Linkify 확인.
-    html = html.replace(/(.*신청\s*확인.*)\n^(https:..docs.google.com.*)/m, '<a href="$2">$1</a>');
-
-    let lines = html.split('\n');
-    lines = lines.map((line) => {
-        let newLine = line;
-
-        // Convert ~~~ line to <hr>.
-        newLine = newLine.replace(/^\s*~{3,}<br>/, '\n<hr>\n');
-
-        // Linkify 장소.
-        let locationLink = 'https://map.kakao.com/?itemId=1259064592';
-        newLine = newLine.replace(/(장소:\s*)(홍대 나인빠)/, `$1 <a href=${locationLink}>$2</a>`);
-
-        // Make labels bold.
-        if (!line.includes('오후') ) {
-            newLine = newLine.replace(/^[^:]*?:/, '<b>$&</b>');
-            newLine = newLine.replace(/^(<p>)?(<li>)?(\d{4}\s+)/, '<b>$2$3</b>');
-            // Don't put <b> tag in middle of URL.
-            if(newLine.includes('https:</b>')) {
-                newLine = line;
-            }
-        }
-
-        return newLine;
-    });
-    html = lines.join('\n');
-
 
     return {
         body: {
