@@ -1,6 +1,7 @@
 <script>
     export let title;
     export let text;
+    export let html;
 </script>
 
 <svelte:head>
@@ -11,9 +12,11 @@
 </svelte:head>
 
 <main>
-     <h1 class=title >{title}</h1>
+    <div class=info>
+        <h1 class=title >{title}</h1>
 
-     <pre>{text}</pre>
+        {@html html}
+    </div>
 </main>
 
 <style>
@@ -27,6 +30,7 @@
     main {
         background-color: white;
     }
+
     @media (min-width: 501px) {
         main {
             margin: auto;
@@ -44,6 +48,11 @@
         font-size: 1.6em;
         margin-left: .5em;
         margin-right: .5em;
+    }
+
+    div.info {
+        padding: 1em;
+
     }
 
 </style>
