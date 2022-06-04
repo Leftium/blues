@@ -57,9 +57,9 @@
 <style>
     :global(.label) {
         display: block;
-        margin-top: 2em;
+        margin-top: 1.5em;
         margin-bottom: 0.1em;
-        font-size: 1.2em;
+        font-size: 1.1em;
         font-weight: bold;
     }
 </style>
