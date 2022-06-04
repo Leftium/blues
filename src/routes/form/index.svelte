@@ -19,7 +19,7 @@
     let disabled=false;
 
     async function scrollToForm() {
-        await goto('#form');
+        await goto('#form', { replaceState: true });
     }
 
     function handleChange(e) {
