@@ -1,6 +1,6 @@
 <script>
     import 'bootstrap/dist/css/bootstrap.min.css';
-    import { Button } from 'sveltestrap';
+    import { Button, Alert, Col, Container, Row } from 'sveltestrap';
 
     import GoogleFormInput from '$lib/components/GoogleFormInput.svelte'
 
@@ -13,7 +13,7 @@
 
     let form=null;
     let submitResultMessage = '';
-    let submitError = false;
+    let alertColor = 'primary'
 
     function handleChange(e) {
         submitResultMessage = '';
@@ -34,10 +34,10 @@
 
         if (resp.status == 200) {
             submitResultMessage = '신청 완료!'
-            submitError = false;
+            alertColor = 'success';
         } else {
             submitResultMessage = `신청 오류: ${resp.status} ${resp.statusText}`;
-            submitError = true;
+            alertColor = 'danger';
         }
 
     }
@@ -62,8 +62,27 @@
             {#each formParams as formParam}
                 <GoogleFormInput params={formParam} onChange={handleChange} />
             {/each}
-            <Button color='primary' type=submit>제출</Button>
-            <span class='result' class:submitError >{submitResultMessage}</span>
+
+
+            <Container>
+                <Row>
+                    <Col class="col-8">
+                        <Alert
+                            class="alert form-control-lg"
+                            color={alertColor}
+                            isOpen={!!submitResultMessage}
+                        >{submitResultMessage}</Alert>
+                    </Col>
+                    <Col class="col-4">
+                        <Button
+                            class='submit form-control-lg'
+                            color='primary'
+                            type=submit
+                        >제출</Button>
+                    </Col>
+                </Row>
+
+            </Container>
         </form>
     {/if}
     <div>
@@ -144,11 +163,26 @@
         padding: 0.5em;
     }
 
-    span.result {
-        color: green;
+    :global(button:focus) {
+        box-shadow: none !important;
     }
 
-    span.result.submitError {
-        color: red;
+    :global(.col:first-child) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    :global(.col:last-child) {
+        padding-left: .5em;
+        padding-right: 0;
+    }
+
+    :global(.alert),
+    :global(.submit) {
+        text-align: center;
+        font-size: 16px;
+        width: 100%;
+        padding: 6px 2px;
+        margin-bottom: 0;
     }
 </style>
