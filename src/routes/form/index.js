@@ -72,8 +72,8 @@ export async function get({ url }) {
         // Make labels bold.
         let lineBeforeBolding = newLine;
         if (!line.includes('오후') ) {
-            newLine = newLine.replace(/^(- )?(\s*)?([^:]*?:)/, '$1$2**$3**');
-            newLine = newLine.replace(/^(- )?(\d{4})(\s+)/, '$1**$2**$3');
+            newLine = newLine.replace(/^(- )?(\s*)?([^:]*?:)/, '$1$2**$3** ');
+            newLine = newLine.replace(/^(- )?(\d{4})(\s+)/, '$1**$2** $3');
 
             // Don't put <b> tag in middle of URL.
             if(/https:\*\*/.test(newLine) || /#{1,5}/.test(newLine)) {
