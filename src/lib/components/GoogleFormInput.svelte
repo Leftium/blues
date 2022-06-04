@@ -1,6 +1,4 @@
 <script>
-    import 'bootstrap/dist/css/bootstrap.min.css';
-
     import { FormGroup, FormText, Input, Label } from 'sveltestrap';
     import { localStorageStore } from "@babichjacob/svelte-localstorage/svelte-kit";
     import { localStorageStore as browserStorage  } from "@babichjacob/svelte-localstorage/browser";

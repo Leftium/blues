@@ -65,7 +65,7 @@
         </div>
         <h1 class=title on:click={handleClickTitle}>{title}</h1>
 
-        <div class=cta class:sharingStyle ><a href="https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform">
+        <div class=cta class:sharingStyle ><a href="/form">
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
 

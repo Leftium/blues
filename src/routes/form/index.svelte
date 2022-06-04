@@ -1,5 +1,4 @@
 <script>
-    import 'bootstrap/dist/css/bootstrap.min.css';
     import { Button, Alert, Col, Container, Row } from 'sveltestrap';
 
     import GoogleFormInput from '$lib/components/GoogleFormInput.svelte'
@@ -59,6 +58,10 @@
 
     <meta property="og:image" content="https://www.modu-blues.com/img/cloud9.png">
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+
+
 </svelte:head>
 
 <main>
@@ -112,7 +115,7 @@
 
 <style>
     :global(body) {
-        background-color: rgb(241, 237, 237);
+        background-color: rgb(241, 237, 237) !important;
         margin: 0;
         font-family: sans-serif;
 
