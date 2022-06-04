@@ -81,7 +81,7 @@
 
         {#if formParams.length}
             <center>
-                <a href='#' on:click|preventDefault={scrollToForm}>신청 양직 바로 가기</a>
+                <a href='#' on:click|preventDefault={scrollToForm}>신청 양식 바로 가기</a>
             </center>
         {/if}
 
