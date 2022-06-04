@@ -180,17 +180,17 @@
 
 
     :global(fieldset) {
-        border-width: 1px;
-        border-style: solid;
-        border-color: lightgray;
-        padding: .1em 1em;
-        margin-bottom: 1em;
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-color: lightgray !important;
+        padding: .1em 1em !important;
+        margin-bottom: 1em !important;
     }
 
     :global(legend) {
-        float: initial;
-        width: initial;
-        margin: initial;
+        float: initial !important;
+        width: initial !important;
+        margin: initial !important;
     }
 
     .required-mark {
