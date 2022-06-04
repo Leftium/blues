@@ -17,12 +17,15 @@
     let submitResultMessage = '';
     let alertColor = 'primary'
 
+    let disabled=false;
+
     async function scrollToForm() {
         await goto('#form');
     }
 
     function handleChange(e) {
         submitResultMessage = '';
+        disabled = false;
     }
 
     async function handleSubmit(e) {
@@ -41,6 +44,7 @@
         if (resp.status == 200) {
             submitResultMessage = '신청 완료!'
             alertColor = 'success';
+            disabled = true;
         } else {
             submitResultMessage = `신청 오류: ${resp.status} ${resp.statusText}`;
             alertColor = 'danger';
@@ -91,6 +95,7 @@
                             class='submit form-control-lg'
                             color='primary'
                             type=submit
+                            {disabled}
                         >제출</Button>
                     </Col>
                 </Row>
