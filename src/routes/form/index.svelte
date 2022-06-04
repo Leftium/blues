@@ -4,6 +4,8 @@
 
     import GoogleFormInput from '$lib/components/GoogleFormInput.svelte'
 
+    import { goto } from '$app/navigation';
+
     export let title;
     export let text;
     export let html;
@@ -14,6 +16,10 @@
     let form=null;
     let submitResultMessage = '';
     let alertColor = 'primary'
+
+    async function scrollToForm() {
+        await goto('#form');
+    }
 
     function handleChange(e) {
         submitResultMessage = '';
@@ -55,10 +61,16 @@
     <div class=info>
         <h1 class=title >{title}</h1>
 
+        {#if formParams.length}
+            <center>
+                <a href='#' on:click={scrollToForm}>신청 양직 바로 가기</a>
+            </center>
+        {/if}
+
         {@html html}
     </div>
     {#if formParams.length}
-        <form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
+        <form id=form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
             {#each formParams as formParam}
                 <GoogleFormInput params={formParam} onChange={handleChange} />
             {/each}
