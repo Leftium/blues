@@ -54,7 +54,7 @@ export async function get({ url }) {
     let html = text;
 
     // Linkify 확인.
-    html = html.replace(/(.*신청\s*확인.*)\n^(https:..docs.google.com.*)/m, '[$1]($2)');
+    html = html.replace(/(\s*)((.*신청)?\s*확인.*)\n^(https:..docs.google.com.*)/m, '$1[$2]($4)');
 
     let lines = html.split('\n').map((line) => {
         let newLine = line;
