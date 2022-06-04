@@ -18,8 +18,19 @@
 
     let disabled=false;
 
-    async function scrollToForm() {
-        await goto('#form', { replaceState: true });
+    function scrollToForm() {
+        // https://stackoverflow.com/a/11986374/117030
+        // Finds y value of given object
+        function findPos(obj) {
+            var curtop = 0;
+            if (obj.offsetParent) {
+                do {
+                    curtop += obj.offsetTop;
+                } while (obj = obj.offsetParent);
+            return [curtop];
+            }
+        }
+        window.scroll(0,findPos(form));
     }
 
     function handleChange(e) {
@@ -70,7 +81,7 @@
 
         {#if formParams.length}
             <center>
-                <a href='#' on:click={scrollToForm}>신청 양직 바로 가기</a>
+                <a href='#' on:click|preventDefault={scrollToForm}>신청 양직 바로 가기</a>
             </center>
         {/if}
 
