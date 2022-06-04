@@ -29,6 +29,7 @@
                 name="entry.{params.entry}"
                 bind:group={group}
                 on:change={onChange}
+                class=form-control-lg
                 value={option}
                 label={option}
                 required={params.required}
@@ -45,6 +46,7 @@
             id="entry.{params.entry}"
             required={params.required}
             on:focus={handleFocus}
+            class=form-control-lg
         />
 
     {/if}
