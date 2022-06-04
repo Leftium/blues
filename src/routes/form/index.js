@@ -88,7 +88,8 @@ export async function get({ url }) {
     if (!noMarkdown) {
         const md = new MarkdownIt({
             html: true,
-            breaks: true
+            breaks: true,
+            linkify: true
         }).disable(['fence', 'strikethrough']);
         html = md.render(html);
     }
