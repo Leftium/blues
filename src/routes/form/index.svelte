@@ -130,6 +130,7 @@
         border-width: 1px;
         border-style: solid;
         border-color: lightgray;
+        padding: .1em 1em;
         margin-bottom: 1em;
     }
 
