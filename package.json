@@ -11,6 +11,7 @@
     "check:watch": "svelte-check --tsconfig ./jsconfig.json --watch"
   },
   "devDependencies": {
+    "@babichjacob/svelte-localstorage": "^0.2.0",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "bootstrap": "^5.1.3",

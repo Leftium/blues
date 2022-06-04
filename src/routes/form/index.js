@@ -1,6 +1,12 @@
 import * as cheerio from 'cheerio';
 import MarkdownIt from 'markdown-it';
 
+// These form inputs should reset every time.
+const DONT_REMEMBER = [
+    '신청',
+    '나인빠 블루스 소셜 추천인'
+];
+
 
 const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform'
 
@@ -39,6 +45,7 @@ export async function get({ url }) {
             name: arrays[0][1],
             entry: arrays[0][4][0][0],
             required: arrays[0][4][0][2],
+            remember: !DONT_REMEMBER.includes(arrays[0][1]),
             description: arrays[0][2],
             options: extractOptions(arrays[0][4][0][1])
         });

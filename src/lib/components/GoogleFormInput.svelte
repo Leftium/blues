@@ -2,19 +2,36 @@
     import 'bootstrap/dist/css/bootstrap.min.css';
 
     import { FormGroup, FormText, Input, Label } from 'sveltestrap';
+    import { localStorageStore } from "@babichjacob/svelte-localstorage/svelte-kit";
+    import { localStorageStore as browserStorage  } from "@babichjacob/svelte-localstorage/browser";
+
+    import { browser, dev, mode, prerendering } from '$app/env';
 
     export let params = null;
     export let onChange = null;
 
     let group = null;
     let type = 'text';
-    if (params.options.length) {
-        type = 'radio'
-        group = params.options[0]
+
+    let store = null;
+    if (browser) {
+        store = (params.remember ? localStorageStore : browserStorage)(params.entry, '');
+        if (!params.remember) {
+            store.set(null);
+        }
+
+        if (params.options.length) {
+            type = 'radio';
+            group = $store || params.options[0];
+        }
+    }
+
+    function handleChange(e) {
+        store.set(e.target.value);
+        onChange(e);
     }
 
     function handleFocus(e) {
-        onChange(e);
         this.select();
     }
 
@@ -33,7 +50,7 @@
                 type=radio
                 name="entry.{params.entry}"
                 bind:group={group}
-                on:change={onChange}
+                on:change={handleChange}
                 class=form-control-lg
                 value={option}
                 label={option}
@@ -55,7 +72,9 @@
             name="entry.{params.entry}"
             id="entry.{params.entry}"
             required={params.required}
+            value={$store}
             on:focus={handleFocus}
+            on:input={handleChange}
             class=form-control-lg
         />
 
