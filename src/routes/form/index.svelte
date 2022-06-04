@@ -1,4 +1,7 @@
 <script>
+    import 'bootstrap/dist/css/bootstrap.min.css';
+    import { Button } from 'sveltestrap';
+
     import GoogleFormInput from '$lib/components/GoogleFormInput.svelte'
 
     export let title;
@@ -59,7 +62,8 @@
             {#each formParams as formParam}
                 <GoogleFormInput params={formParam} onChange={handleChange} />
             {/each}
-            <input type=submit><span class='result' class:submitError >{submitResultMessage}</span>
+            <Button color='primary' type=submit>제출</Button>
+            <span class='result' class:submitError >{submitResultMessage}</span>
         </form>
     {/if}
     <div>
@@ -119,6 +123,10 @@
 
     .info :global(legend) {
         font-weight: bolder;
+    }
+
+    form {
+        padding: 0.5em;
     }
 
     span.result {

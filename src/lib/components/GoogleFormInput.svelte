@@ -1,4 +1,8 @@
 <script>
+    import 'bootstrap/dist/css/bootstrap.min.css';
+
+    import { FormGroup, FormText, Input, Label } from 'sveltestrap';
+
     export let params = null;
     export let onChange = null;
 
@@ -16,40 +20,44 @@
 
 </script>
 
-<div>
-    <h2>{params.name}</h2>
-    {#if params.description}
-        <div>{params.description}</div>
-    {/if}
-
+<FormGroup>
     {#if type == 'radio'}
+        <Label class=label>{params.name}</Label>
         {#each params.options as option}
-            <label>
-                <input type='radio'
-                       bind:group={group}
-                       on:change={onChange}
-                       name="entry.{params.entry}"
-                       value={option}
-                       required={params.required}>
-                {option}
-            </label>
+            <Input
+                type=radio
+                name="entry.{params.entry}"
+                bind:group={group}
+                on:change={onChange}
+                value={option}
+                label={option}
+                required={params.required}
+            />
         {/each}
     {:else}
-        <label>
-            <input on:focus={handleFocus} name="entry.{params.entry}" required={params.required}>
-        </label>
+        <Label class=label for="entry.{params.entry}">{params.name}</Label>
+        {#if params.description}
+            <FormText color="muted">{params.description}</FormText>
+        {/if}
+
+        <Input
+            name="entry.{params.entry}"
+            id="entry.{params.entry}"
+            required={params.required}
+            on:focus={handleFocus}
+        />
+
     {/if}
 
 
-</div>
+</FormGroup>
 
 <style>
-    label {
+    :global(.label) {
         display: block;
+        margin-top: 2em;
+        margin-bottom: 0.1em;
+        font-size: 1.2em;
+        font-weight: bold;
     }
-
-    h2 {
-        margin-bottom: 0.2em;
-    }
-
 </style>
