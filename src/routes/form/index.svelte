@@ -63,7 +63,7 @@
 
 <main>
     <div class=info>
-        <h1 class=title >{title}</h1>
+        <center><h1 class=title >{title}</h1></center>
 
         {#if formParams.length}
             <center>
@@ -151,6 +151,8 @@
     .info :global(h3),
     .info :global(h4),
     .info :global(h5) {
+        margin-left: 0;
+        margin-right: 0;
         margin-bottom: 0.2em;
     }
     .info :global(p) {
