@@ -64,7 +64,7 @@ export async function get({ url }) {
 
         // Linkify 장소.
         let locationLink = 'https://map.kakao.com/?itemId=1259064592';
-        newLine = newLine.replace(/(장소:\s*)(홍대 나인빠)/, `$1 [$2](${locationLink})`);
+        newLine = newLine.replace(/(장소\s*:\s*)((홍대\s* )?나인빠)/, `$1 [$2](${locationLink})`);
 
         // Make <h3> tags before adding other tags.
         newLine = newLine.replace(/\<(.+)\>/, '### $1\n');
