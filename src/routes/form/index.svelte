@@ -125,6 +125,20 @@
         font-weight: bolder;
     }
 
+
+    :global(fieldset) {
+        border-width: 1px;
+        border-style: solid;
+        border-color: lightgray;
+        margin-bottom: 1em;
+    }
+
+    :global(legend) {
+        float: initial;
+        width: initial;
+        margin: initial;
+    }
+
     form {
         padding: 0.5em;
     }
