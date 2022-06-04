@@ -22,7 +22,12 @@
 
 <FormGroup>
     {#if type == 'radio'}
-        <Label class=label>{params.name}</Label>
+        <Label class=label>
+            {#if params.required}
+                <span class=required-mark>*</span>
+            {/if}
+            {params.name}
+        </Label>
         {#each params.options as option}
             <Input
                 type=radio
@@ -36,7 +41,12 @@
             />
         {/each}
     {:else}
-        <Label class=label for="entry.{params.entry}">{params.name}</Label>
+        <Label class=label for="entry.{params.entry}">
+            {#if params.required}
+                <span class=required-mark>*</span>
+            {/if}
+            {params.name}
+        </Label>
         {#if params.description}
             <FormText color="muted">{params.description}</FormText>
         {/if}
@@ -61,5 +71,9 @@
         margin-bottom: 0.1em;
         font-size: 1.1em;
         font-weight: bold;
+    }
+
+    .required-mark {
+        color: red;
     }
 </style>

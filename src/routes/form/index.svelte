@@ -71,6 +71,7 @@
     </div>
     {#if formParams.length}
         <form id=form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
+            <div class=required-mark>* 필수항목</div>
             {#each formParams as formParam}
                 <GoogleFormInput params={formParam} onChange={handleChange} />
             {/each}
@@ -169,6 +170,10 @@
         float: initial;
         width: initial;
         margin: initial;
+    }
+
+    .required-mark {
+        color: red;
     }
 
     form {
