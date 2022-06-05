@@ -59,7 +59,7 @@
         if (resp.status == 200) {
             submitResultMessage = '신청 완료!'
             if (SUNDAY_BLUES_URLS.includes(formAction)) {
-                submitResultMessage += " <a href='/' class=alert-link>확인</a>"
+                submitResultMessage += " <a href='/' rel=external class=alert-link>확인</a>"
             }
             alertColor = 'success';
             disabled = true;
