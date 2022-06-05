@@ -12,6 +12,11 @@
     export let formAction;
     export let formParams;
 
+    const SUNDAY_BLUES_URLS = [
+        'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/formResponse',
+        'https://docs.google.com/forms/d/e/1FAIpQLSfuB4VwcQD2e6AYl7u6_Ht9u2GyqHoS6jUdusvIRh_1BrCSsw/formResponse'
+    ]
+
     let form=null;
     let submitResultMessage = '';
     let alertColor = 'primary'
@@ -53,6 +58,9 @@
 
         if (resp.status == 200) {
             submitResultMessage = '신청 완료!'
+            if (SUNDAY_BLUES_URLS.includes(formAction)) {
+                submitResultMessage += " <a href='/' class=alert-link>확인</a>"
+            }
             alertColor = 'success';
             disabled = true;
         } else {
@@ -102,7 +110,7 @@
                             class="alert form-control-lg"
                             color={alertColor}
                             isOpen={!!submitResultMessage}
-                        >{submitResultMessage}</Alert>
+                        >{@html submitResultMessage}</Alert>
                     </Col>
                     <Col class="col-4">
                         <Button
@@ -218,9 +226,9 @@
     :global(.alert),
     :global(.submit) {
         text-align: center;
-        font-size: 16px;
+        font-size: 16px !important;
         width: 100%;
-        padding: 6px 2px;
+        padding: 6px 2px !important;
         margin-bottom: 0;
     }
 </style>
