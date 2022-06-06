@@ -118,7 +118,7 @@
                             color='primary'
                             type=submit
                             {disabled}
-                        >제출</Button>
+                        >신청</Button>
                     </Col>
                 </Row>
 
