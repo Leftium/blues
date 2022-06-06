@@ -27,13 +27,17 @@ export async function get() {
     let members = [];
     let numMen = 0;
     let numWomen = 0;
-    let numTotal = json.values.length;
+    let numTotal = 0;
 
     let recents = [];
     for (const item of json?.values) {
+        if (!item.length) { continue;  }  // Skip empty rows.
+
         let name  = item[2];
         let sex   = item[5];
         let isNew = '';
+
+        numTotal++;
 
 
         if (sex == '남(men)') {
