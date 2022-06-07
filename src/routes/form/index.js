@@ -11,7 +11,7 @@ const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7
 
 function embedYoutube(id) {
     return `<div class=wrap-youtube>
-                <iframe class=youtube src="https://www.youtube.com/embed/${id}?rel=0&controls=0&modestbranding=1" allowfullscreen></iframe>
+                <iframe class=youtube src="https://www.youtube.com/embed/${id}?rel=0&controls=1&modestbranding=1" allowfullscreen></iframe>
             </div>`
 }
 
