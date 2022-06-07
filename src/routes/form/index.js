@@ -7,8 +7,13 @@ const DONT_REMEMBER = [
     '나인빠 블루스 소셜 추천인'
 ];
 
-
 const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform'
+
+function embedYoutube(id) {
+    return `<div class=wrap-youtube>
+                <iframe class=youtube src="https://www.youtube.com/embed/${id}?rel=0&controls=0&modestbranding=1" allowfullscreen></iframe>
+            </div>`
+}
 
 export async function get({ url }) {
     const formUrl    = url.searchParams.get('u') || URL_FORM;
@@ -56,8 +61,16 @@ export async function get({ url }) {
     // Linkify 확인.
     html = html.replace(/(\s*)((.*신청)?\s*확인.*)\n^(https:..docs.google.com.*)/m, '$1[$2]($4)');
 
+    let matches = null;
     let lines = html.split('\n').map((line) => {
         let newLine = line;
+
+        if (matches = line.match(/https:..youtu.be\/(.*)/)) {
+            newLine = embedYoutube(matches[1])
+        } else {
+            // Make <h3> tags before adding other tags.
+            newLine = newLine.replace(/\<(.+)\>/, '### $1\n');
+        }
 
         // Convert ~~~ line to <hr>.
         newLine = newLine.replace(/^\s*~{6,}\s/, '\n---\n');
@@ -65,9 +78,6 @@ export async function get({ url }) {
         // Linkify 장소.
         let locationLink = 'https://map.kakao.com/?itemId=1259064592';
         newLine = newLine.replace(/(장소\s*:\s*)((홍대\s* )?나인빠)/, `$1 [$2](${locationLink})`);
-
-        // Make <h3> tags before adding other tags.
-        newLine = newLine.replace(/\<(.+)\>/, '### $1\n');
 
         // Make labels bold.
         let lineBeforeBolding = newLine;

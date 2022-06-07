@@ -195,6 +195,20 @@
         margin-bottom: 1em !important;
     }
 
+    :global(.wrap-youtube) {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+    }
+    :global(.youtube) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     :global(legend) {
         float: initial !important;
         width: initial !important;
