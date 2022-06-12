@@ -71,7 +71,13 @@ export async function get() {
             num = '0' + num;
         }
 
-        members.unshift({ name, sex, isNew, num });
+        let backgroundImage = `/img/kelly/${num}.jpg`;
+
+        if (name == '혜존') {
+            backgroundImage = '/img/iu/iu.gif';
+        }
+
+        members.unshift({ name, sex, isNew, backgroundImage });
     }
 
     return {
