@@ -76,6 +76,7 @@ export async function get() {
         const specialImages = {
             혜존:    '/img/special/iu.gif',
             메이비영: '/img/special/농담곰도리.png',
+            나나:    '/img/special/nana.gif'
         }
 
         if (specialImages[name]) {
