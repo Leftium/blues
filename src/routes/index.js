@@ -73,8 +73,13 @@ export async function get() {
 
         let backgroundImage = `/img/kelly/${num}.jpg`;
 
-        if (name == '혜존') {
-            backgroundImage = '/img/iu/iu.gif';
+        const specialImages = {
+            혜존:    '/img/special/iu.gif',
+            메이비영: '/img/special/농담곰도리.png',
+        }
+
+        if (specialImages[name]) {
+            backgroundImage = specialImages[name];
         }
 
         members.unshift({ name, sex, isNew, backgroundImage });

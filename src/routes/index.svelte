@@ -204,6 +204,8 @@
         background-repeat: no-repeat;
         background-position: 0% 0%;
         background-size: 100%;
+
+        box-shadow: #00000059 0 5px 15px;
     }
 
     li.member span {
