@@ -74,7 +74,7 @@ export async function get() {
         let backgroundImage = `/img/kelly/${num}.jpg`;
 
         const specialImages = {
-            혜존:    '/img/special/iu.gif',
+            혜존:    '/img/special/iu-cooking.gif',
             메이비영: '/img/special/농담곰도리.png',
             나나:    '/img/special/nana.gif'
         }
