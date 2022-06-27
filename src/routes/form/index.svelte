@@ -101,7 +101,7 @@
 
 <div class=confetti>
     {#if isVisible}
-        <ConfettiExplosion particleCount={100} stageHeight=1600 --y="-10px"/>
+        <ConfettiExplosion particleCount={100} stageHeight=1600 --y="-20px"/>
     {/if}
 </div>
 
@@ -174,6 +174,7 @@
     }
 
     .confetti {
+        z-index: 10000;
         pointer-events: none;
         position: fixed;
         overflow: hidden;
