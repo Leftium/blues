@@ -39,7 +39,7 @@ export async function get({ url }) {
     let matches = formHtml.match(/background-image: url\(([^)]*)/);
 
     let headerImage = '';
-    if (matches.length && matches[1]) {
+    if (matches?.length && matches[1]) {
         headerImage = matches[1];
     }
 
