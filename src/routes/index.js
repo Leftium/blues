@@ -52,7 +52,7 @@ export async function get({ url }) {
         if (header.includes('성별')) {
             colSex = i;
         }
-        if (header.includes('나인빠 블루스 소셜 추천인')) {
+        if (header.includes('나인빠 일요 블루스 추천인')) {
             colNew = i;
         }
     });
