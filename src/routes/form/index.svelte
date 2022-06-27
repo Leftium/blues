@@ -5,6 +5,9 @@
 
     import { goto } from '$app/navigation';
 
+    import { ConfettiExplosion } from 'svelte-confetti-explosion'
+    import { tick } from 'svelte'
+
     export let title;
     export let text;
     export let html;
@@ -20,7 +23,10 @@
         'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/formResponse',
         'https://docs.google.com/forms/d/e/1FAIpQLSfuB4VwcQD2e6AYl7u6_Ht9u2GyqHoS6jUdusvIRh_1BrCSsw/formResponse',
         'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/formResponse'
-    ]
+    ];
+
+    let y, isVisible = false;
+
 
     let form=null;
     let submitResultMessage = '';
@@ -41,6 +47,14 @@
             }
         }
         window.scroll(0,findPos(form));
+    }
+
+    async function handleClick(e) {
+        y = e.y;
+
+        isVisible = false;
+        await tick();
+        isVisible = true
     }
 
     function handleChange(e) {
@@ -88,9 +102,15 @@
 
 </svelte:head>
 
+<div class=confetti>
+    {#if isVisible}
+        <ConfettiExplosion particleCount={100} stageHeight=1600 --y="{y}px"/>
+    {/if}
+</div>
+
 <main>
     {#if party}
-        <img class=header-image src='/img/혜존.jpg'>
+        <img class=header-image src='/img/혜존.jpg' on:click={handleClick}>
     {:else if headerImage}
         <img class=header-image src='{headerImage}'>
     {/if}
@@ -154,7 +174,14 @@
         background-color: rgb(241, 237, 237) !important;
         margin: 0;
         font-family: sans-serif;
+    }
 
+    .confetti {
+        pointer-events: none;
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
     }
 
     main {
