@@ -152,6 +152,10 @@
         }
     }
 
+    h1 {
+        margin-block-start: 0;
+    }
+
     .title {
         font-size: 1.6em;
         margin-left: .5em;
