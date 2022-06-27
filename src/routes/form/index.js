@@ -144,7 +144,8 @@ export async function get({ url }) {
             formAction,
             formParams,
             confirmUrl,
-            headerImage
+            headerImage,
+            party
         }
     }
 
