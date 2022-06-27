@@ -80,6 +80,7 @@
             if (SUNDAY_BLUES_URLS.includes(formAction)) {
                 submitResultMessage += ` <a href='${confirmUrl}' rel=external class=alert-link>확인</a>`;
             }
+            handleClick(e); // Trigger confetti.
             alertColor = 'success';
             disabled = true;
         } else {
