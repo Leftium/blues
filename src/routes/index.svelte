@@ -9,7 +9,9 @@
     export let ctaUrl;
     export let sheetsId;
 
-    import { page } from '$app/stores'
+    import { ConfettiExplosion } from 'svelte-confetti-explosion';
+    import { tick } from 'svelte';
+    import { page } from '$app/stores';
 
     let sharingStyle = $page.url.searchParams.has('share');
     let mainElement;
@@ -19,7 +21,8 @@
 
     shareLink.searchParams.set('share', '1');
 
-    function handleClickTitle() {
+    let isVisible = false;
+    async function handleClickTitle() {
         console.log('handleClickTitle')
         if (sharingStyle) { // Only on sharing version.
 
@@ -44,6 +47,11 @@
                     console.log(error.name, error.message);
                 }
             });
+        } else {
+            // Trigger confetti.
+            isVisible = false;
+            await tick();
+            isVisible = true
         }
 
     }
@@ -57,6 +65,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </svelte:head>
+
+<div class=confetti>
+    {#if isVisible}
+        <ConfettiExplosion particleCount={100} stageHeight=1600 --x="50vw" --y="-20px"/>
+    {/if}
+</div>
 
 <main bind:this={mainElement}>
     <center>
@@ -104,6 +118,15 @@
         margin: 0;
         font-family: sans-serif;
 
+    }
+
+    .confetti {
+        z-index: 10000;
+        pointer-events: none;
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
     }
 
     .sharingStyle {
