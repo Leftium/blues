@@ -268,6 +268,11 @@
         margin-top: 3em;
     }
 
+    .image p {
+        font-size: 0.8em;
+        color: gray;
+    }
+
     .image img {
         width: 100%;
     }
