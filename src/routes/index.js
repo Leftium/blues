@@ -1,28 +1,61 @@
 import { seedRandom } from '$lib/random.js'
 
 const GCP_API_KEY    = import.meta.env.VITE_GCP_API_KEY
-const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID
 
+const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID
 const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform'
 const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
 
+const PARTY_SPREADSHEET_ID = import.meta.env.VITE_PARTY_SPREADSHEET_ID
+const PARTY_URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/viewform'
+const PARTY_URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${PARTY_SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+
 let random = null;
 
-export async function get() {
-    let resp = await fetch(URL_FORM);
+export async function get({ url }) {
+    const party = url.searchParams.has('party') || false;
+
+    let config = (party ? {
+        urlForm:   PARTY_URL_FORM,
+        urlSheets: PARTY_URL_SHEETS,
+        ctaUrl:    '/form?party',
+        sheetsId:  PARTY_SPREADSHEET_ID
+    } : {
+        urlForm:   URL_FORM,
+        urlSheets: URL_SHEETS,
+        ctaUrl:    '/form',
+        sheetsId:  SPREADSHEET_ID
+    });
+
+    let resp = await fetch(config.urlForm);
     let text = await resp.text();
 
     let title = '';
     let matches = text.match(/<title>(.*)<\/title>/);
     if (matches) {
         title = matches[1];
+        title = title.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
     }
+
     random = seedRandom(title);
 
-    resp = await fetch(URL_SHEETS);
+    resp = await fetch(config.urlSheets);
     let json = await resp.json();
 
-    json.values.shift();  // Skip labels.
+    let headers = json.values.shift();  // Get column headers.
+
+    let colName, colSex, colNew;
+    headers.forEach(function(header, i){
+        if (header.includes('닉네임')) {
+            colName = i;
+        }
+        if (header.includes('성별')) {
+            colSex = i;
+        }
+        if (header.includes('나인빠 블루스 소셜 추천인')) {
+            colNew = i;
+        }
+    });
 
     let members = [];
     let numMen = 0;
@@ -33,12 +66,11 @@ export async function get() {
     for (const item of json?.values) {
         if (!item.length) { continue;  }  // Skip empty rows.
 
-        let name  = item[2];
-        let sex   = item[5];
+        let name  = item[colName].trim();
+        let sex   = item[colSex];
         let isNew = '';
 
         numTotal++;
-
 
         if (sex == '남(men)') {
             sex = 'male';
@@ -49,7 +81,7 @@ export async function get() {
             numWomen++;
         }
 
-        if (item[7]) {
+        if (item[colNew]) {
             isNew = 'new';
         }
 
@@ -75,6 +107,7 @@ export async function get() {
 
         const specialImages = {
             혜존:    '/img/special/iu-cooking.gif',
+            헤존:    '/img/special/iu-cooking.gif',
             메이비영: '/img/special/농담곰도리.png',
             나나:    '/img/special/nana.gif'
         }
@@ -92,7 +125,9 @@ export async function get() {
             numTotal,
             numMen,
             numWomen,
-            members
+            members,
+            ctaUrl:   config.ctaUrl,
+            sheetsId: config.sheetsId
         }
     }
 

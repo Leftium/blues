@@ -17,11 +17,13 @@ function embedYoutube(id) {
 
 export async function get({ url }) {
     let formUrl      = url.searchParams.get('u')     || URL_FORM;
+    let confirmUrl   = '/';
     const noMarkdown = url.searchParams.has('nomd')  || false;
     const party      = url.searchParams.has('party') || false;
 
     if (party) {
         formUrl = 'https://forms.gle/fhUwRn6aAfFgDwdt9';
+        confirmUrl = '/?party';
     }
 
     let resp = await fetch(formUrl);
@@ -130,7 +132,8 @@ export async function get({ url }) {
             images,
             formUrl,
             formAction,
-            formParams
+            formParams,
+            confirmUrl
         }
     }
 

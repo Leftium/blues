@@ -6,6 +6,8 @@
     export let numMen;
     export let numWomen;
     export let members;
+    export let ctaUrl;
+    export let sheetsId;
 
     import { page } from '$app/stores'
 
@@ -65,7 +67,7 @@
         </div>
         <h1 class=title on:click={handleClickTitle}>{title}</h1>
 
-        <div class=cta class:sharingStyle ><a href="/form">
+        <div class=cta class:sharingStyle ><a href="{ctaUrl}">
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
 
@@ -87,7 +89,7 @@
 
         <div>
             <center>
-                <a href="https://docs.google.com/spreadsheets/d/1eY6ICmW2L5Tu0PFup-KH-bl_0t4xMHP7rqaHouruktY/edit#gid=1296169145">View in Google Sheets</a>
+                <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">View in Google Sheets</a>
                 | <a href="{shareLink}" sveltekit:reload>Share</a>
             </center>
         </div>
