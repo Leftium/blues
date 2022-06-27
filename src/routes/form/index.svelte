@@ -133,7 +133,9 @@
         <form id=form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
             <div class=required-mark>* 필수항목</div>
             {#each formParams as formParam}
-                <GoogleFormInput params={formParam} onChange={handleChange} />
+                {#if !(formParam.name == '포토그래퍼 맥반석님')} <!-- Skip extraneous input. -->
+                    <GoogleFormInput params={formParam} onChange={handleChange} />
+                {/if}
             {/each}
 
 
