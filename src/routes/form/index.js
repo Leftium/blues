@@ -50,10 +50,14 @@ export async function get({ url }) {
     for (const element of $img) {
         const $element = $(element);
         const src      = $element.attr('src');
-        const caption  = $element?.parent()?.parent()?.parent()?.text()
-                                 ?.replace('Your answer', '')
-                                 ?.replace('내 답변', '');
-        images.push({src, caption});
+
+        const $textElement = $($element?.parent()?.parent().prev());
+        const $textDivs    = $('div div div', $textElement);
+
+        const title       = $($textDivs[0])?.text();
+        const description = $($textDivs[1])?.text();
+
+        images.push({src, title, description});
     }
 
     let inputDivs = $('[data-params]');

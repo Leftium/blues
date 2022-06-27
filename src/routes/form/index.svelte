@@ -124,7 +124,8 @@
 
         {#each images as image}
             <div class=image>
-                <h3>{image.caption}</h3>
+                <h3>{image.title}</h3>
+                <p>{image.description}</p>
                 <img src="{image.src}"/>
             </div>
         {/each}
