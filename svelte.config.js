@@ -9,7 +9,8 @@ const config = {
 				exclude: ["@babichjacob/svelte-localstorage"],
 			},
 			ssr: {
-				noExternal: ["@babichjacob/svelte-localstorage"],
+				noExternal: ["@babichjacob/svelte-localstorage",
+                     "@popperjs/core"]
 			},
 		}
 	}
