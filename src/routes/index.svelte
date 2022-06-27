@@ -47,13 +47,11 @@
                     console.log(error.name, error.message);
                 }
             });
-        } else {
-            // Trigger confetti.
-            isVisible = false;
-            await tick();
-            isVisible = true
         }
-
+        // Trigger confetti.
+        isVisible = false;
+        await tick();
+        isVisible = true;
     }
 
 </script>
