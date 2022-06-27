@@ -300,6 +300,10 @@
         padding-right: 0;
     }
 
+    :global(.container) {
+        max-width: none;
+    }
+
     :global(.alert),
     :global(.submit) {
         text-align: center;
