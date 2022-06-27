@@ -25,9 +25,6 @@
         'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/formResponse'
     ];
 
-    let y, isVisible = false;
-
-
     let form=null;
     let submitResultMessage = '';
     let alertColor = 'primary'
@@ -49,9 +46,8 @@
         window.scroll(0,findPos(form));
     }
 
+    let isVisible = false;
     async function handleClick(e) {
-        y = e.y;
-
         isVisible = false;
         await tick();
         isVisible = true
@@ -105,7 +101,7 @@
 
 <div class=confetti>
     {#if isVisible}
-        <ConfettiExplosion particleCount={100} stageHeight=1600 --y="{y}px"/>
+        <ConfettiExplosion particleCount={100} stageHeight=1600 --y="-10px"/>
     {/if}
 </div>
 
