@@ -16,9 +16,13 @@ function embedYoutube(id) {
 }
 
 export async function get({ url }) {
-    const formUrl    = url.searchParams.get('u') || URL_FORM;
-    const noMarkdown = url.searchParams.has('nomd') || false;
+    let formUrl      = url.searchParams.get('u')     || URL_FORM;
+    const noMarkdown = url.searchParams.has('nomd')  || false;
+    const party      = url.searchParams.has('party') || false;
 
+    if (party) {
+        formUrl = 'https://forms.gle/fhUwRn6aAfFgDwdt9';
+    }
 
     let resp = await fetch(formUrl);
     let formHtml = await resp.text();
@@ -28,6 +32,17 @@ export async function get({ url }) {
     const title      = $('meta[property="og:title"]').attr('content')       || '';
     const text       = $('meta[property="og:description"]').attr('content') || '';
     const formAction = $('form').attr('action')                             || '';
+
+    // Extract images
+    const images = [];
+    const $img = $('[role=listitem] img');
+
+    for (const element of $img) {
+        const $element = $(element);
+        const src      = $element.attr('src');
+        const caption  = $element?.parent()?.parent()?.parent()?.text();
+        images.push({src, caption});
+    }
 
     let inputDivs = $('[data-params]');
     let formParams = [];
@@ -112,6 +127,7 @@ export async function get({ url }) {
             title,
             text,
             html,
+            images,
             formUrl,
             formAction,
             formParams

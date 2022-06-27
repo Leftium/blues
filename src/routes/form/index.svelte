@@ -8,6 +8,7 @@
     export let title;
     export let text;
     export let html;
+    export let images;
     export let formUrl;
     export let formAction;
     export let formParams;
@@ -94,6 +95,13 @@
         {/if}
 
         {@html html}
+
+        {#each images as image}
+            <div class=image>
+                <h3>{image.caption}</h3>
+                <img src="{image.src}"/>
+            </div>
+        {/each}
     </div>
     {#if formParams.length}
         <form id=form bind:this='{form}' on:submit|preventDefault={handleSubmit}>
@@ -213,6 +221,14 @@
         float: initial !important;
         width: initial !important;
         margin: initial !important;
+    }
+
+    .image {
+        margin-top: 3em;
+    }
+
+    .image img {
+        width: 100%;
     }
 
     .required-mark {
