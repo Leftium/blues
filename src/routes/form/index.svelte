@@ -207,7 +207,8 @@
     }
 
     .title {
-        font-size: 1.6em;
+        font-size: 1.2em;
+        font-weight: bolder;
         margin-left: .5em;
         margin-right: .5em;
     }
