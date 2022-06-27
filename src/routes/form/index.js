@@ -35,7 +35,15 @@ export async function get({ url }) {
     const text       = $('meta[property="og:description"]').attr('content') || '';
     const formAction = $('form').attr('action')                             || '';
 
-    // Extract images
+    // Extract header image.
+    let matches = formHtml.match(/background-image: url\(([^)]*)/);
+
+    let headerImage = '';
+    if (matches.length && matches[1]) {
+        headerImage = matches[1];
+    }
+
+    // Extract images.
     const images = [];
     const $img = $('[role=listitem] img');
 
@@ -80,7 +88,7 @@ export async function get({ url }) {
     // Linkify 확인.
     html = html.replace(/(\s*)((.*신청)?\s*확인.*)\n^(https:..docs.google.com.*)/m, '$1[$2]($4)');
 
-    let matches = null;
+    matches = null;
     let lines = html.split('\n').map((line) => {
         let newLine = line;
 
@@ -135,7 +143,8 @@ export async function get({ url }) {
             formUrl,
             formAction,
             formParams,
-            confirmUrl
+            confirmUrl,
+            headerImage
         }
     }
 

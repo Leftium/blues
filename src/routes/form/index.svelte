@@ -13,6 +13,7 @@
     export let formAction;
     export let formParams;
     export let confirmUrl;
+    export let headerImage;
 
     const SUNDAY_BLUES_URLS = [
         'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/formResponse',
@@ -86,6 +87,9 @@
 </svelte:head>
 
 <main>
+    {#if headerImage}
+        <img class=header-image src='{headerImage}'>
+    {/if}
     <div class=info>
         <center><h1 class=title >{title}</h1></center>
 
@@ -164,6 +168,10 @@
             border-radius: 8px;
             margin-bottom: 12px;
         }
+    }
+
+    .header-image {
+        width: 100%;
     }
 
     .title {
