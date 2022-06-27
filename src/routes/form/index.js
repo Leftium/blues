@@ -100,7 +100,7 @@ export async function get({ url }) {
         }
 
         // Convert ~~~ line to <hr>.
-        newLine = newLine.replace(/^\s*~{6,}\s/, '\n---\n');
+        newLine = newLine.replace(/^\s*~{6,}\s*/, '\n---\n');
 
         // Linkify 장소.
         let locationLink = 'https://map.kakao.com/?itemId=1259064592';
