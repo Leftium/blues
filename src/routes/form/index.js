@@ -42,7 +42,9 @@ export async function get({ url }) {
     for (const element of $img) {
         const $element = $(element);
         const src      = $element.attr('src');
-        const caption  = $element?.parent()?.parent()?.parent()?.text();
+        const caption  = $element?.parent()?.parent()?.parent()?.text()
+                                 ?.replace('Your answer', '')
+                                 ?.replace('내 답변', '');
         images.push({src, caption});
     }
 
