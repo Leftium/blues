@@ -109,7 +109,8 @@ export async function get({ url }) {
             혜존:    '/img/special/iu.gif',
             헤존:    '/img/special/iu-cooking.gif',
             메이비영: '/img/special/농담곰도리.png',
-            나나:    '/img/special/nana.gif'
+            나나:    '/img/special/nana.gif',
+            뽀냥:    '/img/special/garfield.png'
         }
 
         if (specialImages[name]) {
