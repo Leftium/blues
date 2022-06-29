@@ -63,8 +63,9 @@ export async function get({ url }) {
     let numTotal = 0;
 
     let recents = [];
-    for (const item of json?.values) {
-        if (!item.length) { continue;  }  // Skip empty rows.
+    json?.values?.forEach(function(item, i) {
+
+        if (!item.length) { return;  }  // Skip empty rows.
 
         let name  = item[colName].trim();
         let sex   = item[colSex];
@@ -110,7 +111,13 @@ export async function get({ url }) {
             헤존:    '/img/special/iu-cooking.gif',
             메이비영: '/img/special/농담곰도리.png',
             나나:    '/img/special/nana.gif',
-            뽀냥:    '/img/special/garfield.png'
+            뽀냥:    '/img/special/garfield.png',
+            세오:    '/img/special/세오.png',
+        }
+
+        const TEST=false;
+        if (TEST && i == json?.values?.length-1) {
+            name = Object.keys(specialImages).reverse()[0];
         }
 
         if (specialImages[name]) {
@@ -118,7 +125,7 @@ export async function get({ url }) {
         }
 
         members.unshift({ name, sex, isNew, backgroundImage });
-    }
+    }); // json?.values?.forEach
 
     return {
         body: {
