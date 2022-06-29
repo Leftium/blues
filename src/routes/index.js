@@ -13,8 +13,8 @@ const PARTY_URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${PARTY_
 let random = null;
 
 export async function get({ url }) {
-    const party = url.searchParams.has('party') || false;
-    const TEST  = url.searchParams.has('test')  || false;
+    const party  = url.searchParams.has('party')  || false;
+    const testId = url.searchParams.get('testid') || null;
 
     let config = (party ? {
         urlForm:   PARTY_URL_FORM,
@@ -116,8 +116,8 @@ export async function get({ url }) {
             세오:    '/img/special/세오.png',
         }
 
-        if (TEST && i == json?.values?.length-1) {
-            name = Object.keys(specialImages).reverse()[0];
+        if (testId && i == json?.values?.length-1) {
+            name = testId;
         }
 
         if (specialImages[name]) {
