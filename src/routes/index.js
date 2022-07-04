@@ -35,7 +35,7 @@ export async function get({ url }) {
     let matches = text.match(/<title>(.*)<\/title>/);
     if (matches) {
         title = matches[1];
-        title = title.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
+        title = title.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&amp;/gi, '&');
     }
 
     random = seedRandom(title);
