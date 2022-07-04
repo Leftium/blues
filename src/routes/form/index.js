@@ -7,7 +7,7 @@ const DONT_REMEMBER = [
     '나인빠 블루스 소셜 추천인'
 ];
 
-const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform'
+const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/viewform'
 
 function embedYoutube(id) {
     return `<div class=wrap-youtube>

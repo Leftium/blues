@@ -3,12 +3,8 @@ import { seedRandom } from '$lib/random.js'
 const GCP_API_KEY    = import.meta.env.VITE_GCP_API_KEY
 
 const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID
-const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/viewform'
+const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/viewform'
 const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
-
-const PARTY_SPREADSHEET_ID = import.meta.env.VITE_PARTY_SPREADSHEET_ID
-const PARTY_URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/viewform'
-const PARTY_URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${PARTY_SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
 
 let random = null;
 
@@ -16,17 +12,12 @@ export async function get({ url }) {
     const party  = url.searchParams.has('party')  || false;
     const testId = url.searchParams.get('testid') || null;
 
-    let config = (party ? {
-        urlForm:   PARTY_URL_FORM,
-        urlSheets: PARTY_URL_SHEETS,
-        ctaUrl:    '/form?party',
-        sheetsId:  PARTY_SPREADSHEET_ID
-    } : {
+    let config = {
         urlForm:   URL_FORM,
         urlSheets: URL_SHEETS,
         ctaUrl:    '/form',
         sheetsId:  SPREADSHEET_ID
-    });
+    };
 
     let resp = await fetch(config.urlForm);
     let text = await resp.text();
