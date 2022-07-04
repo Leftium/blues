@@ -106,9 +106,7 @@
 </div>
 
 <main>
-    {#if party}
-        <img class=header-image src='/img/혜존.jpg' on:click={handleClick}>
-    {:else if headerImage}
+    {#if headerImage}
         <img class=header-image src='{headerImage}' on:click={handleClick}>
     {/if}
     <div class=info>
