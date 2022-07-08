@@ -75,7 +75,7 @@ export async function get({ url }) {
         }
 
         if (item[colReferer]) {
-            if (item[colReferer]?.length < 5) {
+            if (item[colReferer]?.length < 10) {
                 referer = item[colReferer];
             } else {
                 referer = '???';
