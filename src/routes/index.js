@@ -127,6 +127,7 @@ export async function get({ url }) {
             비비안:  '/img/special/vivian.jpg',
             수:      '/img/special/sue.jpg',
             sue:     '/img/special/sue.jpg',
+            좐:      '/img/special/john.jpg',
         }
 
         if (testId && i == json?.values?.length-1) {
