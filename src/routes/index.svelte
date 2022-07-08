@@ -29,10 +29,6 @@
             let options = {
                 x: window.scrollX,
                 y: window.scrollY,
-                height: Math.min(500*1.6, mainElement.offsetHeight - 30)
-
-
-
             }
 
             html2canvas(mainElement, options).then(function(canvas){
@@ -102,7 +98,7 @@
         </ul>
 
 
-        <div>
+        <div class:sharingStyle>
             <center>
                 <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">View in Google Sheets</a>
                 | <a href="{shareLink}" sveltekit:reload>Share</a>
