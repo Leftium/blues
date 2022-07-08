@@ -92,8 +92,11 @@
 
         <ul class=members-container class:sharingStyle>
             {#each members as member}
-                <li class="{`member ${member.sex} ${member.isNew}`}" style="background-image: url({`${member.backgroundImage}`})">
-                    <span>{member.name}</span>
+                <li class=member style="background-image: url({`${member.backgroundImage}`})">
+                    {#if member.referer}
+                        <div class=referer>{member.referer}</div>
+                    {/if}
+                    <div class="{`${member.sex} ${(member.referer ? 'new' : '')}`}">{member.name}</div>
                 </li>
             {/each}
         </ul>
@@ -212,6 +215,9 @@
 
     li.member {
         display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        align-content: flex-end;
         overflow: hidden;
 
         border-radius: 0.5em;
@@ -235,7 +241,7 @@
         box-shadow: #00000059 0 5px 15px;
     }
 
-    li.member span {
+    li.member div {
         width: 100%;
         align-self: flex-end;
 
@@ -246,19 +252,25 @@
         font-weight: bold;
     }
 
-    li.male span {
+    li .male {
         color: blue;
     }
 
-    li.female span {
+    li .female {
         color: #FE2EA0;
+    }
+
+    li.member .referer {
+        font-size: .7em;
+        font-style: italic;
+        color: darkgray;
     }
 
     ul.sharingStyle li.member {
        box-shadow: none;
     }
 
-    li.new {
+    li .new {
         text-shadow: 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen,0 0 0.2em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen, 0 0 0.5em lightgreen;
     }
 

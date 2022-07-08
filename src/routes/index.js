@@ -36,7 +36,7 @@ export async function get({ url }) {
 
     let headers = json.values.shift();  // Get column headers.
 
-    let colName, colSex, colNew;
+    let colName, colSex, colReferer;
     headers.forEach(function(header, i){
         if (header.includes('닉네임')) {
             colName = i;
@@ -45,7 +45,7 @@ export async function get({ url }) {
             colSex = i;
         }
         if (header.includes('나인빠 일요 블루스 추천인')) {
-            colNew = i;
+            colReferer = i;
         }
     });
 
@@ -61,7 +61,7 @@ export async function get({ url }) {
 
         let name  = item[colName].trim();
         let sex   = item[colSex];
-        let isNew = '';
+        let referer = '';
 
         numTotal++;
 
@@ -74,8 +74,12 @@ export async function get({ url }) {
             numWomen++;
         }
 
-        if (item[colNew]) {
-            isNew = 'new';
+        if (item[colReferer]) {
+            if (item[colReferer]?.length < 5) {
+                referer = item[colReferer];
+            } else {
+                referer = '???';
+            }
         }
 
         let candidates = [];
@@ -121,7 +125,7 @@ export async function get({ url }) {
             backgroundImage = specialImages[name];
         }
 
-        members.unshift({ name, sex, isNew, backgroundImage });
+        members.unshift({ name, sex, referer, backgroundImage });
     }); // json?.values?.forEach
 
     return {
