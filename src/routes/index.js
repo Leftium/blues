@@ -114,7 +114,7 @@ export async function get({ url }) {
             메이비영: '/img/special/농담곰도리.png',
             나나:    '/img/special/nana.gif',
             뽀냥:    '/img/special/garfield.png',
-            세오:    '/img/special/세오.png',
+            세오:    '/img/special/세오.jpg',
             캘리:    '/img/special/kelly.jpg',
             스카:    '/img/special/ska.jpg',
             니오:    '/img/special/neo.jpg',
