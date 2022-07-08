@@ -105,6 +105,7 @@ export async function get({ url }) {
             나나:    '/img/special/nana.gif',
             뽀냥:    '/img/special/garfield.png',
             세오:    '/img/special/세오.png',
+            캘리:    '/img/special/kelly.jpg'
         }
 
         if (testId && i == json?.values?.length-1) {
