@@ -53,6 +53,7 @@ export async function get({ url }) {
     let numMen = 0;
     let numWomen = 0;
     let numTotal = 0;
+    let referalCount = {};
 
     let recents = [];
     json?.values?.forEach(function(item, i) {
@@ -79,6 +80,11 @@ export async function get({ url }) {
                 referer = item[colReferer];
             } else {
                 referer = '???';
+            }
+            if (referalCount[referer.toLowerCase()]) {
+                referalCount[referer.toLowerCase()]++;
+            } else {
+                referalCount[referer.toLowerCase()] = 1;
             }
         }
 
@@ -133,6 +139,12 @@ export async function get({ url }) {
 
         members.unshift({ name, sex, referer, backgroundImage });
     }); // json?.values?.forEach
+
+    members.forEach(function(member) {
+        if(referalCount[member.name.toLowerCase()]) {
+            member.referals = '💗'.repeat(referalCount[member.name.toLowerCase()]);
+        }
+    });
 
     return {
         body: {

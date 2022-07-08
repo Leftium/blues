@@ -91,6 +91,8 @@
                 <li class=member style="background-image: url({`${member.backgroundImage}`})">
                     {#if member.referer}
                         <div class=referer>{member.referer}</div>
+                    {:else if member.referals}
+                        <div class=referer>{member.referals}</div>
                     {/if}
                     <div class="{`${member.sex} ${(member.referer ? 'new' : '')}`}">{member.name}</div>
                 </li>
