@@ -262,6 +262,7 @@
         font-size: .7em;
         font-style: italic;
         color: darkgray;
+        opacity: .7;
     }
 
     ul.sharingStyle li.member {
