@@ -115,14 +115,20 @@ export async function get({ url }) {
             미키:    '/img/special/miki.jpg',
             쥴리:    '/img/special/julie.jpg',
             빵이:    '/img/special/빵이.jpg',
+            률이:    '/img/special/률이.jpg',
+            로미:    '/img/special/romi.jpg',
+            romi:    '/img/special/romi.jpg',
+            비비안:  '/img/special/vivian.jpg',
+            수:      '/img/special/sue.jpg',
+            sue:     '/img/special/sue.jpg',
         }
 
         if (testId && i == json?.values?.length-1) {
             name = testId;
         }
 
-        if (specialImages[name]) {
-            backgroundImage = specialImages[name];
+        if (specialImages[name.toLowerCase()]) {
+            backgroundImage = specialImages[name.toLowerCase()];
         }
 
         members.unshift({ name, sex, referer, backgroundImage });
