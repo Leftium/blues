@@ -107,6 +107,10 @@ export async function get({ url }) {
             세오:    '/img/special/세오.png',
             캘리:    '/img/special/kelly.jpg',
             스카:    '/img/special/ska.jpg',
+            니오:    '/img/special/neo.jpg',
+            미키:    '/img/special/miki.jpg',
+            쥴리:    '/img/special/julie.jpg',
+            빵이:    '/img/special/빵이.jpg',
         }
 
         if (testId && i == json?.values?.length-1) {
