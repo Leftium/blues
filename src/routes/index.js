@@ -128,7 +128,7 @@ export async function get({ url }) {
             수:      '/img/special/sue.jpg',
             sue:     '/img/special/sue.jpg',
             좐:      '/img/special/john.jpg',
-            쩐주:     '/img/special/쩐주.jpg',
+            혀니:     '/img/special/쩐주.jpg',
             사슴:     '/img/special/사슴.jpg',
             사슴이다:  '/img/special/사슴.jpg',
             리스:     '/img/special/리스.jpg',
