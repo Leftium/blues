@@ -47,7 +47,6 @@ const specialImages = {
 let random = null;
 
 export async function get({ url }) {
-    const party  = url.searchParams.has('party')  || false;
     const testId = url.searchParams.get('testid') || null;
     const gallery = url.searchParams.has('gallery') || false;
 
