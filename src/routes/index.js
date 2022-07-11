@@ -11,7 +11,6 @@ const specialImages = {
     헤존:    '/img/special/iu-cooking.gif',
     메이비영: '/img/special/농담곰도리.png',
     나나:    '/img/special/nana.gif',
-    뽀냥:    '/img/special/garfield.png',
     세오:    '/img/special/세오.jpg',
     캘리:    '/img/special/kelly.jpg',
     스카:    '/img/special/ska.jpg',
@@ -38,6 +37,8 @@ const specialImages = {
     곤:       '/img/special/곤.jpg',
     미칸:     '/img/special/미칸.jpg',
     쿵푸팬더:  '/img/special/쿵푸팬더.jpg',
+    뽀냥:     '/img/special/뽀냥.jpg',
+    푸에르:   '/img/special/푸에르.jpg',
 }
 
 let random = null;
