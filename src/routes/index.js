@@ -7,39 +7,39 @@ const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloB
 const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
 
 const specialImages = {
-    혜존:    '/img/special/iu.gif',
-    헤존:    '/img/special/iu-cooking.gif',
-    메이비영: '/img/special/농담곰도리.png',
-    나나:    '/img/special/nana.gif',
-    세오:    '/img/special/세오.jpg',
-    캘리:    '/img/special/kelly.jpg',
-    스카:    '/img/special/ska.jpg',
-    니오:    '/img/special/neo.jpg',
-    미키:    '/img/special/miki.jpg',
-    쥴리:    '/img/special/julie.jpg',
-    빵이:    '/img/special/빵이.jpg',
-    률이:    '/img/special/률이.jpg',
-    로미:    '/img/special/romi.jpg',
-    romi:    '/img/special/romi.jpg',
-    비비안:  '/img/special/vivian.jpg',
-    수:      '/img/special/sue.jpg',
-    sue:     '/img/special/sue.jpg',
-    좐:      '/img/special/john.jpg',
-    혀니:     '/img/special/쩐주.jpg',
-    사슴:     '/img/special/사슴.jpg',
-    사슴이다:  '/img/special/사슴.jpg',
-    리스:     '/img/special/리스.jpg',
-    나오키:   '/img/special/나오키.jpg',
-    미셸:     '/img/special/미셸.jpg',
-    미쉘:     '/img/special/미셸.jpg',
-    유슬:     '/img/special/유슬.jpg',
-    겨울이:   '/img/special/겨울이.jpg',
-    랑유:     '/img/special/랑유.jpg',
-    곤:       '/img/special/곤.jpg',
-    미칸:     '/img/special/미칸.jpg',
-    쿵푸팬더:  '/img/special/쿵푸팬더.jpg',
-    뽀냥:     '/img/special/뽀냥.jpg',
-    푸에르:   '/img/special/푸에르.jpg',
+    혜존:    'iu.gif',
+    헤존:    'iu-cooking.gif',
+    메이비영: '농담곰도리.png',
+    나나:    'nana.gif',
+    세오:    '세오.jpg',
+    캘리:    'kelly.jpg',
+    스카:    'ska.jpg',
+    니오:    'neo.jpg',
+    미키:    'miki.jpg',
+    쥴리:    'julie.jpg',
+    빵이:    '빵이.jpg',
+    률이:    '률이.jpg',
+    로미:    'romi.jpg',
+    romi:    'romi.jpg',
+    비비안:  'vivian.jpg',
+    수:      'sue.jpg',
+    sue:     'sue.jpg',
+    좐:      'john.jpg',
+    혀니:     '쩐주.jpg',
+    사슴:     '사슴.jpg',
+    사슴이다:  '사슴.jpg',
+    리스:     '리스.jpg',
+    나오키:   '나오키.jpg',
+    미셸:     '미셸.jpg',
+    미쉘:     '미셸.jpg',
+    유슬:     '유슬.jpg',
+    겨울이:   '겨울이.jpg',
+    랑유:     '랑유.jpg',
+    곤:       '곤.jpg',
+    미칸:     '미칸.jpg',
+    쿵푸팬더:  '쿵푸팬더.jpg',
+    뽀냥:     '뽀냥.jpg',
+    푸에르:   '푸에르.jpg',
 }
 
 let random = null;
@@ -159,7 +159,7 @@ export async function get({ url }) {
         }
 
         if (specialImages[name.toLowerCase()]) {
-            backgroundImage = specialImages[name.toLowerCase()];
+            backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
         }
 
         members.unshift({ name, sex, referer, backgroundImage });
