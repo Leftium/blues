@@ -33,6 +33,7 @@ const specialImages = {
     미셸:     '미셸.jpg',
     미쉘:     '미셸.jpg',
     유슬:     '유슬.jpg',
+    윤슬:     '유슬.jpg',
     겨울이:   '겨울이.jpg',
     랑유:     '랑유.jpg',
     곤:       '곤.jpg',
