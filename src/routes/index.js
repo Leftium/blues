@@ -31,6 +31,7 @@ const specialImages = {
     리스:     '/img/special/리스.jpg',
     나오키:   '/img/special/나오키.jpg',
     미셸:     '/img/special/미셸.jpg',
+    미쉘:     '/img/special/미셸.jpg',
     유슬:     '/img/special/유슬.jpg',
     겨울이:   '/img/special/겨울이.jpg',
     랑유:     '/img/special/랑유.jpg',
