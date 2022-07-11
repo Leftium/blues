@@ -114,7 +114,7 @@ export async function get({ url }) {
 
         numTotal++;
 
-        let backgroundImage = `/img/special/female.jpg`;
+        let backgroundImage = `/img/special/bear.jpg`;
 
         if (sex == '남(men)') {
             sex = 'male';
@@ -124,6 +124,7 @@ export async function get({ url }) {
         if (sex == '여(women)') {
             sex = 'female';
             numWomen++;
+            backgroundImage = `/img/special/female.jpg`;
         }
 
         if (item[colReferer]) {
