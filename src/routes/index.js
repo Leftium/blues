@@ -42,6 +42,7 @@ const specialImages = {
     뽀냥:     '뽀냥.jpg',
     푸에르:   '푸에르.jpg',
     먼시:     '먼시.jpg',
+    레이:     '레이.jpg',
 }
 
 let random = null;
