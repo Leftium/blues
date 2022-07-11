@@ -113,9 +113,12 @@ export async function get({ url }) {
 
         numTotal++;
 
+        let backgroundImage = `/img/special/female.jpg`;
+
         if (sex == '남(men)') {
             sex = 'male';
             numMen++;
+            backgroundImage = `/img/special/male.jpg`;
         }
         if (sex == '여(women)') {
             sex = 'female';
@@ -135,25 +138,6 @@ export async function get({ url }) {
             }
         }
 
-        let candidates = [];
-
-        for (let i=1; i<=16; i++) {
-            if (!recents.includes(i)) {
-                candidates.push(i);
-            }
-        }
-
-        let num = candidates[Math.floor(random() * candidates.length)];
-        recents.push(num);
-        if (recents.length > 8) {
-            recents.shift()
-        }
-
-        if (num < 10) {
-            num = '0' + num;
-        }
-
-        let backgroundImage = `/img/kelly/${num}.jpg`;
 
         if (testId && i == json?.values?.length-1) {
             name = testId;
