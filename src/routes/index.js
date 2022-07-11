@@ -30,6 +30,14 @@ const specialImages = {
     사슴:     '/img/special/사슴.jpg',
     사슴이다:  '/img/special/사슴.jpg',
     리스:     '/img/special/리스.jpg',
+    나오키:   '/img/special/나오키.jpg',
+    미셸:     '/img/special/미셸.jpg',
+    유슬:     '/img/special/유슬.jpg',
+    겨울이:   '/img/special/겨울이.jpg',
+    랑유:     '/img/special/랑유.jpg',
+    곤:       '/img/special/곤.jpg',
+    미칸:     '/img/special/미칸.jpg',
+    쿵푸팬더:  '/img/special/쿵푸팬더.jpg',
 }
 
 let random = null;
