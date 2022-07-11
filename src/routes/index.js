@@ -40,6 +40,7 @@ const specialImages = {
     쿵푸팬더:  '쿵푸팬더.jpg',
     뽀냥:     '뽀냥.jpg',
     푸에르:   '푸에르.jpg',
+    먼시:     '먼시.jpg',
 }
 
 let random = null;
