@@ -22,7 +22,7 @@
     shareLink.searchParams.set('share', '1');
 
     let isVisible = false;
-    async function handleClickTitle() {
+    function handleClickTitle() {
         console.log('handleClickTitle')
         if (sharingStyle) { // Only on sharing version.
 
@@ -31,7 +31,7 @@
                 y: window.scrollY,
             }
 
-            html2canvas(mainElement, options).then(function(canvas){
+            html2canvas(mainElement, options).then(async function(canvas){
                 try {
                     canvas.toBlob((blob) => {
                         navigator.clipboard.write([
@@ -39,15 +39,15 @@
                         ]);
                     }, "image/png");
                     console.log('Successfully copied!');
+                    // Trigger confetti.
+                    isVisible = false;
+                    await tick();
+                    isVisible = true;
                 } catch (error) {
                     console.log(error.name, error.message);
                 }
             });
         }
-        // Trigger confetti.
-        isVisible = false;
-        await tick();
-        isVisible = true;
     }
 
 </script>
