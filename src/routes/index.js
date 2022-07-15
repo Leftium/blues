@@ -103,9 +103,11 @@ export async function get({ url }) {
     let numWomen = 0;
     let numTotal = 0;
     let referalCount = {};
+    let sort;
 
     let recents = [];
     json?.values?.forEach(function(item, i) {
+        sort = 0
 
         if (!item.length) { return;  }  // Skip empty rows.
 
@@ -129,6 +131,7 @@ export async function get({ url }) {
         }
 
         if (item[colReferer]) {
+            sort = 100;
             if (item[colReferer]?.length < 10) {
                 referer = item[colReferer];
             } else {
@@ -141,23 +144,28 @@ export async function get({ url }) {
             }
         }
 
-
         if (testId && i == json?.values?.length-1) {
+            sort = 1000;
             name = testId;
         }
 
         if (specialImages[name.toLowerCase()]) {
+            sort = 1;
             backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
         }
 
-        members.unshift({ name, sex, referer, backgroundImage });
+        members.unshift({ name, sex, referer, backgroundImage, sort });
     }); // json?.values?.forEach
 
     members.forEach(function(member) {
-        if(referalCount[member.name.toLowerCase()]) {
-            member.referals = '💗'.repeat(referalCount[member.name.toLowerCase()]);
+        let count = referalCount[member.name.toLowerCase()];
+        if(count) {
+            member.sort += 10 * count;
+            member.referals = '💗'.repeat(count);
         }
     });
+
+    members = members.sort((a, b) => { return b.sort - a.sort });
 
     return {
         body: {
