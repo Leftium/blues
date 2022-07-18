@@ -144,13 +144,14 @@ export async function get({ url }) {
             }
         }
 
-        if (testId && i == json?.values?.length-1) {
-            sort = 1000;
-            name = testId;
-        }
-
         if (specialImages[name.toLowerCase()]) {
             sort = 1;
+            backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
+        }
+
+        if (testId && i == 0) {
+            sort = 1000;
+            name = testId;
             backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
         }
 
