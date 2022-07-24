@@ -47,6 +47,8 @@ const specialImages = {
     먼시:     '먼시.jpg',
     레이:     '레이.jpg',
     빌리:     '빌리.jpg',
+    페르소나:  '페르소나.jpg',
+    임과장:   '임과장.jpg',
 }
 
 let random = null;
