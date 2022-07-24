@@ -49,6 +49,9 @@ const specialImages = {
     빌리:     '빌리.jpg',
     페르소나:  '페르소나.jpg',
     임과장:   '임과장.jpg',
+    사이:     '사이.jpg',
+    늦둥이:   '늦둥이.jpg',
+    풍이:     '풍이.jpg',
 }
 
 let random = null;
