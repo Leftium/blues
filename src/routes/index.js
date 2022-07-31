@@ -52,6 +52,7 @@ const specialImages = {
     사이:     '사이.jpg',
     늦동이:   '늦둥이.jpg',
     풍이:     '풍이.jpg',
+    sophia:  'sophia.jpg',
 }
 
 let random = null;
