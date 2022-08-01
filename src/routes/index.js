@@ -54,6 +54,10 @@ const specialImages = {
     풍이:     '풍이.jpg',
     sophia:  'sophia.jpg',
     소피아:  'sophia.jpg',
+    알라딘:  'aladdin.jpg',
+    aladdin:  'aladdin.jpg',
+    alradin:  'aladdin.jpg',
+    arladin:  'aladdin.jpg',
 }
 
 let random = null;
