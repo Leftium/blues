@@ -58,6 +58,9 @@ const specialImages = {
     aladdin:  'aladdin.jpg',
     alradin:  'aladdin.jpg',
     arladin:  'aladdin.jpg',
+    밀우:    '밀우.jpg',
+    수호:    '수호.jpg',
+    리플:    '리플.jpg',
 }
 
 let random = null;
