@@ -94,8 +94,12 @@ export async function get({ url }) {
     resp = await fetch(config.urlSheets);
 
     if (gallery) {
+        let seen = {};
         for (const key in specialImages) {
-            json.values.push([key]);
+            if (!seen[specialImages[key]]) {
+                json.values.push([key]);
+                seen[specialImages[key]] = true;
+            }
         }
     } else {
         json = await resp.json();
