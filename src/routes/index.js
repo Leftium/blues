@@ -61,6 +61,7 @@ const specialImages = {
     밀우:    '밀우.jpg',
     수호:    '수호.jpg',
     리플:    '리플.jpg',
+    'jin a': 'jin-a.jpg',
 }
 
 let random = null;
