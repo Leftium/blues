@@ -62,6 +62,10 @@ const specialImages = {
     수호:    '수호.jpg',
     리플:    '리플.jpg',
     'jin a': 'jin-a.jpg',
+    쭈노:    '쭈노.jpg',
+    쿠키:    '쿠키.jpg',
+    영이:    '영이.jpg',
+바이타민: '바이타민.jpg',
 }
 
 let random = null;
