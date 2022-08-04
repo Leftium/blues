@@ -164,6 +164,7 @@ export async function get({ url }) {
         }
         if (sex.includes('여(women)') ||
             sex.includes('팔뤄')) {
+            sex = 'female'
             numWomen++;
             backgroundImage = `/img/special/female.jpg`;
         }
@@ -192,6 +193,31 @@ export async function get({ url }) {
             name = testId;
             backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
         }
+
+
+        let candidates = [];
+
+        for (let i=1; i<=16; i++) {
+            if (!recents.includes(i)) {
+                candidates.push(i);
+            }
+        }
+
+        let num = candidates[Math.floor(random() * candidates.length)];
+        recents.push(num);
+        if (recents.length > 9) {
+            recents.shift()
+        }
+
+        if (num < 10) {
+            num = '0' + num;
+        }
+
+        if (subdomain == 'balboa') {
+            backgroundImage = `/img/kelly/${num}.jpg`;
+        }
+
+
 
         members.unshift({ name, sex, referer, backgroundImage, sort });
     }); // json?.values?.forEach
