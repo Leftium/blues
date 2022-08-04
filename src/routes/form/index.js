@@ -4,7 +4,8 @@ import MarkdownIt from 'markdown-it';
 // These form inputs should reset every time.
 const DONT_REMEMBER = [
     '신청',
-    '나인빠 블루스 소셜 추천인'
+    '나인빠 블루스 소셜 추천인',
+    '금발친소',
 ];
 
 const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/viewform'
@@ -24,6 +25,12 @@ export async function get({ url }) {
     if (party) {
         formUrl = 'https://forms.gle/fhUwRn6aAfFgDwdt9';
         confirmUrl = '/?party';
+    }
+
+    const subdomain = url.hostname.split(".")[0];
+
+    if (subdomain == 'balboa') {
+        formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc6ynauvG7fkclSPfi1dVk2N_7riL2VfHPfoULzo0uTW2YTjA/viewform'
     }
 
     let resp = await fetch(formUrl);

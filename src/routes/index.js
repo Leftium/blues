@@ -81,6 +81,16 @@ export async function get({ url }) {
         sheetsId:  SPREADSHEET_ID
     };
 
+    const subdomain = url.hostname.split(".")[0];
+
+    if (subdomain == 'balboa') {
+        config = {
+            ...config,
+            urlForm: 'https://forms.gle/uMDtB5DUnkxhvZvZ9',
+            urlSheets: `https://sheets.googleapis.com/v4/spreadsheets/1PAMTvGLetBM0wVjCslgKg36326NqSnGJz-OF8zDMnM8/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+        }
+    }
+
     let resp = await fetch(config.urlForm);
     let text = await resp.text();
 
@@ -118,7 +128,8 @@ export async function get({ url }) {
             if (header.includes('성별')) {
                 colSex = i;
             }
-            if (header.includes('나인빠 일요 블루스 추천인')) {
+            if (header.includes('나인빠 일요 블루스 추천인') ||
+                header.includes('금발친소')) {
                 colReferer = i;
             }
         });
@@ -145,13 +156,14 @@ export async function get({ url }) {
 
         let backgroundImage = `/img/special/bear.jpg`;
 
-        if (sex == '남(men)') {
+        if (sex.includes('남(men)') ||
+            sex.includes('리더')) {
             sex = 'male';
             numMen++;
             backgroundImage = `/img/special/male.jpg`;
         }
-        if (sex == '여(women)') {
-            sex = 'female';
+        if (sex.includes('여(women)') ||
+            sex.includes('팔뤄')) {
             numWomen++;
             backgroundImage = `/img/special/female.jpg`;
         }
