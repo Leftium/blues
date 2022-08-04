@@ -197,7 +197,7 @@ export async function get({ url }) {
 
         let candidates = [];
 
-        for (let i=1; i<=16; i++) {
+        for (let i=1; i<=20; i++) {
             if (!recents.includes(i)) {
                 candidates.push(i);
             }
@@ -214,7 +214,7 @@ export async function get({ url }) {
         }
 
         if (subdomain == 'balboa') {
-            backgroundImage = `/img/kelly/${num}.jpg`;
+            backgroundImage = `/img/balboa/${num}.jpg`;
         }
 
 
