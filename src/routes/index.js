@@ -65,7 +65,12 @@ const specialImages = {
     쭈노:    '쭈노.jpg',
     쿠키:    '쿠키.jpg',
     영이:    '영이.jpg',
-바이타민: '바이타민.jpg',
+    바이타민: '바이타민.jpg',
+    네뼘:    '네뼘.jpg',
+    sophie:  'sophie.jpg',
+    맥반석:   '맥반석.jpg',
+    얼레:    '얼레.jpg',
+    벤지:    '벤지.jpg',
 }
 
 let random = null;
@@ -156,14 +161,14 @@ export async function get({ url }) {
 
         let backgroundImage = `/img/special/bear.jpg`;
 
-        if (sex.includes('남(men)') ||
-            sex.includes('리더')) {
+        if (sex?.includes('남(men)') ||
+            sex?.includes('리더')) {
             sex = 'male';
             numMen++;
             backgroundImage = `/img/special/male.jpg`;
         }
-        if (sex.includes('여(women)') ||
-            sex.includes('팔뤄')) {
+        if (sex?.includes('여(women)') ||
+            sex?.includes('팔뤄')) {
             sex = 'female'
             numWomen++;
             backgroundImage = `/img/special/female.jpg`;
