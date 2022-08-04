@@ -9,6 +9,8 @@
     export let ctaUrl;
     export let sheetsId;
 
+    export let subdomain;
+
     import { ConfettiExplosion } from 'svelte-confetti-explosion';
     import { tick } from 'svelte';
     import { page } from '$app/stores';
@@ -70,8 +72,10 @@
     <center>
         <div class:sharingStyle>
             <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
-            <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
-            <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+            {#if subdomain != 'balboa'}
+                <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
+                <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+            {/if}
         </div>
         <h1 class=title on:click={handleClickTitle}>{title}</h1>
 

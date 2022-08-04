@@ -240,7 +240,8 @@ export async function get({ url }) {
             numWomen,
             members,
             ctaUrl:   config.ctaUrl,
-            sheetsId: config.sheetsId
+            sheetsId: config.sheetsId,
+            subdomain
         }
     }
 
