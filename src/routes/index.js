@@ -140,6 +140,11 @@ export async function get({ url }) {
         });
     }
 
+    function normalize(name) {
+        return name.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
+                   .toLowerCase();
+    }
+
     let members = [];
     let numMen = 0;
     let numWomen = 0;
@@ -181,22 +186,22 @@ export async function get({ url }) {
             } else {
                 referer = '???';
             }
-            if (referalCount[referer.toLowerCase()]) {
-                referalCount[referer.toLowerCase()]++;
+            if (referalCount[normalize(referer)]) {
+                referalCount[normalize(referer)]++;
             } else {
-                referalCount[referer.toLowerCase()] = 1;
+                referalCount[normalize(referer)] = 1;
             }
         }
 
-        if (specialImages[name.toLowerCase()]) {
+        if (specialImages[normalize(name)]) {
             sort = 1;
-            backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
+            backgroundImage = `/img/special/${specialImages[normalize(name)]}`;
         }
 
         if (testId && i == 0) {
             sort = 1000;
             name = testId;
-            backgroundImage = `/img/special/${specialImages[name.toLowerCase()]}`;
+            backgroundImage = `/img/special/${specialImages[normalize(name)]}`;
         }
 
 
@@ -228,7 +233,7 @@ export async function get({ url }) {
     }); // json?.values?.forEach
 
     members.forEach(function(member) {
-        let count = referalCount[member.name.toLowerCase()];
+        let count = referalCount[normalize(member.name)];
         if(count) {
             member.sort += 10 * count;
             member.referals = '💗'.repeat(count);
