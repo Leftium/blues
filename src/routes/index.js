@@ -6,20 +6,21 @@ const avatars = Object.keys(imageModules)
                     .filter(name => !['bear.jpg', 'male.jpg', 'female.jpg'].includes(name))
                     .reduce((a, v) => ({ ...a, [v.split('.')[0]]: v}), {});
 
+const aliases = {
+    romi: '로미',
+    sue: '수',
+    좐: 'john',
+    존: 'john',
+    레프티: 'john',
+    미쉘: '미셸',
+    소피아: 'sophia',
+    aladdin: '알라딘',
+    alradin: '알라딘',
+    arladin: '알라딘',
+    유슬: '윤슬',
+};
+
 function normalize(name) {
-    const aliases = {
-        romi: '로미',
-        sue: '수',
-        좐: 'john',
-        존: 'john',
-        레프티: 'john',
-        미쉘: '미셸',
-        소피아: 'sophia',
-        aladdin: '알라딘',
-        alradin: '알라딘',
-        arladin: '알라딘',
-        유슬: '윤슬',
-    };
 
     let normalized = name.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
                          .toLowerCase()
@@ -29,6 +30,7 @@ function normalize(name) {
 }
 
 console.log(avatars)
+console.log(aliases)
 
 const GCP_API_KEY    = import.meta.env.VITE_GCP_API_KEY
 
@@ -41,6 +43,7 @@ let random = null;
 export async function get({ url }) {
     const testId = url.searchParams.get('testid') || null;
     const gallery = url.searchParams.has('gallery') || false;
+    const alias = url.searchParams.has('alias') || false;
 
     let config = {
         urlForm:   URL_FORM,
@@ -78,6 +81,10 @@ export async function get({ url }) {
 
     if (gallery) {
         for (const key in avatars) {
+            json.values.unshift([key]);
+        }
+    } else if (alias) {
+        for (const key in aliases) {
             json.values.unshift([key]);
         }
     } else {
