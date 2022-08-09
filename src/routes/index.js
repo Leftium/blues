@@ -18,7 +18,7 @@ function normalize(name) {
         aladdin: '알라딘.jpg',
         alradin: '알라딘.jpg',
         arladin: '알라딘.jpg',
-        윤슬: '유슬.jpg',
+        유슬: '윤슬.jpg',
     };
 
     let normalized = name.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
