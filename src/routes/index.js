@@ -15,10 +15,10 @@ function normalize(name) {
         레프티: 'john',
         미쉘: '미셸',
         소피아: 'sophia',
-        aladdin: '알라딘.jpg',
-        alradin: '알라딘.jpg',
-        arladin: '알라딘.jpg',
-        유슬: '윤슬.jpg',
+        aladdin: '알라딘',
+        alradin: '알라딘',
+        arladin: '알라딘',
+        유슬: '윤슬',
     };
 
     let normalized = name.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
@@ -27,6 +27,8 @@ function normalize(name) {
 
     return aliases[normalized] || normalized;
 }
+
+console.log(avatars)
 
 const GCP_API_KEY    = import.meta.env.VITE_GCP_API_KEY
 
