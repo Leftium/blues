@@ -3,7 +3,7 @@
     import { localStorageStore } from "@babichjacob/svelte-localstorage/svelte-kit";
     import { localStorageStore as browserStorage  } from "@babichjacob/svelte-localstorage/browser";
 
-    import { browser, dev, mode, prerendering } from '$app/env';
+    import { browser, dev, prerendering } from '$app/env';
 
     export let params = null;
     export let onChange = null;

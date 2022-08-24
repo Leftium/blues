@@ -16,7 +16,7 @@ function embedYoutube(id) {
             </div>`
 }
 
-export async function get({ url }) {
+export async function GET({ url }) {
     let formUrl      = url.searchParams.get('u')     || URL_FORM;
     let confirmUrl   = '/';
     const noMarkdown = url.searchParams.has('nomd')  || false;

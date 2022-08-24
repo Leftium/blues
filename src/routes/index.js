@@ -40,7 +40,7 @@ const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_
 
 let random = null;
 
-export async function get({ url }) {
+export async function GET({ url }) {
     const testId = url.searchParams.get('testid') || null;
     const gallery = url.searchParams.has('gallery') || false;
     const alias = url.searchParams.has('alias') || false;
