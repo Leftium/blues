@@ -1,4 +1,4 @@
-export async function post(requestEvent) {
+export async function POST(requestEvent) {
     let body = await requestEvent.request.json();
 
     let params = body.formEntries;
