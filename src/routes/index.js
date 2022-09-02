@@ -69,7 +69,8 @@ export async function GET({ url }) {
             titleOverride += ':';
         }
 
-        list = list.split(/[., ]/).reverse();
+        list = list.split(/[., ]/);
+        list = uniqByKeepLast(list, el => el).reverse();
     }
 
     let config = {
@@ -237,11 +238,12 @@ export async function GET({ url }) {
 
     members = members.sort((a, b) => { return b.sort - a.sort });
 
+    const formattedList = list.join(', ');
     if (titleOverride && list) {
-        const formattedList = list.join(', ');
         titleOverride = `${titleOverride} ${numTotal}명 (${formattedList})`.trim();
+    } else if(list) {
+        titleOverride = `${numTotal}명 (${formattedList})`.trim();
     }
-
 
     title = titleOverride || title;
 
