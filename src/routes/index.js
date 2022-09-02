@@ -20,6 +20,7 @@ const aliases = {
     유슬: '윤슬',
     joanne: '조앤',
     시은: '비비안',
+    진아: 'jin-a'
 };
 
 
