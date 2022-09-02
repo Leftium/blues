@@ -57,6 +57,13 @@ export async function GET({ url }) {
     const testId = url.searchParams.get('testid') || null;
     const gallery = url.searchParams.has('gallery') || false;
     const alias = url.searchParams.has('alias') || false;
+    const titleOverride = url.searchParams.get('t') || null;
+    let list = url.searchParams.get('a') || null; // "Attending"
+
+    if (list) {
+        list = list.split(/[., ]/)
+    }
+
 
     let config = {
         urlForm:   URL_FORM,
@@ -78,9 +85,9 @@ export async function GET({ url }) {
     let resp = await fetch(config.urlForm);
     let text = await resp.text();
 
-    let title = '';
+    let title = titleOverride || '';
     let matches = text.match(/<title>(.*)<\/title>/);
-    if (matches) {
+    if (!title && matches) {
         title = matches[1];
         title = title.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&amp;/gi, '&');
     }
@@ -98,6 +105,11 @@ export async function GET({ url }) {
         }
     } else if (alias) {
         for (const key in aliases) {
+            json.values.unshift([key]);
+        }
+    } else if (list) {
+        json.values = [];
+        for (const key of list) {
             json.values.unshift([key]);
         }
     } else {

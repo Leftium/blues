@@ -15,7 +15,9 @@
     import { tick } from 'svelte';
     import { page } from '$app/stores';
 
-    let sharingStyle = $page.url.searchParams.has('share');
+    let sharingStyle = $page.url.searchParams.has('share')
+    let listStyle = $page.url.searchParams.has('a');
+
     let mainElement;
 
 
@@ -70,7 +72,7 @@
 
 <main bind:this={mainElement}>
     <center>
-        <div class:sharingStyle>
+        <div class:sharingStyle class:listStyle>
             <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
             {#if subdomain != 'balboa'}
                 <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
@@ -79,18 +81,18 @@
         </div>
         <h1 class=title on:click={handleClickTitle}>{title}</h1>
 
-        <div class=cta class:sharingStyle ><a href="{ctaUrl}">
+        <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
 
         <div class=totals>
             <span class=total>신청자&nbsp;{numTotal}명</span>
 
-            <span class=men>남&nbsp;{numMen}명</span>&nbsp;<span class=women>여&nbsp;{numWomen}명</span>
+            <span class:listStyle class=men>남&nbsp;{numMen}명</span>&nbsp;<span class:listStyle class=women>여&nbsp;{numWomen}명</span>
         </div>
     </center>
 
-        <ul class=members-container class:sharingStyle>
+        <ul class=members-container class:sharingStyle class:listStyle>
             {#each members as member}
                 <li class=member style="background-image: url({`${member.backgroundImage}`})">
                     {#if member.referer}
@@ -104,7 +106,7 @@
         </ul>
 
 
-        <div class:sharingStyle>
+        <div class:sharingStyle class:listStyle>
             <center>
                 <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">View in Google Sheets</a>
                 | <a href="{shareLink}" sveltekit:reload>Share</a>
@@ -132,7 +134,8 @@
         height: 100%;
     }
 
-    .sharingStyle {
+    .sharingStyle,
+    .listStyle {
         display: none;
     }
 
