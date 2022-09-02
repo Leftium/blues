@@ -62,11 +62,7 @@ export async function GET({ url }) {
 
     if (list) {
         const formattedList = list.replace(/([,. ])/g, '$& ')
-        if (titleOverride) {
-            titleOverride = `${titleOverride}: ${formattedList}`;
-        } else {
-            titleOverride = formattedList;
-        }
+        titleOverride = `${titleOverride} ${formattedList}`.trim();
     }
 
 
