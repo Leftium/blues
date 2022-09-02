@@ -18,16 +18,28 @@ const aliases = {
     alradin: '알라딘',
     arladin: '알라딘',
     유슬: '윤슬',
-    joanne: '조앤'
+    joanne: '조앤',
+    시은: '비비안',
 };
+
 
 function normalize(name) {
 
-    let normalized = name.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
+    let normalized = name.trim()
+                         .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
                          .toLowerCase()
                          .replace(/ /g, '-');
 
     return aliases[normalized] || normalized;
+}
+
+// https://stackoverflow.com/a/9229821/117030
+function uniqByKeepLast(a, key) {
+    return [
+        ...new Map(
+            a.map(x => [key(x), x])
+        ).values()
+    ]
 }
 
 console.log(avatars)
@@ -115,6 +127,9 @@ export async function GET({ url }) {
     let sort;
 
     let recents = [];
+
+    json.values = uniqByKeepLast(json.values, item => normalize(item[colName]));
+
     json?.values?.forEach(function(item, i) {
         sort = 0
 
