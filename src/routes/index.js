@@ -18,6 +18,7 @@ const aliases = {
     alradin: '알라딘',
     arladin: '알라딘',
     유슬: '윤슬',
+    joanne: '조앤'
 };
 
 function normalize(name) {
