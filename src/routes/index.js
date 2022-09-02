@@ -238,10 +238,12 @@ export async function GET({ url }) {
 
     members = members.sort((a, b) => { return b.sort - a.sort });
 
-    const formattedList = list.join(', ');
+
     if (titleOverride && list) {
+        const formattedList = list.join(', ');
         titleOverride = `${titleOverride} ${numTotal}명 (${formattedList})`.trim();
     } else if(list) {
+        const formattedList = list.join(', ');
         titleOverride = `${numTotal}명 (${formattedList})`.trim();
     }
 
