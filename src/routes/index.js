@@ -57,8 +57,21 @@ export async function GET({ url }) {
     const testId = url.searchParams.get('testid') || null;
     const gallery = url.searchParams.has('gallery') || false;
     const alias = url.searchParams.has('alias') || false;
-    const titleOverride = url.searchParams.get('t') || null;
+    let titleOverride = url.searchParams.get('t') || '';
     let list = url.searchParams.get('a') || null; // "Attending"
+
+    if (list) {
+        const formattedList = list.replace(/([,. ])/g, '$& ')
+        if (titleOverride) {
+            titleOverride = `${titleOverride}: ${formattedList}`;
+        } else {
+            titleOverride = formattedList;
+        }
+    }
+
+
+
+
 
     if (list) {
         list = list.split(/[., ]/)
