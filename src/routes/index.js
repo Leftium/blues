@@ -59,21 +59,18 @@ export async function GET({ url }) {
     const gallery = url.searchParams.has('gallery') || false;
     const alias = url.searchParams.has('alias') || false;
     let titleOverride = url.searchParams.get('t') || '';
-    let list = url.searchParams.get('a') || null; // "Attending"
+    let list = url.searchParams.get('a') || null; // "Attending."
 
     if (list) {
-        const formattedList = list.replace(/([,. ])/g, '$& ')
-        titleOverride = `${titleOverride} ${formattedList}`.trim();
+
+        if (list.includes(':')) {
+            [titleOverride, list] = list.split(':');
+            titleOverride = titleOverride.replace(/_/g, ' ');
+            titleOverride += ':';
+        }
+
+        list = list.split(/[., ]/).reverse();
     }
-
-
-
-
-
-    if (list) {
-        list = list.split(/[., ]/)
-    }
-
 
     let config = {
         urlForm:   URL_FORM,
@@ -95,13 +92,12 @@ export async function GET({ url }) {
     let resp = await fetch(config.urlForm);
     let text = await resp.text();
 
-    let title = titleOverride || '';
+    let title = '';
     let matches = text.match(/<title>(.*)<\/title>/);
-    if (!title && matches) {
+    if (matches) {
         title = matches[1];
         title = title.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&amp;/gi, '&');
     }
-
     random = seedRandom(title);
 
     let json = { values: []};
@@ -240,6 +236,14 @@ export async function GET({ url }) {
     });
 
     members = members.sort((a, b) => { return b.sort - a.sort });
+
+    if (titleOverride && list) {
+        const formattedList = list.join(', ');
+        titleOverride = `${titleOverride} ${numTotal}명 (${formattedList})`.trim();
+    }
+
+
+    title = titleOverride || title;
 
     return {
         body: {

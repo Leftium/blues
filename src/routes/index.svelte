@@ -85,10 +85,10 @@
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
 
-        <div class=totals>
+        <div class=totals class:listStyle>
             <span class=total>신청자&nbsp;{numTotal}명</span>
 
-            <span class:listStyle class=men>남&nbsp;{numMen}명</span>&nbsp;<span class:listStyle class=women>여&nbsp;{numWomen}명</span>
+            <span class=men>남&nbsp;{numMen}명</span>&nbsp;<span class=women>여&nbsp;{numWomen}명</span>
         </div>
     </center>
 
