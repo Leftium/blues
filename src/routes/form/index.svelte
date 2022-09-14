@@ -23,7 +23,8 @@
         'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/formResponse',
         'https://docs.google.com/forms/d/e/1FAIpQLSfuB4VwcQD2e6AYl7u6_Ht9u2GyqHoS6jUdusvIRh_1BrCSsw/formResponse',
         'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/formResponse',
-        'https://docs.google.com/forms/d/e/1FAIpQLSc6ynauvG7fkclSPfi1dVk2N_7riL2VfHPfoULzo0uTW2YTjA/formResponse'
+        'https://docs.google.com/forms/d/e/1FAIpQLSc6ynauvG7fkclSPfi1dVk2N_7riL2VfHPfoULzo0uTW2YTjA/formResponse',
+        'https://docs.google.com/forms/d/e/1FAIpQLSdUhjCpWsvcXBU7rm2e1-WRrMl2YP1phSukRrFYyu1H1OLJ9A/formResponse'
     ];
 
     let form=null;

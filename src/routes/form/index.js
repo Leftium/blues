@@ -8,7 +8,7 @@ const DONT_REMEMBER = [
     '금발친소',
 ];
 
-const URL_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeWt1kc4tjafI60kQDloBpsxpoG3Why-U7XxWgcBIkwNYVRLw/viewform'
+const URL_FORM = 'https://forms.gle/3onUGgqwoSHDmuVZ9';
 
 function embedYoutube(id) {
     return `<div class=wrap-youtube>
