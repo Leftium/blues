@@ -15,6 +15,7 @@
 
     import { ConfettiExplosion } from 'svelte-confetti-explosion';
     import { tick } from 'svelte';
+    import { fade } from 'svelte/transition'
     import { page } from '$app/stores';
     import { shuffle } from '$lib/common';
 
@@ -26,8 +27,9 @@
     let messageIndex = Number.MAX_SAFE_INTEGER;
     let message = nextMessage() || ''
 
+    let lastMessageTime = +(new Date())
     if(browser) {
-        let lastMessageTime = +(new Date())
+        lastMessageTime = +(new Date())
         function step() {
             const now = +(new Date())
             if ((now - lastMessageTime) > 5 * 1000) {
@@ -123,11 +125,11 @@
         </a></div>
 
         {#if message}
-            {#key message}
-                <div class=message-container>
-                    <div class=message on:click={handleClickMessage}>{message}</div>
-                </div>
-            {/key}
+            <div class=transition-enforcement>
+                {#key message}
+                    <div class=message transition:fade={{duration: 500}} on:click={handleClickMessage}>{message}</div>
+                {/key}
+            </div>
         {/if}
 
         <div class=totals class:listStyle>
@@ -241,8 +243,13 @@
         width: 90%;
     }
 
-    .message-container {
+    .transition-enforcement {
+        display: grid;
+    }
 
+    .transition-enforcement > * {
+        grid-column: 1/2;
+        grid-row: 1/2;
     }
 
     .message {
