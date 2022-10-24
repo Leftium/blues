@@ -15,6 +15,21 @@ export async function componentToPng(component, props, height, width) {
 	const result = component.render(props);
 	const html = `${result.html}<style>${result.css.code}</style>`
 	const markup = toReactNode(html);
+
+	const patchObject = (obj, targetKey, method) => {
+		if (Array.isArray(obj)) {
+			obj.forEach(element => patchObject(element, targetKey, method))
+		} else if (typeof obj === 'object') {
+			for (const key in obj) {
+				const value = obj[key]
+				if (key === targetKey) obj[key] = method(obj[key])
+				else patchObject(value, targetKey, method)
+			}
+		}
+	}
+
+	patchObject(markup, 'backgroundImage', (url) => url.replace('https//', 'https://'))
+
 	const svg = await satori(markup, {
 		fonts: [
 			{
