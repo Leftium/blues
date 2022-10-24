@@ -133,7 +133,7 @@ export async function GET({ url }) {
             if (header.includes('성별')) {
                 colSex = i;
             }
-            if (header.includes('나인빠 일요 블루스 추천인') ||
+            if (header.includes('추천인') ||
                 header.includes('금발친소')) {
                 colReferer = i;
             }
