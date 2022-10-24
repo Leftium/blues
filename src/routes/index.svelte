@@ -11,12 +11,35 @@
 
     export let subdomain;
 
+    export let messages;
+
     import { ConfettiExplosion } from 'svelte-confetti-explosion';
     import { tick } from 'svelte';
     import { page } from '$app/stores';
+    import { shuffle } from '$lib/common';
+
+    import { browser } from '$app/env';
 
     let sharingStyle = $page.url.searchParams.has('share')
     let listStyle = $page.url.searchParams.has('a');
+
+    let messageIndex = Number.MAX_SAFE_INTEGER;
+    let message = nextMessage() || ''
+
+    if(browser) {
+        let lastMessageTime = +(new Date())
+        function step() {
+            const now = +(new Date())
+            if ((now - lastMessageTime) > 5 * 1000) {
+                message = nextMessage();
+                lastMessageTime = now
+            }
+            window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+    }
+
+
 
     let mainElement;
 
@@ -54,6 +77,20 @@
         }
     }
 
+    function nextMessage() {
+        messageIndex++;
+        if (messageIndex >= messages.length) {
+            messageIndex = 0
+            shuffle(messages)
+        }
+        return messages[messageIndex]?.message
+    }
+
+    function handleClickMessage() {
+        message = nextMessage()
+        lastMessageTime = +(new Date())
+    }
+
 </script>
 
 <svelte:head>
@@ -84,6 +121,14 @@
         <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
             <button class="button-85">신청 및 자세한 정보</button>
         </a></div>
+
+        {#if message}
+            {#key message}
+                <div class=message-container>
+                    <div class=message on:click={handleClickMessage}>{message}</div>
+                </div>
+            {/key}
+        {/if}
 
         <div class=totals class:listStyle>
             <span class=total>신청자&nbsp;{numTotal}명</span>
@@ -194,6 +239,18 @@
     .cta {
         margin-bottom: 20px;
         width: 90%;
+    }
+
+    .message-container {
+
+    }
+
+    .message {
+        font-size: 1.1em;
+        font-weight: bold;
+        text-shadow: 0 0 0.2em gold, 0 0 0.5em gold, 0 0 0.5em gold, 0 0 0.5em gold,0 0 0.2em gold, 0 0 0.5em gold, 0 0 0.5em gold, 0 0 0.5em gold, 0 0 0.2em gold, 0 0 0.5em gold, 0 0 0.5em gold, 0 0 0.5em gold,0 0 0.2em gold, 0 0 0.5em gold, 0 0 0.5em gold, 0 0 0.5em gold;
+
+        margin-bottom: .5em;
     }
 
     .totals {

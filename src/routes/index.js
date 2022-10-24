@@ -92,6 +92,8 @@ export async function GET({ url }) {
         }
     }
 
+    let headers = []
+
     let resp = await fetch(config.urlForm);
     let text = await resp.text();
 
@@ -104,7 +106,7 @@ export async function GET({ url }) {
     random = seedRandom(title);
 
     let json = { values: []};
-    let colName = 0, colSex = 1, colReferer = 2;
+    let colName = 0, colSex = 1, colReferer = 2, colMessage = -1;
 
     resp = await fetch(config.urlSheets);
 
@@ -124,7 +126,7 @@ export async function GET({ url }) {
     } else {
         json = await resp.json();
 
-        let headers = json.values.shift();  // Get column headers.
+        headers = json.values.shift();  // Get column headers.
 
         headers.forEach(function(header, i){
             if (header.includes('닉네임')) {
@@ -137,6 +139,9 @@ export async function GET({ url }) {
                 header.includes('금발친소')) {
                 colReferer = i;
             }
+            if (header.includes('협찬')) {
+                colMessage = i;
+            }
         });
     }
 
@@ -146,6 +151,7 @@ export async function GET({ url }) {
     let numTotal = 0;
     let referalCount = {};
     let sort;
+    let messages = [];
 
     let recents = [];
 
@@ -159,6 +165,16 @@ export async function GET({ url }) {
         let name  = item[colName].trim();
         let sex   = item[colSex];
         let referer = '';
+        let rawMessage = item[colMessage];
+
+        if (rawMessage && rawMessage != '빵이님 지인') {
+            const addSponsor = headers[colMessage].includes('협찬') && !rawMessage.includes('협찬');
+            let message = `${rawMessage} (${name}${addSponsor?' 협찬':''})`
+            messages.push({
+                message,
+                name
+            })
+        }
 
         numTotal++;
 
@@ -260,7 +276,8 @@ export async function GET({ url }) {
             members,
             ctaUrl:   config.ctaUrl,
             sheetsId: config.sheetsId,
-            subdomain
+            subdomain,
+            messages
         }
     }
 
