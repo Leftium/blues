@@ -170,7 +170,7 @@ export async function GET({ url }) {
         if (rawMessage && rawMessage != '빵이님 지인') {
             const addSponsor = headers[colMessage].includes('협찬') && !rawMessage.includes('협찬');
             let message = `${rawMessage} (${name}${addSponsor?' 협찬':''})`
-            messages.push({
+            messages.unshift({
                 message,
                 name
             })

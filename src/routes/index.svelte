@@ -24,7 +24,7 @@
     let sharingStyle = $page.url.searchParams.has('share')
     let listStyle = $page.url.searchParams.has('a');
 
-    let messageIndex = Number.MAX_SAFE_INTEGER;
+    let messageIndex = -1;
     let message = nextMessage() || ''
 
     let lastMessageTime = +(new Date())
