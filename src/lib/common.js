@@ -185,7 +185,10 @@ export async function processUrl(url) {
       let referer = '';
       let rawMessage = item[colMessage];
 
-      if (rawMessage && rawMessage != '빵이님 지인') {
+      if (rawMessage
+          && !rawMessage.includes('빵이님 지인')
+          && !rawMessage.includes('남성 9천원 / 여성 8천원')
+          && !rawMessage.includes('베스트드레서 월 4회  소셜 전액 무료입장')) {
           const addSponsor = headers[colMessage].includes('협찬') && !rawMessage.includes('협찬');
           let message = `${rawMessage} (${name}${addSponsor?' 협찬':''})`
           messages.unshift({

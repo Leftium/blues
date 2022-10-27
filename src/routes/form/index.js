@@ -4,8 +4,9 @@ import MarkdownIt from 'markdown-it';
 // These form inputs should reset every time.
 const DONT_REMEMBER = [
     '신청',
-    '나인빠 블루스 소셜 추천인',
+    '추천인',
     '금발친소',
+    '협찬',
 ];
 
 const URL_FORM = 'https://forms.gle/3onUGgqwoSHDmuVZ9';
