@@ -427,4 +427,9 @@
   top: 0;
   border-radius: 10px;
 }
+
+snowfall {
+    left: -100px;
+}
+
 </style>
