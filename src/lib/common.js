@@ -140,6 +140,7 @@ export async function processUrl(url) {
   if (gallery) {
       for (const key in avatars) {
           json.values.unshift([key]);
+          colName = 0;
       }
   } else if (alias) {
       for (const key in aliases) {
