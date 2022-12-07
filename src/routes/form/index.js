@@ -24,7 +24,7 @@ export async function GET({ url }) {
     const party      = url.searchParams.has('party') || false;
 
     if (party) {
-        formUrl = 'https://forms.gle/fhUwRn6aAfFgDwdt9';
+        formUrl = 'https://forms.gle/8EKEMbfpDu4sSxsU9';
         confirmUrl = '/?party';
     }
 

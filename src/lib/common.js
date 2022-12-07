@@ -81,6 +81,8 @@ export async function processUrl(url) {
   let titleOverride = url.searchParams.get('t') || '';
   let list = url.searchParams.get('a') || null; // "Attending."
 
+  const party = url.searchParams.has('party') || false;
+
   if (list) {
 
       if (list.includes(':')) {
@@ -99,6 +101,13 @@ export async function processUrl(url) {
       ctaUrl:    '/form',
       sheetsId:  SPREADSHEET_ID
   };
+
+  if (party) {
+    config.urlForm = 'https://forms.gle/8EKEMbfpDu4sSxsU9'
+    config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+    config.ctaUrl = '/form?party'
+  }
+
 
   const subdomain = url.hostname.split(".")[0];
 
@@ -124,7 +133,7 @@ export async function processUrl(url) {
   random = seedRandom(title);
 
   let json = { values: []};
-  let colName = 0, colSex = 1, colReferer = 2, colMessage = -1;
+  let colName = -1, colSex = -1, colReferer = -1, colMessage = -1;
 
   resp = await fetch(config.urlSheets);
 
@@ -209,8 +218,7 @@ export async function processUrl(url) {
           numMen++;
           backgroundImage = `/img/special/male.jpg`;
       }
-      if (sex?.includes('여(women)') ||
-          sex?.includes('팔뤄')) {
+      if (['여(women)', '팔로어', '팔뤄'].includes(sex)) {
           sex = 'female'
           numWomen++;
           backgroundImage = `/img/special/female.jpg`;
