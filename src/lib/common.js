@@ -307,7 +307,8 @@ export async function processUrl(url) {
         ctaUrl:   config.ctaUrl,
         sheetsId: config.sheetsId,
         subdomain,
-        messages
+        messages,
+        party
   }
 
 }

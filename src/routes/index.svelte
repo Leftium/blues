@@ -13,6 +13,8 @@
 
     export let messages;
 
+    export let party;
+
     import { ConfettiExplosion } from 'svelte-confetti-explosion';
     import { tick } from 'svelte';
     import { fade } from 'svelte/transition'
@@ -108,6 +110,14 @@
         <ConfettiExplosion particleCount={100} stageHeight=1600 --x="50vw" --y="-20px"/>
     {/if}
 </div>
+
+{#if party}
+    <snowfall>
+        {#each Array(50) as a}
+            <snowflake><img src="img/snowflake.png">️</snowflake>
+        {/each}
+    </snowfall>
+{/if}
 
 <main bind:this={mainElement}>
     <center>
