@@ -147,6 +147,7 @@ export async function processUrl(url) {
           json.values.unshift([key]);
       }
   } else if (list) {
+      colName = 0;
       json.values = [];
       for (const key of list) {
           json.values.unshift([key]);
