@@ -154,10 +154,10 @@
         <ul class=members-container class:sharingStyle class:listStyle>
             {#each members as member}
                 <li class=member style="background-image: url({`${member.backgroundImage}`})">
-                    {#if member.referer}
-                        <div class=referer>{member.referer}</div>
-                    {:else if member.referals}
+                    {#if member.referals}
                         <div class=referer>{member.referals}</div>
+                    {:else if member.referer}
+                        <div class=referer>{member.referer}</div>
                     {/if}
                     <div class="{`${member.sex} ${(member.referer ? 'new' : '')}`}">{member.name}</div>
                 </li>
@@ -343,9 +343,8 @@
 
     li.member .referer {
         font-size: .7em;
-        font-style: italic;
         color: darkgray;
-        opacity: .7;
+        opacity: .9;
     }
 
     ul.sharingStyle li.member {

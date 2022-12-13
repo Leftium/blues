@@ -137,7 +137,7 @@ export async function processUrl(url) {
   random = seedRandom(title);
 
   let json = { values: []};
-  let colName = -1, colSex = -1, colReferer = -1, colMessage = -1;
+  let colName = -1, colSex = -1, colReferer = -1, colMessage = -1, colGift = -1;
 
   resp = await fetch(config.urlSheets);
 
@@ -178,8 +178,10 @@ export async function processUrl(url) {
           if (header.includes('협찬')) {
               colMessage = i;
           }
+          if ((colGift == -1) && header.includes('만원의 행복 신청')) {
+            colGift = i;
+          }
       });
-      // console.log({colReferer})
   }
 
   let members = [];
@@ -199,10 +201,11 @@ export async function processUrl(url) {
 
       if (!item.length) { return;  }  // Skip empty rows.
 
-      let name  = item[colName].trim();
-      let sex   = item[colSex];
-      let referer = '';
+      let name       = item[colName].trim();
+      let sex        = item[colSex];
+      let referer    = '';
       let rawMessage = item[colMessage];
+      let gift       = item[colGift];
 
       if (rawMessage
           && !rawMessage.includes('빵이님 지인')
@@ -284,7 +287,7 @@ export async function processUrl(url) {
 
 
 
-      members.unshift({ name, sex, referer, backgroundImage, sort });
+      members.unshift({ name, sex, referer, backgroundImage, sort, gift });
   }); // json?.values?.forEach
 
   members.forEach(function(member) {
@@ -292,6 +295,9 @@ export async function processUrl(url) {
       if(count) {
           member.sort += 10 * count;
           member.referals = '💗'.repeat(count);
+      }
+      if (member.gift) {
+        member.referals = `🎁${member.referals || ''}`
       }
   });
 
