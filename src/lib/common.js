@@ -81,7 +81,7 @@ export async function processUrl(url) {
   let titleOverride = url.searchParams.get('t') || '';
   let list = url.searchParams.get('a') || null; // "Attending."
 
-  const party = url.searchParams.get('party') || null;
+  const party = url.searchParams.get('party') || url.searchParams.has('party');
 
   if (list) {
 
