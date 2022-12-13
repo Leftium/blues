@@ -21,6 +21,9 @@
         if (params.options.length) {
             type = 'radio';
             group = $store || params.options[0];
+            if (params.name.includes('만원의 행복 신청')) {
+                group = ''
+            }
         }
     }
 
@@ -55,6 +58,18 @@
                 required={params.required}
             />
         {/each}
+    {#if params.name.includes('만원의 행복 신청')}
+        <Input
+            type=radio
+            name="entry.{params.entry}"
+            bind:group={group}
+            on:change={handleChange}
+            class=form-control-lg
+            value=''
+            label='신청 안함'
+            required={false}
+        />
+    {/if}
     {:else}
         <Label class=label for="entry.{params.entry}">
             {#if params.required}

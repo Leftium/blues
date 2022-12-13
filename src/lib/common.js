@@ -81,7 +81,7 @@ export async function processUrl(url) {
   let titleOverride = url.searchParams.get('t') || '';
   let list = url.searchParams.get('a') || null; // "Attending."
 
-  const party = url.searchParams.has('party') || false;
+  const party = url.searchParams.get('party') || null;
 
   if (list) {
 
@@ -102,10 +102,14 @@ export async function processUrl(url) {
       sheetsId:  SPREADSHEET_ID
   };
 
-  if (party) {
+  if (party == 'sun') {
+    config.urlForm = 'https://forms.gle/RwZpwLf64Y8MAkKw6'
+    config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1TVjaMPhqccX7bqQ6k1icslajh5yAAbPtghJtzU0cvRI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+    config.ctaUrl = '/form?party=sun'
+  } else if (party) {
     config.urlForm = 'https://forms.gle/8EKEMbfpDu4sSxsU9'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
-    config.ctaUrl = '/form?party'
+    config.ctaUrl = '/form?party=tue'
   }
 
 
@@ -155,23 +159,27 @@ export async function processUrl(url) {
   } else {
       json = await resp.json();
 
+      // console.log(json)
+
       headers = json.values.shift();  // Get column headers.
 
       headers.forEach(function(header, i){
-          if (header.includes('닉네임')) {
+          if ((colName == -1) && header.includes('닉네임')) {
               colName = i;
           }
           if (header.includes('성별')) {
               colSex = i;
           }
           if (header.includes('추천인') ||
-              header.includes('금발친소')) {
+              header.includes('금발친소') ||
+              header.includes('초대한')) {
               colReferer = i;
           }
           if (header.includes('협찬')) {
               colMessage = i;
           }
       });
+      // console.log({colReferer})
   }
 
   let members = [];

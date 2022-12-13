@@ -21,11 +21,15 @@ export async function GET({ url }) {
     let formUrl      = url.searchParams.get('u')     || URL_FORM;
     let confirmUrl   = '/';
     const noMarkdown = url.searchParams.has('nomd')  || false;
-    const party      = url.searchParams.has('party') || false;
+    const party      = url.searchParams.get('party') || null;
 
-    if (party) {
+
+    if (party == 'sun') {
+        formUrl = 'https://forms.gle/RwZpwLf64Y8MAkKw6';
+        confirmUrl = '/?party=sun';
+    } else if (party) {
         formUrl = 'https://forms.gle/8EKEMbfpDu4sSxsU9';
-        confirmUrl = '/?party';
+        confirmUrl = '/?party=tue';
     }
 
     const subdomain = url.hostname.split(".")[0];
