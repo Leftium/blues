@@ -236,9 +236,9 @@ export async function processUrl(url) {
 
       if (item[colReferer]) {
           sort = 100;
-          if (item[colReferer]?.length < 10) {
+          if (item[colReferer]?.length < 10 && (item[colReferer]?.length > 1)) {
               referer = item[colReferer];
-          } else {
+          } else if (item[colReferer]?.length > 1) {
               referer = '???';
           }
           if (referalCount[normalize(referer)]) {
