@@ -45,6 +45,7 @@ export function shuffle(array) {
       늦동이: '늦둥이',
       쿵푸팬저: '쿵푸팬더',
       puer: '푸에르',
+      라이언: 'ryan'
   };
 
  export function normalize(name) {
