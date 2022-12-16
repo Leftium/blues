@@ -17,7 +17,6 @@
     export let formParams;
     export let confirmUrl;
     export let headerImage;
-    export let party;
 
     const SUNDAY_BLUES_URLS = [
         'https://docs.google.com/forms/d/e/1FAIpQLSf1v-qc7z0hCY-_izfUH7sYU4AZNvyesCC9-V1LmjdaVZJJig/formResponse',

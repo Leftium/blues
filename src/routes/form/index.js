@@ -21,7 +21,7 @@ export async function GET({ url }) {
     let formUrl      = url.searchParams.get('u')     || URL_FORM;
     let confirmUrl   = '/';
     const noMarkdown = url.searchParams.has('nomd')  || false;
-    const party      = url.searchParams.get('party') || null;
+    const party      = url.searchParams.get('party') || url.searchParams.has('party');
     const clazz      = url.searchParams.get('class') || null;
 
 
@@ -109,7 +109,7 @@ export async function GET({ url }) {
     let html = text;
 
     // Linkify 확인.
-    html = html.replace(/(\s*)((.*신청)?\s*확인.*)\n^(https:..docs.google.com.*)/m, '$1[$2]($4)');
+    html = html.replace(/(\s*)((.*신청)?\s*(확인)?(하기)?.*)\n^(https:.*)/mg, '$1[$2]($6)');
 
     matches = null;
     let lines = html.split('\n').map((line) => {
@@ -119,7 +119,7 @@ export async function GET({ url }) {
             newLine = embedYoutube(matches[1])
         } else {
             // Make <h3> tags before adding other tags.
-            newLine = newLine.replace(/\<(.+)\>/, '### $1\n');
+            newLine = newLine.replace(/\<+([^>]+)\>+/, '### $1\n');
         }
 
         // Convert ~~~ line to <hr>.
@@ -127,19 +127,31 @@ export async function GET({ url }) {
 
         // Linkify 장소.
         let locationLink = 'https://map.kakao.com/?itemId=1259064592';
-        newLine = newLine.replace(/(장소\s*:\s*)((홍대\s* )?나인빠)/, `$1 [$2](${locationLink})`);
+        newLine = newLine.replace(/(장소\s*:\s*)(.*(홍대\s* ).*)/, `$1 [$2](${locationLink})`);
+
+
+
+        matches = newLine.match(/(.*?):(.*)/)
+        const labelIncludesDigit = matches && /\d/.test(matches[1])
+        const textIncludesPm     = matches && matches[2].includes('오후')
+
+        // console.log({matches, labelIncludesDigit, textIncludesPm})
 
         // Make labels bold.
         let lineBeforeBolding = newLine;
-        if (!line.includes('오후') ) {
-            newLine = newLine.replace(/^(- )?(\s*)?([^:]*?:)/, '$1$2**$3** ');
+        if (!labelIncludesDigit && !textIncludesPm) {
+            newLine = newLine.replace(/^(- )?(\s*)?([^:]*?) ?:/, '$1$2**$3**: ');
             newLine = newLine.replace(/^(- )?(\d{4})(\s+)/, '$1**$2** $3');
 
-            // Don't put <b> tag in middle of URL.
-            if(/https:\*\*/.test(newLine) || /#{1,5}/.test(newLine)) {
+        // Don't put <b> tag in middle of URL.
+        // Or headers.
+
+        if(/https\*\*\:\s/.test(newLine) || /#{1,5}/.test(newLine)) {
                 newLine = lineBeforeBolding;
             }
         }
+
+        // console.log({oldLine: line, newLine})
 
         return newLine;
     });
