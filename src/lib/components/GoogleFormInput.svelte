@@ -40,36 +40,44 @@
 
 <FormGroup>
     {#if type == 'radio'}
-        <Label class=label>
-            {#if params.required}
-                <span class=required-mark>*</span>
-            {/if}
-            {params.name}
-        </Label>
-        {#each params.options as option}
+        {#if params.options.length > 1 }
+            <Label class=label>
+                {#if params.required}
+                    <span class=required-mark>*</span>
+                {/if}
+                {params.name}
+            </Label>
+            {#each params.options as option}
+                <Input
+                    type=radio
+                    name="entry.{params.entry}"
+                    bind:group={group}
+                    on:change={handleChange}
+                    class=form-control-lg
+                    value={option}
+                    label={option}
+                    required={params.required}
+                />
+            {/each}
+        {:else}
+            <Label class=label for="entry.{params.entry}">
+                {#if params.required}
+                    <span class=required-mark>*</span>
+                {/if}
+                {params.name}
+            </Label>
             <Input
-                type=radio
+                type=checkbox
                 name="entry.{params.entry}"
-                bind:group={group}
                 on:change={handleChange}
                 class=form-control-lg
-                value={option}
-                label={option}
+                value='{params.options[0]}'
+                label='{params.options[0]}'
                 required={params.required}
             />
-        {/each}
-    {#if params.name.includes('만원의 행복 신청')}
-        <Input
-            type=radio
-            name="entry.{params.entry}"
-            bind:group={group}
-            on:change={handleChange}
-            class=form-control-lg
-            value=''
-            label='신청 안함'
-            required={false}
-        />
-    {/if}
+
+        {/if}
+
     {:else}
         <Label class=label for="entry.{params.entry}">
             {#if params.required}

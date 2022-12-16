@@ -22,7 +22,14 @@ export async function GET({ url }) {
     let confirmUrl   = '/';
     const noMarkdown = url.searchParams.has('nomd')  || false;
     const party      = url.searchParams.get('party') || null;
+    const clazz      = url.searchParams.get('class') || null;
 
+
+
+    if (clazz == 'tue') {
+        formUrl = 'https://url.kr/eab5c1';
+        confirmUrl = '/?class=tue';
+    }
 
     if (party == 'sun') {
         formUrl = 'https://forms.gle/RwZpwLf64Y8MAkKw6';

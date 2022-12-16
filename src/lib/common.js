@@ -85,6 +85,8 @@ export async function processUrl(url) {
 
   const party = url.searchParams.get('party') || url.searchParams.has('party');
 
+  const clazz  = url.searchParams.get('class') || null
+
   if (list) {
 
       if (list.includes(':')) {
@@ -112,6 +114,12 @@ export async function processUrl(url) {
     config.urlForm = 'https://forms.gle/8EKEMbfpDu4sSxsU9'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
     config.ctaUrl = '/form?party=tue'
+  }
+
+  if (clazz == 'tue') {
+    config.urlForm = 'https://url.kr/eab5c1'
+    config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1PFqHC16qs7fxKlhUfGQuuHqNzUZf75v9mt8kWaOMJwg/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+    config.ctaUrl = '/form?class=tue'
   }
 
 
@@ -169,7 +177,7 @@ export async function processUrl(url) {
           if ((colName == -1) && header.includes('닉네임')) {
               colName = i;
           }
-          if (header.includes('성별')) {
+          if (header.includes('성별') || header.includes('리드 / 팔로우')) {
               colSex = i;
           }
           if (header.includes('추천인') ||
@@ -198,16 +206,22 @@ export async function processUrl(url) {
 
   json.values = uniqByKeepLast(json.values, item => normalize(item[colName]));
 
-  json?.values?.forEach(function(item, i) {
+  for (const [i, item] of json?.values?.entries()) {
       sort = 0
 
-      if (!item.length) { return;  }  // Skip empty rows.
+      if (!item.length) { continue;  }  // Skip empty rows.
 
+      let timestamp  = item[0];
       let name       = item[colName].trim();
       let sex        = item[colSex];
       let referer    = '';
       let rawMessage = item[colMessage];
       let gift       = item[colGift];
+
+      // Skip previous tue class signups.
+      if (!timestamp || timestamp.includes('2022. 11.')) {
+        continue;
+      }
 
       if (rawMessage
           && !rawMessage.includes('빵이님 지인')
@@ -227,13 +241,12 @@ export async function processUrl(url) {
 
       let backgroundImage = `/img/special/bear.jpg`;
 
-      if (sex?.includes('남(men)') ||
-          sex?.includes('리더')) {
+      if (['남(men)', '리더', '리드'].includes(sex)) {
           sex = 'male';
           numMen++;
           backgroundImage = `/img/special/male.jpg`;
       }
-      if (['여(women)', '팔로어', '팔뤄'].includes(sex)) {
+      if (['여(women)', '팔로어', '팔뤄', '팔로우'].includes(sex)) {
           sex = 'female'
           numWomen++;
           backgroundImage = `/img/special/female.jpg`;
@@ -290,7 +303,7 @@ export async function processUrl(url) {
 
 
       members.unshift({ name, sex, referer, backgroundImage, sort, gift });
-  }); // json?.values?.forEach
+  }; // for json?.values?.entries()
 
   members.forEach(function(member) {
       let count = referalCount[normalize(member.name)];
