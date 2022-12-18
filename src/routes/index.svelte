@@ -54,7 +54,7 @@
 
     let isVisible = false;
     async function handleClickTitle() {
-        title = 'Please wait a moment...'
+        title = 'Please wait a moment..'
 
         if (sharingStyle) { // Only on sharing version.
 
