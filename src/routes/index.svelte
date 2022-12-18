@@ -53,8 +53,9 @@
     shareLink.searchParams.set('share', '1');
 
     let isVisible = false;
-    function handleClickTitle() {
-        console.log('handleClickTitle')
+    async function handleClickTitle() {
+        title = 'handleClickTitle'
+
         if (sharingStyle) { // Only on sharing version.
 
             let options = {
@@ -62,7 +63,29 @@
                 y: window.scrollY,
             }
 
-            html2canvas(mainElement, options).then(async function(canvas){
+            const canvas = await html2canvas(mainElement, options);
+            const dataUrl = canvas.toDataURL();
+            title = dataUrl;
+
+            const blob = await (await fetch(dataUrl)).blob();
+            const filesArray = [new File([blob], 'animation.png', { type: blob.type, lastModified: new Date().getTime() })];
+
+            const shareData = {
+                files: filesArray,
+            };
+            try {
+                navigator.share(shareData).then(() => {
+                    title = 'Shared successfully'
+                }).catch(err => title = err)
+            } catch (e) {
+                title = e.message
+            }
+
+
+
+
+            /*
+            .then(async function(canvas){
                 try {
                     canvas.toBlob((blob) => {
                         navigator.clipboard.write([
@@ -78,6 +101,7 @@
                     console.log(error.name, error.message);
                 }
             });
+            */
         }
     }
 
