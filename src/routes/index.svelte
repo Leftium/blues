@@ -54,6 +54,7 @@
 
     let isVisible = false;
     async function handleClickTitle() {
+        title = 'Please wait a moment...'
 
         if (sharingStyle) { // Only on sharing version.
 
@@ -72,8 +73,8 @@
             const shareData = {
                 files: filesArray,
                 url: 'https://www.modu-blues.com/',
-                text: `신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
-                title
+                // text: `신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
+                // title
             };
             try {
                 navigator.share(shareData).then(() => {
