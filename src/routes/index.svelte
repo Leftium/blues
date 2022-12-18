@@ -73,7 +73,7 @@
                 files: filesArray,
                 // url: 'https://www.modu-blues.com/',
                 text: `신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
-                // title
+                title
             };
             try {
                 navigator.share(shareData).then(() => {
