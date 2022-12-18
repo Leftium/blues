@@ -54,7 +54,6 @@
 
     let isVisible = false;
     async function handleClickTitle() {
-        title = 'handleClickTitle'
 
         if (sharingStyle) { // Only on sharing version.
 
@@ -68,10 +67,13 @@
             title = dataUrl;
 
             const blob = await (await fetch(dataUrl)).blob();
-            const filesArray = [new File([blob], 'animation.png', { type: blob.type, lastModified: new Date().getTime() })];
+            const filesArray = [new File([blob], 'blues.png', { type: blob.type, lastModified: new Date().getTime() })];
 
             const shareData = {
                 files: filesArray,
+                url: 'https://www.modu-blues.com/',
+                text: `신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
+                title
             };
             try {
                 navigator.share(shareData).then(() => {
