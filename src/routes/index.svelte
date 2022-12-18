@@ -54,10 +54,7 @@
 
     let isVisible = false;
     async function handleClickTitle() {
-        title = 'Please wait a moment..'
-
         if (sharingStyle) { // Only on sharing version.
-
             let options = {
                 x: window.scrollX,
                 y: window.scrollY,
@@ -72,7 +69,7 @@
             const shareData = {
                 files: filesArray,
                 // url: 'https://www.modu-blues.com/',
-                text: `신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
+                text: `${title}\n신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
                 title
             };
             try {
@@ -82,28 +79,6 @@
             } catch (e) {
                 title = e.message
             }
-
-
-
-
-            /*
-            .then(async function(canvas){
-                try {
-                    canvas.toBlob((blob) => {
-                        navigator.clipboard.write([
-                            new ClipboardItem({ "image/png": blob })
-                        ]);
-                    }, "image/png");
-                    console.log('Successfully copied!');
-                    // Trigger confetti.
-                    isVisible = false;
-                    await tick();
-                    isVisible = true;
-                } catch (error) {
-                    console.log(error.name, error.message);
-                }
-            });
-            */
         }
     }
 
