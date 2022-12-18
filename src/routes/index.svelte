@@ -69,7 +69,7 @@
             const shareData = {
                 files: filesArray,
                 // url: 'https://www.modu-blues.com/',
-                text: `${title}\n신청자 ${numTotal}명 남 ${numMen}명 여 ${numWomen}명`,
+                text: `${title}\n${numTotal}명 신청 (남${numMen} 여${numWomen})`,
                 title
             };
             try {
@@ -134,7 +134,7 @@
         <h1 class=title on:click={handleClickTitle}>{title}</h1>
 
         <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
-            <button class="button-85">신청 및 자세한 정보</button>
+            <button class="button-85">신청 및 자세한 설명</button>
         </a></div>
 
         {#if message}
@@ -146,9 +146,9 @@
         {/if}
 
         <div class=totals class:listStyle>
-            <span class=total>신청자&nbsp;{numTotal}명</span>
+            <span class=total>{numTotal}명 신청</span>
 
-            <span class=men>남&nbsp;{numMen}명</span>&nbsp;<span class=women>여&nbsp;{numWomen}명</span>
+            <span class=men>남{numMen}</span>&nbsp;<span class=women>여{numWomen}</span>
         </div>
     </center>
 
