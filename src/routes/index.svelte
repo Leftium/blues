@@ -168,8 +168,8 @@
 
         <div class:sharingStyle class:listStyle>
             <center>
-                <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">View in Google Sheets</a>
-                | <a href="{shareLink}" sveltekit:reload>Share</a>
+                <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">구글 시트 보기</a>
+                | <a href="{shareLink}" sveltekit:reload>공유하기</a>
             </center>
         </div>
 

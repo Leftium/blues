@@ -110,16 +110,19 @@ export async function processUrl(url) {
     config.urlForm = 'https://forms.gle/RwZpwLf64Y8MAkKw6'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1TVjaMPhqccX7bqQ6k1icslajh5yAAbPtghJtzU0cvRI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
     config.ctaUrl = '/form?party=sun'
+    config.sheetsId= '1TVjaMPhqccX7bqQ6k1icslajh5yAAbPtghJtzU0cvRI'
   } else if (party) {
     config.urlForm = 'https://forms.gle/8EKEMbfpDu4sSxsU9'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
     config.ctaUrl = '/form?party=tue'
+    config.sheetsId= '1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI'
   }
 
   if (clazz == 'tue') {
     config.urlForm = 'https://url.kr/eab5c1'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1PFqHC16qs7fxKlhUfGQuuHqNzUZf75v9mt8kWaOMJwg/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
     config.ctaUrl = '/form?class=tue'
+    config.sheetsId= '1PFqHC16qs7fxKlhUfGQuuHqNzUZf75v9mt8kWaOMJwg'
   }
 
 
