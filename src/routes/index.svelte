@@ -69,19 +69,16 @@
 
         shareMessage = '공유 준비중...'
 
-        const canvas = await html2canvas(shareElement, options);
-        const blob = await canvasToBlob(canvas)
-        const filesArray = [new File([blob], 'blues.png', { type: blob.type, lastModified: new Date().getTime() })];
-
-        const shareData = {
-            files: filesArray,
-            // url: 'https://www.modu-blues.com/',
-            text: `${title}\n${numTotal}명 신청 (남${numMen} 여${numWomen})`,
-            title
-        };
-
         try {
-            await navigator.share(shareData)
+            const canvas = await html2canvas(shareElement, options);
+            const blob = await canvasToBlob(canvas)
+
+            await navigator.share({
+                files: [new File([blob], 'blues.png', { type: blob.type })],
+                // url: 'https://www.modu-blues.com/',
+                text: `${title}\n${numTotal}명 신청 (남${numMen} 여${numWomen})`,
+                title
+            });
             shareMessage = '공유 됐어요!'
         } catch (e) {
             shareMessage = e
@@ -112,7 +109,6 @@
         } catch (error) {
             shareMessage = error.message
         }
-
     }
 
     function nextMessage() {
