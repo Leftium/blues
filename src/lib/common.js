@@ -162,6 +162,7 @@ export async function processUrl(url) {
   } else if (alias) {
       for (const key in aliases) {
           json.values.unshift([key]);
+          colName = 0;
       }
   } else if (list) {
       colName = 0;
@@ -207,7 +208,9 @@ export async function processUrl(url) {
 
   let recents = [];
 
-  json.values = uniqByKeepLast(json.values, item => normalize(item[colName]));
+  if (!alias) {
+    json.values = uniqByKeepLast(json.values, item => normalize(item[colName]));
+  }
 
   for (const [i, item] of json?.values?.entries()) {
       sort = 0
