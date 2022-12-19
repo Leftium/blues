@@ -24,8 +24,9 @@
     import { browser } from '$app/env';
     import { Button, Input, Alert, Container, Row, Col } from 'sveltestrap';
 
+    let gallery = $page.url.searchParams.has('gallery')
     let sharingStyle = $page.url.searchParams.has('share')
-    let listStyle = $page.url.searchParams.has('a');
+    let listStyle = $page.url.searchParams.has('a')
 
     let showTitle = true;
     let showTotals = true;
@@ -174,16 +175,16 @@
 
     <div bind:this={shareElement}>
         <center>
-            <div class:sharingStyle class:listStyle>
+            <div class:sharingStyle class:listStyle hidden={gallery}>
                 <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
                 {#if subdomain != 'balboa'}
                     <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
                     <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
                 {/if}
             </div>
-            <h1 class=title hidden={!showTitle} contentEditable>{title}</h1>
+            <h1 class=title hidden={!showTitle || gallery} contentEditable>{title}</h1>
 
-            <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
+            <div class=cta class:sharingStyle class:listStyle hidden={gallery}><a href="{ctaUrl}">
                 <button class="button-85">신청 및 자세한 설명</button>
             </a></div>
 

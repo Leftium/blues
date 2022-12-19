@@ -163,8 +163,9 @@ export async function processUrl(url) {
       colSex = 1;
 
       for (const key in avatars) {
-          const [sex, ...name] = key.split('-')
-          json.values.unshift([name.join('-'), sexes[sex]]);
+          const [sex, ...rest] = key.split('-')
+          const name = rest.join('-')
+          json.values.unshift([name, sexes[sex]]);
       }
       json.values = json.values.sort((a, b) => b[0].localeCompare(a[0]))
   } else if (alias) {
@@ -289,7 +290,7 @@ export async function processUrl(url) {
       }
 
       const key = `${sex[0]}-${normalize(name)}`
-      console.log({key, avatar: avatars[key]})
+
       if (avatars[key]) {
           sort = 1;
           backgroundImage = `/img/special/${avatars[key]}`;
