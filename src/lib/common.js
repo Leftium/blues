@@ -255,6 +255,12 @@ export async function processUrl(url) {
 
       numTotal++;
 
+      if (avatars[`m-${normalize(name)}`]) {
+        sex = 'male';
+      } else if (avatars[`f-${normalize(name)}`]) {
+        sex = 'female'
+      }
+
       let backgroundImage = `/img/special/bear.jpg`;
 
       if (['male', '남(men)', '리더', '리드'].includes(sex)) {
