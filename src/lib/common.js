@@ -154,18 +154,28 @@ export async function processUrl(url) {
 
   resp = await fetch(config.urlSheets);
 
+  const sexes = {
+    m: 'male',
+    f: 'female',
+  }
   if (gallery) {
+      colName = 0;
+      colSex = 1;
+
       for (const key in avatars) {
-          json.values.unshift([key]);
-          colName = 0;
+          const [sex, ...name] = key.split('-')
+          json.values.unshift([name.join('-'), sexes[sex]]);
       }
+      json.values = json.values.sort((a, b) => b[0].localeCompare(a[0]))
   } else if (alias) {
+      colName = 0;
+      colSex = 1;
       for (const key in aliases) {
           json.values.unshift([key]);
-          colName = 0;
       }
   } else if (list) {
       colName = 0;
+      colSex = 1;
       json.values = [];
       for (const key of list) {
           json.values.unshift([key]);
@@ -247,12 +257,12 @@ export async function processUrl(url) {
 
       let backgroundImage = `/img/special/bear.jpg`;
 
-      if (['남(men)', '리더', '리드'].includes(sex)) {
+      if (['male', '남(men)', '리더', '리드'].includes(sex)) {
           sex = 'male';
           numMen++;
           backgroundImage = `/img/special/male.jpg`;
       }
-      if (['여(women)', '팔로어', '팔뤄', '팔로우'].includes(sex)) {
+      if (['female', '여(women)', '팔로어', '팔뤄', '팔로우'].includes(sex)) {
           sex = 'female'
           numWomen++;
           backgroundImage = `/img/special/female.jpg`;
@@ -272,9 +282,11 @@ export async function processUrl(url) {
           }
       }
 
-      if (avatars[normalize(name)]) {
+      const key = `${sex[0]}-${normalize(name)}`
+      console.log({key, avatar: avatars[key]})
+      if (avatars[key]) {
           sort = 1;
-          backgroundImage = `/img/special/${avatars[normalize(name)]}`;
+          backgroundImage = `/img/special/${avatars[key]}`;
       }
 
       if (testId && i == 0) {
