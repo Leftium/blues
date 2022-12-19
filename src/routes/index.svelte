@@ -1,5 +1,6 @@
 <script>
     import html2canvas from 'html2canvas';
+    import canvasToBlob from 'async-canvas-to-blob';
 
     export let title;
     export let numTotal;
@@ -68,9 +69,7 @@
         shareMessage = '공유 준비중...'
 
         const canvas = await html2canvas(shareElement, options);
-        const dataUrl = canvas.toDataURL();
-
-        const blob = await (await fetch(dataUrl)).blob();
+        const blob = await canvasToBlob(canvas)
         const filesArray = [new File([blob], 'blues.png', { type: blob.type, lastModified: new Date().getTime() })];
 
         const shareData = {
@@ -79,12 +78,12 @@
             text: `${title}\n${numTotal}명 신청 (남${numMen} 여${numWomen})`,
             title
         };
+
         try {
-            navigator.share(shareData).then(() => {
-                shareMessage = 'Shared successfully'
-            }).catch(err => shareMessage = err)
+            await navigator.share(shareData)
+            shareMessage = '공유 됐어요!'
         } catch (e) {
-            shareMessage = e.message
+            shareMessage = e
         }
     }
 
@@ -97,18 +96,22 @@
 
         shareMessage = '복사 준비중...'
 
-        html2canvas(shareElement, options).then(async function(canvas){
+        const makeImagePromise = async () => {
             try {
-                canvas.toBlob((blob) => {
-                    navigator.clipboard.write([
-                        new ClipboardItem({ "image/png": blob })
-                    ]);
-                }, "image/png");
-                shareMessage = 'Successfully copied!'
+                const canvas = await html2canvas(shareElement, options);
+                return canvasToBlob(canvas)
             } catch (error) {
                 shareMessage = error.message
             }
-        });
+        }
+
+        try {
+            await navigator.clipboard.write([new ClipboardItem({ "image/png": makeImagePromise() })]);
+            shareMessage = '클립보드로 복사 됐어요!'
+        } catch (error) {
+            shareMessage = error.message
+        }
+
     }
 
     function nextMessage() {
