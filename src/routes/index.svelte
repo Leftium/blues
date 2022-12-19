@@ -178,7 +178,7 @@
                     <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
                 {/if}
             </div>
-            <h1 class=title hidden={!showTitle} contentEditable={sharingStyle}>{title}</h1>
+            <h1 class=title hidden={!showTitle} contentEditable>{title}</h1>
 
             <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
                 <button class="button-85">신청 및 자세한 설명</button>
