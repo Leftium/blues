@@ -16,18 +16,23 @@
     export let party;
 
     import { ConfettiExplosion } from 'svelte-confetti-explosion';
-    import { tick } from 'svelte';
     import { fade } from 'svelte/transition'
     import { page } from '$app/stores';
     import { shuffle } from '$lib/common';
 
     import { browser } from '$app/env';
+    import { Button, Input, Alert, Container, Row, Col } from 'sveltestrap';
 
     let sharingStyle = $page.url.searchParams.has('share')
     let listStyle = $page.url.searchParams.has('a');
 
+    let showTitle = true;
+    let showTotals = true;
     let messageIndex = -1;
     let message = nextMessage() || ''
+
+    let shareMessage = '버튼을 누르세요'
+
 
     let lastMessageTime = +(new Date())
     if(browser) {
@@ -45,7 +50,7 @@
 
 
 
-    let mainElement;
+    let shareElement;
 
 
     let shareLink = new URL($page.url);
@@ -53,33 +58,57 @@
     shareLink.searchParams.set('share', '1');
 
     let isVisible = false;
-    async function handleClickTitle() {
-        if (sharingStyle) { // Only on sharing version.
-            let options = {
-                x: window.scrollX,
-                y: window.scrollY,
-            }
+    async function handleClickShare() {
 
-            const canvas = await html2canvas(mainElement, options);
-            const dataUrl = canvas.toDataURL();
-
-            const blob = await (await fetch(dataUrl)).blob();
-            const filesArray = [new File([blob], 'blues.png', { type: blob.type, lastModified: new Date().getTime() })];
-
-            const shareData = {
-                files: filesArray,
-                // url: 'https://www.modu-blues.com/',
-                text: `${title}\n${numTotal}명 신청 (남${numMen} 여${numWomen})`,
-                title
-            };
-            try {
-                navigator.share(shareData).then(() => {
-                    title = 'Shared successfully'
-                }).catch(err => title = err)
-            } catch (e) {
-                title = e.message
-            }
+        let options = {
+            x: window.scrollX,
+            y: window.scrollY,
         }
+
+        shareMessage = '공유 준비중...'
+
+        const canvas = await html2canvas(shareElement, options);
+        const dataUrl = canvas.toDataURL();
+
+        const blob = await (await fetch(dataUrl)).blob();
+        const filesArray = [new File([blob], 'blues.png', { type: blob.type, lastModified: new Date().getTime() })];
+
+        const shareData = {
+            files: filesArray,
+            // url: 'https://www.modu-blues.com/',
+            text: `${title}\n${numTotal}명 신청 (남${numMen} 여${numWomen})`,
+            title
+        };
+        try {
+            navigator.share(shareData).then(() => {
+                shareMessage = 'Shared successfully'
+            }).catch(err => shareMessage = err)
+        } catch (e) {
+            shareMessage = e.message
+        }
+    }
+
+    async function handleClickCopy() {
+
+        let options = {
+            x: window.scrollX,
+            y: window.scrollY,
+        }
+
+        shareMessage = '복사 준비중...'
+
+        html2canvas(shareElement, options).then(async function(canvas){
+            try {
+                canvas.toBlob((blob) => {
+                    navigator.clipboard.write([
+                        new ClipboardItem({ "image/png": blob })
+                    ]);
+                }, "image/png");
+                shareMessage = 'Successfully copied!'
+            } catch (error) {
+                shareMessage = error.message
+            }
+        });
     }
 
     function nextMessage() {
@@ -106,6 +135,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/snowfall.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </svelte:head>
 
 <div class=confetti>
@@ -114,7 +144,7 @@
     {/if}
 </div>
 
-{#if party}
+{#if party && !sharingStyle}
     <snowfall>
         {#each Array(50) as a}
             <snowflake><img src="img/snowflake.png">️</snowflake>
@@ -122,35 +152,52 @@
     </snowfall>
 {/if}
 
-<main bind:this={mainElement}>
-    <center>
-        <div class:sharingStyle class:listStyle>
-            <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
-            {#if subdomain != 'balboa'}
-                <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
-                <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
-            {/if}
-        </div>
-        <h1 class=title on:click={handleClickTitle}>{title}</h1>
+<main>
+    {#if sharingStyle}
+        <Container>
+            <Row>
+                <Col xs="6"><Input type="checkbox" label="제목" class=form-control-lg bind:checked={showTitle} /></Col>
+                <Col xs="6"><Input type="checkbox" label="신청자 명수" class=form-control-lg bind:checked={showTotals} /></Col>
+            </Row>
+            <Row>
+                <Col xs="6"><Button on:click={handleClickShare} color='primary' block> 공유하기</Button></Col>
+                <Col xs="6"><Button on:click={handleClickCopy} color='primary' block> 복사하기</Button></Col>
+            </Row>
 
-        <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
-            <button class="button-85">신청 및 자세한 설명</button>
-        </a></div>
+            <Alert color='primary'>{shareMessage}</Alert>
 
-        {#if message}
-            <div class=transition-enforcement>
-                {#key message}
-                    <div class=message transition:fade={{duration: 500}} on:click={handleClickMessage}>{message}</div>
-                {/key}
+        </Container>
+    {/if}
+
+    <div bind:this={shareElement}>
+        <center>
+            <div class:sharingStyle class:listStyle>
+                <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
+                {#if subdomain != 'balboa'}
+                    <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
+                    <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+                {/if}
             </div>
-        {/if}
+            <h1 class=title hidden={!showTitle} contentEditable={sharingStyle}>{title}</h1>
 
-        <div class=totals class:listStyle>
-            <span class=total>{numTotal}명 신청</span>
+            <div class=cta class:sharingStyle class:listStyle><a href="{ctaUrl}">
+                <button class="button-85">신청 및 자세한 설명</button>
+            </a></div>
 
-            <span class=men>남{numMen}</span>&nbsp;<span class=women>여{numWomen}</span>
-        </div>
-    </center>
+            {#if message}
+                <div class=transition-enforcement>
+                    {#key message}
+                        <div class=message transition:fade={{duration: 500}} on:click={handleClickMessage}>{message}</div>
+                    {/key}
+                </div>
+            {/if}
+
+            <div class=totals class:listStyle hidden={!showTotals}>
+                <span class=total>{numTotal}명 신청</span>
+
+                <span class=men>남{numMen}</span>&nbsp;<span class=women>여{numWomen}</span>
+            </div>
+        </center>
 
         <ul class=members-container class:sharingStyle class:listStyle>
             {#each members as member}
@@ -164,16 +211,14 @@
                 </li>
             {/each}
         </ul>
+    </div>
 
-
-        <div class:sharingStyle class:listStyle>
-            <center>
-                <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">구글 시트 보기</a>
-                | <a href="{shareLink}" sveltekit:reload>공유하기</a>
-            </center>
-        </div>
-
-
+    <div class:sharingStyle class:listStyle>
+        <center>
+            <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">구글 시트 보기</a>
+            | <a href="{shareLink}" sveltekit:reload>공유하기</a>
+        </center>
+    </div>
 </main>
 
 
@@ -208,6 +253,7 @@
         text-decoration: none;
         margin: 5px 8px;
         border-radius: 50%;
+        box-sizing: content-box;
     }
 
     .fa-facebook {
