@@ -235,8 +235,9 @@ export async function processUrl(url) {
       let rawMessage = item[colMessage];
       let gift       = item[colGift];
 
+      // console.log([i, item])
       // Skip previous tue class signups.
-      if (![21,22].includes(i) && !timestamp || timestamp.includes('2022. 11.')) {
+      if ([20].includes(i) || timestamp?.includes('2022. 11.')) {
         continue;
       }
 
