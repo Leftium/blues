@@ -47,6 +47,7 @@ export function shuffle(array) {
       puer: '푸에르',
       라이언: 'ryan',
       레오: 'leo',
+      꾸기: '꾹이',
   };
 
  export function normalize(name) {
