@@ -257,7 +257,7 @@
         margin:2px;
     }
     .imageCollage img{
-        height: 175px;
+        height: clamp(150px, 15vh, 200px);
         flex-grow: 1;
         object-fit: cover;
         margin: 2px;
