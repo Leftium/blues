@@ -1,4 +1,5 @@
 import { seedRandom } from '$lib/random.js'
+// import {extractAlbum} from "gphotos-scraper";
 
 //https://stackoverflow.com/a/2450976/117030
 
@@ -74,6 +75,7 @@ const GCP_API_KEY    = import.meta.env.VITE_GCP_API_KEY
 const SPREADSHEET_ID = '1Tn03kxww080pAQ9ZBsIc0mitJX5TZPv8vuvL2Gv9ohs';
 const URL_FORM = 'https://forms.gle/3onUGgqwoSHDmuVZ9'
 const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+const GOOGLE_PHOTOS_ALBUM = 'https://photos.app.goo.gl/hmSxuujqsS2Em2Y98'
 
 let random = null;
 
@@ -135,6 +137,159 @@ export async function processUrl(url) {
           urlForm: 'https://forms.gle/uMDtB5DUnkxhvZvZ9',
           urlSheets: `https://sheets.googleapis.com/v4/spreadsheets/1PAMTvGLetBM0wVjCslgKg36326NqSnGJz-OF8zDMnM8/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
       }
+  }
+
+  const album = {
+    "id": "AF1QipMG8bsyXw_gxHpBaMiIErQtqKOGq9J57ngCaH8IUqRePF6D4ICYYRnAGZ_lJ9WvCQ",
+    "title": "나인빠",
+    "url": "https://photos.app.goo.gl/hmSxuujqsS2Em2Y98",
+    "photos": [
+      {
+        "id": "AF1QipNB_rBwMGGv81EWYoemGZYVfqsPbpwBjoXnO6MM",
+        "description": "",
+        "filename": "IMG_4184.MOV",
+        "createdAt": 1662981577000,
+        "size": 215663936,
+        "width": 1080,
+        "height": 1920,
+        "mimeType": "video/quicktime",
+        "url": "https://lh3.googleusercontent.com/Os-za4iU6ecY4NHyezlbKOARGxbyqAweLI5ieDL6SfCt2TYzbWG9mar4ZpwedakMPRl6Z6CvUO3mx8Dt3onH0xYNVGs73YrTtXyPgIoJyAtJuHQbMQnajOyBSCj-VpWZDc6qTgGv19U"
+      },
+      {
+        "id": "AF1QipOonzYga07eK1vuMEYzAGNQB2JrkZGZJcRVcSL5",
+        "description": "",
+        "filename": "XiaoYing_Video_1661734971457.mp4",
+        "createdAt": 1661734975000,
+        "size": 906966,
+        "width": 368,
+        "height": 640,
+        "mimeType": "video/mp4",
+        "url": "https://lh3.googleusercontent.com/ljM78i_sDzbPr3gbxW8L7H2oZGBk_RB-ltKdA4-7AJBEZwgVH2T_Mk_lGzLtDDG1A237aKDHSgfLdvCA2m8cjDEPjW6H7dP26ALK5fxxAmSXipy6TkBSNjWsBggu0yjO4Yoe69lk9bc"
+      },
+      {
+        "id": "AF1QipNaESeM5SDm3liMEdzW5gyFE2ZsaNnXq-eLo9n0",
+        "description": "",
+        "filename": "1661729863095-0.jpg",
+        "createdAt": 1661729863000,
+        "size": 438004,
+        "width": 810,
+        "height": 1440,
+        "mimeType": "image/jpeg",
+        "url": "https://lh3.googleusercontent.com/nDLDy5AeQXHWEMnE1DcEBR95o5tJmdO5Uag37WqukPqngiOQMLhZoo26lr0Fgaw1XUKGExQAgYgCChLLBL-3_hwdcvY2CISt9epAi_z5AQr2pG9jLa5fqZe-rimGteRfw9xxidc-Ow"
+      },
+      {
+        "id": "AF1QipO4_BOlrVwQto1YA2LYwCsvwLKJoGNrem-uV_e3",
+        "description": "",
+        "filename": "1661729863095-1.jpg",
+        "createdAt": 1661729863000,
+        "size": 467333,
+        "width": 810,
+        "height": 1440,
+        "mimeType": "image/jpeg",
+        "url": "https://lh3.googleusercontent.com/cWTdzzNAvTQQU00MeYKheRjEIm_48C18Ih3WIymJtuBEBQx8zS-j6rPjWBUtFSrDXvGYG8Fqc8198nMgfeseh-gUSl79znX2KaIk9gzY8Fhw-tsZfYPNs1UDRE1od6Ji1yeah4_s2w"
+      },
+      {
+        "id": "AF1QipMmnjneuHKtvUGK6ELdZYzundJSNtb2jqGwNhFS",
+        "description": "",
+        "filename": "20220828_235702.jpg",
+        "createdAt": 1661698621000,
+        "size": 866945,
+        "width": 4032,
+        "height": 2268,
+        "mimeType": "image/jpeg",
+        "url": "https://lh3.googleusercontent.com/t7tjQu6_s9FpyA1vHgouPvLbl7wFCPCTWTEvFgoStYSTSX79qZkLV52WI_RRQsiMVqdY7G_cyqHhR8la8flFd65LxXMqMph8kJRyLRh6iLRKNHm5oQ3SFtPlg-dxNsvGNaS1V8LGdX4"
+      },
+      {
+        "id": "AF1QipNYrv-1z0H_xVyos3hed5-XaUJv_6WEKyxAzjFs",
+        "description": "",
+        "filename": "B612_20220828_201342_274.jpg",
+        "createdAt": 1661685222000,
+        "size": 400540,
+        "width": 2560,
+        "height": 1440,
+        "mimeType": "image/jpeg",
+        "url": "https://lh3.googleusercontent.com/QCLP3-NxhDj_27tm75hxczQdlETsOXNqvvUqaeEI4TwqXSNqkynRl2UL5F_qw4zTzpXGyrzXiSv-vY6-aw3p5o59--EitCMGPH97OFBuKqBtjTcA2ACF8ME130tW6j3dTwENgeBlcx0"
+      },
+      {
+        "id": "AF1QipMEvOMoqxD0DisZZPDNnxDwvh2MaQKNvk4dbJN6",
+        "description": "",
+        "filename": "IMG_4178.HEIC",
+        "createdAt": 1661674166000,
+        "size": 2673013,
+        "width": 4032,
+        "height": 3024,
+        "mimeType": "image/heic",
+        "url": "https://lh3.googleusercontent.com/jPzB8eV9oEHJLLyhlbl26Jc07syVtGSazXQTj99WEFDPwsxi8gC0fCD4GhJg5Fs5YZ9bMH3ODwPBWELjV2iBNl75DjsdLCWXiPxGwKFsS_7xqLhdXMfiK_qqEz-cFygJxa3ZLUWmsvg"
+      },
+      {
+        "id": "AF1QipMBXogUYD0teCyOCZk6cfTLATqpQ5z2MESWFOqE",
+        "description": "",
+        "filename": "IMG_4177.HEIC",
+        "createdAt": 1661674122000,
+        "size": 2937790,
+        "width": 4032,
+        "height": 3024,
+        "mimeType": "image/heic",
+        "url": "https://lh3.googleusercontent.com/RK137mgDBk_iF9uuRPeqQFuDeXpwkKTWXR-wXuOGmwJjA2Wo5PIC81jbl_HBeJpMV0CYby29qR9lIHmK_5hLO8Es7EMNtgqSOfkQw1ArmCghiU9AKvQR2VZtVW4yGSejfZ7pjtbUFns"
+      },
+      {
+        "id": "AF1QipNOjM7efVXeJBp8UhiWFaxomHVYDnsu4E6k4VhB",
+        "description": "",
+        "filename": "IMG_4176.HEIC",
+        "createdAt": 1661674112000,
+        "size": 2735217,
+        "width": 3024,
+        "height": 4032,
+        "mimeType": "image/heic",
+        "url": "https://lh3.googleusercontent.com/Hd2X-NBkE86YY6_bl9Vag4x47uKfpRyRu90bYfp2vcRTYHxxl7Q_Ymat1mSnVPTeYeqMgEb1Zl9lvgz9ylZ85XGyWvJFbwWVRab2coau_x7IcFZeCwY8hW3TctuW3onzSKBPZ332jc8"
+      },
+      {
+        "id": "AF1QipP278wkbL4rlaL0ul9NOzsjpg9IyhTzwrTCQs8e",
+        "description": "",
+        "filename": "IMG_4175.HEIC",
+        "createdAt": 1661674039000,
+        "size": 783008,
+        "width": 3024,
+        "height": 4032,
+        "mimeType": "image/heic",
+        "url": "https://lh3.googleusercontent.com/_2KrtXyMxGuB6qDdPy_3Y8qdQG0NAAJESDcVNSaYcKungi0tMYhVnJlFXyHUJZ9HFFnw8234rJRZO6otje-EFOcp6P4htfYhPdUkRD-PvyhHE5UvKAg_K1I4w2-A0zkcxx044_fgWs0"
+      },
+      {
+        "id": "AF1QipPr1XMBQpZslf46kmY7Ln1jzv2kBQwSnVKyQo9b",
+        "description": "",
+        "filename": "IMG_4174.HEIC",
+        "createdAt": 1661674011000,
+        "size": 3287465,
+        "width": 4032,
+        "height": 3024,
+        "mimeType": "image/heic",
+        "url": "https://lh3.googleusercontent.com/uOjW4jxx7-je-2j1M7SM-9wFeBDnVLQjwsbXujqb3Oz-ZBXUN-x_i9_kj8oQYT-1KSPgOqXN5eCqRYyN0hSFq7TmuX6aV-JA8-98NNI0A7BgxeKbPcZjtoIeK_-Z8P2QYLc9c2Fudq4"
+      },
+      {
+        "id": "AF1QipPYFDcun48r8g-phDXv12f4iAnXBmTFnF2G-TSj",
+        "description": "",
+        "filename": "IMG_4173.HEIC",
+        "createdAt": 1661673970000,
+        "size": 3040204,
+        "width": 4032,
+        "height": 3024,
+        "mimeType": "image/heic",
+        "url": "https://lh3.googleusercontent.com/ftzJ4i-f-GT3Xx9-ZbfUte68hKgU7wgVjsEROLwJTiMVUv85EzElE1bUn_txyQT3UIXzN6el4ecndwTRpgmYJALx6wuAuSJRH3yqNGWCVHqbGxwZzAk_dkJU68Rj9aV16OvsotSSrsA"
+      }
+    ],
+    "createdAt": 1661734235605,
+    "updatedAt": 1663048224659,
+    "cover": {
+      "id": "AF1QipPr1XMBQpZslf46kmY7Ln1jzv2kBQwSnVKyQo9b",
+      "description": "",
+      "filename": "IMG_4174.HEIC",
+      "createdAt": 1661674011000,
+      "size": 3287465,
+      "width": 4032,
+      "height": 3024,
+      "mimeType": "image/heic",
+      "url": "https://lh3.googleusercontent.com/uOjW4jxx7-je-2j1M7SM-9wFeBDnVLQjwsbXujqb3Oz-ZBXUN-x_i9_kj8oQYT-1KSPgOqXN5eCqRYyN0hSFq7TmuX6aV-JA8-98NNI0A7BgxeKbPcZjtoIeK_-Z8P2QYLc9c2Fudq4"
+    }
   }
 
   let headers = []
@@ -366,7 +521,8 @@ export async function processUrl(url) {
         sheetsId: config.sheetsId,
         subdomain,
         messages,
-        party
+        party,
+        album,
   }
 
 }
