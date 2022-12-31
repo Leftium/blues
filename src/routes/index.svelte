@@ -171,13 +171,6 @@
 
     <div bind:this={shareElement}>
         <center>
-            <div class:sharingStyle class:listStyle hidden={gallery}>
-                <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
-                {#if subdomain != 'balboa'}
-                    <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
-                    <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
-                {/if}
-            </div>
             <h1 class=title hidden={!showTitle || gallery} contentEditable>{title}</h1>
 
             <div class=cta class:sharingStyle class:listStyle hidden={gallery}><a href="{ctaUrl}">
@@ -215,6 +208,13 @@
 
     <div class:sharingStyle class:listStyle>
         <center>
+            <div class:sharingStyle class:listStyle hidden={gallery}>
+                <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
+                {#if subdomain != 'balboa'}
+                    <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
+                    <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+                {/if}
+            </div>
             <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">구글 시트 보기</a>
             | <a href="{shareLink}" sveltekit:reload>공유하기</a>
         </center>
