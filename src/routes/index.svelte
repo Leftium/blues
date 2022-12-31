@@ -9,6 +9,7 @@
     export let members;
     export let ctaUrl;
     export let sheetsId;
+    export let album;
 
     export let subdomain;
 
@@ -128,46 +129,58 @@
 </script>
 
 <svelte:head>
-    <title>{title}</title>
+<title>{title}</title>
 
-    <meta property="og:image" content="https://www.modu-blues.com/img/cloud9.png">
+<meta property="og:image" content="https://www.modu-blues.com/img/cloud9.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="css/snowfall.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/snowfall.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </svelte:head>
 
 <div class=confetti>
     {#if isVisible}
-        <ConfettiExplosion particleCount={100} stageHeight=1600 --x="50vw" --y="-20px"/>
+    <ConfettiExplosion particleCount={100} stageHeight=1600 --x="50vw" --y="-20px"/>
     {/if}
 </div>
 
 {#if party && !sharingStyle}
-    <snowfall>
-        {#each Array(50) as a}
-            <snowflake><img src="img/snowflake.png">️</snowflake>
-        {/each}
-    </snowfall>
+<snowfall>
+    {#each Array(50) as a}
+    <snowflake><img src="img/snowflake.png">️</snowflake>
+    {/each}
+</snowfall>
 {/if}
 
 <main>
     {#if sharingStyle}
-        <Container>
-            <Row>
-                <Col xs="6"><Input type="checkbox" label="제목" class=form-control-lg bind:checked={showTitle} /></Col>
-                <Col xs="6"><Input type="checkbox" label="신청자 명수" class=form-control-lg bind:checked={showTotals} /></Col>
-            </Row>
-            <Row>
-                <Col xs="6"><Button on:click={handleClickShare} color='primary' block> 공유하기</Button></Col>
-                <Col xs="6"><Button on:click={handleClickCopy} color='primary' block> 복사하기</Button></Col>
-            </Row>
+    <Container>
+        <Row>
+            <Col xs="6"><Input type="checkbox" label="제목" class=form-control-lg bind:checked={showTitle} /></Col>
+            <Col xs="6"><Input type="checkbox" label="신청자 명수" class=form-control-lg bind:checked={showTotals} /></Col>
+        </Row>
+        <Row>
+            <Col xs="6"><Button on:click={handleClickShare} color='primary' block> 공유하기</Button></Col>
+            <Col xs="6"><Button on:click={handleClickCopy} color='primary' block> 복사하기</Button></Col>
+        </Row>
 
-            <Alert color='primary'>{shareMessage}</Alert>
+        <Alert color='primary'>{shareMessage}</Alert>
 
-        </Container>
+    </Container>
     {/if}
+
+
+
+    <div class="collage-wrap">
+        <a href="https://photos.app.goo.gl/hmSxuujqsS2Em2Y98" target=_blank>
+            <div class="imageCollage">
+                {#each album.photos.slice(6, 9) as photo}
+                    <img src="{photo.url}">
+                {/each}
+            </div>
+        </a>
+    </div>
 
     <div bind:this={shareElement}>
         <center>
@@ -178,11 +191,11 @@
             </a></div>
 
             {#if message}
-                <div class=transition-enforcement>
-                    {#key message}
-                        <div class=message transition:fade={{duration: 500}} on:click={handleClickMessage}>{message}</div>
-                    {/key}
-                </div>
+            <div class=transition-enforcement>
+                {#key message}
+                <div class=message transition:fade={{duration: 500}} on:click={handleClickMessage}>{message}</div>
+                {/key}
+            </div>
             {/if}
 
             <div class=totals class:listStyle hidden={!showTotals}>
@@ -194,14 +207,14 @@
 
         <ul class=members-container class:sharingStyle class:listStyle>
             {#each members as member}
-                <li class=member style="background-image: url({`${member.backgroundImage}`})">
-                    {#if member.referals}
-                        <div class=referer>{member.referals}</div>
-                    {:else if member.referer}
-                        <div class=referer>{member.referer}</div>
-                    {/if}
-                    <div class="{`${member.sex} ${(member.referer ? 'new' : '')}`}">{member.name}</div>
-                </li>
+            <li class=member style="background-image: url({`${member.backgroundImage}`})">
+                {#if member.referals}
+                <div class=referer>{member.referals}</div>
+                {:else if member.referer}
+                <div class=referer>{member.referer}</div>
+                {/if}
+                <div class="{`${member.sex} ${(member.referer ? 'new' : '')}`}">{member.name}</div>
+            </li>
             {/each}
         </ul>
     </div>
@@ -211,8 +224,8 @@
             <div class:sharingStyle class:listStyle hidden={gallery}>
                 <a href="https://www.facebook.com/groups/cloud9.dancehall" class="fa fa-facebook"></a>
                 {#if subdomain != 'balboa'}
-                    <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
-                    <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
+                <a href="https://www.instagram.com/modublues/" class="fa fa-instagram"></a>
+                <a href="https://cafe.naver.com/modudance" class="fa fa-coffee"></a>
                 {/if}
             </div>
             <a href="https://docs.google.com/spreadsheets/d/{sheetsId}/edit#gid=1296169145">구글 시트 보기</a>
@@ -223,6 +236,33 @@
 
 
 <style>
+
+    .collage-wrap {
+        margin-bottom: 2em;
+    }
+
+    .imageCollage {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        max-width:900px;
+    }
+    .imageCollage_text{
+        padding:20px;
+        background:#e6e6e6;
+        border-radius:3px;
+        font-size:1.5rem;
+        width:300px;
+        margin:2px;
+    }
+    .imageCollage img{
+        height: 175px;
+        flex-grow: 1;
+        object-fit: cover;
+        margin: 2px;
+    }
+
     :global(body) {
         background-color: rgb(241, 237, 237);
         margin: 0;
@@ -397,7 +437,7 @@
     }
 
     ul.sharingStyle li.member {
-       box-shadow: none;
+        box-shadow: none;
     }
 
     li .new {
@@ -405,79 +445,79 @@
     }
 
     /* CSS */
-.button-85 {
-  padding: 0.6em 2em;
-  border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  background: #111;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  border-radius: 10px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    .button-85 {
+        padding: 0.6em 2em;
+        border: none;
+        outline: none;
+        color: rgb(255, 255, 255);
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
 
-  width: 100%;
-  font-size: 18px;
-  font-weight: 700;
-}
+        width: 100%;
+        font-size: 18px;
+        font-weight: 700;
+    }
 
-.button-85:before {
-  content: "";
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing-button-85 20s linear infinite;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
-}
+    .button-85:before {
+        content: "";
+        background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+        );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
 
-@keyframes glowing-button-85 {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
+    @keyframes glowing-button-85 {
+        0% {
+            background-position: 0 0;
+        }
+        50% {
+            background-position: 400% 0;
+        }
+        100% {
+            background-position: 0 0;
+        }
+    }
 
-.button-85:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #222;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
+    .button-85:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #222;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
 
-snowfall {
-    left: -100px;
-}
+    snowfall {
+        left: -100px;
+    }
 
 </style>
