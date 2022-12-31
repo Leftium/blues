@@ -372,11 +372,13 @@
     li.member div {
         width: 100%;
         align-self: flex-end;
+        overflow: hidden;
 
         margin-right: 4%;
         margin-bottom: 4%;
 
         text-align: right;
+        white-space: nowrap;
         font-weight: bold;
     }
 
