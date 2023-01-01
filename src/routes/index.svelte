@@ -1,6 +1,7 @@
 <script>
     import html2canvas from 'html2canvas';
     import canvasToBlob from 'async-canvas-to-blob';
+    import { seedRandom } from '$lib/random.js'
 
     export let title;
     export let numTotal;
@@ -16,6 +17,7 @@
     export let messages;
 
     export let party;
+    export let randomSeed;
 
     import { ConfettiExplosion } from 'svelte-confetti-explosion';
     import { fade } from 'svelte/transition'
@@ -37,7 +39,18 @@
     let shareMessage = '버튼을 누르세요'
 
 
-    let photos = album.photos.filter((photo) => !photo.mimeType.includes('video')).slice(0, 3)
+    let random = seedRandom(randomSeed)
+
+    let photoCandidates = album.photos.filter((photo) => !photo.mimeType.includes('video'))
+    let photos = [photoCandidates.shift()]
+
+    photoCandidates = shuffle(photoCandidates, random)
+
+    photos.push(photoCandidates.shift())
+    photos.push(photoCandidates.shift())
+    photos.push(photoCandidates.shift())
+
+
 
 
     let lastMessageTime = +(new Date())
@@ -179,7 +192,7 @@
         <a href="https://photos.app.goo.gl/hmSxuujqsS2Em2Y98" target=_blank>
             <div class="imageCollage">
                 {#each photos as photo}
-                    <img src="{photo.url}">
+                    <img src="{photo.url}" style:aspect-ratio="{photo.width} / {photo.height}" alt="">
                 {/each}
             </div>
         </a>
@@ -250,6 +263,8 @@
         flex-wrap: wrap;
         margin: 0 auto;
         max-width:900px;
+        max-height: 308px;
+        overflow: hidden;
     }
     .imageCollage_text{
         padding:20px;
@@ -259,7 +274,7 @@
         width:300px;
         margin:2px;
     }
-    .imageCollage img{
+    .imageCollage img {
         height: clamp(150px, 15vh, 200px);
         flex-grow: 1;
         object-fit: cover;
