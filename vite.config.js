@@ -5,6 +5,8 @@ import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfil
 // You don't need to add this to deps, it's included by @esbuild-plugins/node-modules-polyfill
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills'
 
+import inject from '@rollup/plugin-inject'
+
 import { sveltekit } from '@sveltejs/kit/vite';
 
 /** @type {import('vite').UserConfig} */
@@ -75,7 +77,8 @@ const config = {
                 plugins: [
                     // Enable rollup polyfills plugin
                     // used during production bundling
-                    rollupNodePolyFill()
+                    rollupNodePolyFill(),
+                    inject({ Buffer: ['Buffer', 'Buffer'] })
                 ]
             }
         }
