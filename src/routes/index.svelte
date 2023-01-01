@@ -37,6 +37,9 @@
     let shareMessage = '버튼을 누르세요'
 
 
+    let photos = album.photos.filter((photo) => !photo.mimeType.includes('video')).slice(0, 3)
+
+
     let lastMessageTime = +(new Date())
     if(browser) {
         lastMessageTime = +(new Date())
@@ -175,7 +178,7 @@
     <div class="collage-wrap">
         <a href="https://photos.app.goo.gl/hmSxuujqsS2Em2Y98" target=_blank>
             <div class="imageCollage">
-                {#each album.photos.slice(6, 9) as photo}
+                {#each photos as photo}
                     <img src="{photo.url}">
                 {/each}
             </div>
