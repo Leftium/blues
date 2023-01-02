@@ -58,6 +58,10 @@ export function shuffle(array, random=Math.random) {
                          .toLowerCase()
                          .replace(/ /g, '-');
 
+    if (normalized.includes('romi') || normalized.includes('로미')) {
+        normalized = 'romi'
+    }
+
     return aliases[normalized] || normalized;
 }
 
