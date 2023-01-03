@@ -42,6 +42,7 @@
     let random = seedRandom(randomSeed)
 
     let photoCandidates = album.photos.filter((photo) => !photo.mimeType.includes('video'))
+    // console.log(photoCandidates)
     let photos = [photoCandidates.shift()]
 
     photoCandidates = shuffle(photoCandidates, random)
@@ -279,6 +280,7 @@
         flex-grow: 1;
         object-fit: cover;
         margin: 2px;
+        filter: blur(3px);
     }
 
     :global(body) {
