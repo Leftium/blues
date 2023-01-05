@@ -281,7 +281,6 @@
         flex-grow: 1;
         object-fit: cover;
         margin: 2px;
-        filter: blur(1px);
     }
 
     :global(body) {
