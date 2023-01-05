@@ -57,7 +57,7 @@ export function shuffle(array, random=Math.random) {
                          .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
                          .toLowerCase()
                          .replace(/ /g, '-')
-                         .replace(/나인$/, '');
+                         .replace(/(나인)|9$/, '');
 
     return aliases[normalized] || normalized;
 }
