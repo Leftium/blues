@@ -56,11 +56,8 @@ export function shuffle(array, random=Math.random) {
     let normalized = name.trim()
                          .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
                          .toLowerCase()
-                         .replace(/ /g, '-');
-
-    if (normalized.includes('romi') || normalized.includes('로미')) {
-        normalized = 'romi'
-    }
+                         .replace(/ /g, '-')
+                         .replace(/나인$/, '');
 
     return aliases[normalized] || normalized;
 }
