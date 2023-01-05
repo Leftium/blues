@@ -51,9 +51,6 @@
     photos.push(photoCandidates.shift())
     photos.push(photoCandidates.shift())
     photos.push(photoCandidates.shift())
-    photos.push(photoCandidates.shift())
-    photos.push(photoCandidates.shift())
-    photos.push(photoCandidates.shift())
 
 
 
@@ -268,7 +265,7 @@
         flex-wrap: wrap;
         margin: 0 auto;
         max-width:900px;
-        max-height: 208px;
+        max-height: 80px;
         overflow: hidden;
     }
     .imageCollage_text{
@@ -280,11 +277,11 @@
         margin:2px;
     }
     .imageCollage img {
-        height: clamp(100px, 10vh, 200px);
+        height: 80px;
         flex-grow: 1;
         object-fit: cover;
         margin: 2px;
-        filter: blur(3px);
+        filter: blur(1px);
     }
 
     :global(body) {
