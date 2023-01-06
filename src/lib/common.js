@@ -53,6 +53,11 @@ export function shuffle(array, random=Math.random) {
 
  export function normalize(name) {
 
+    // console.log({name})
+    if (!name) {
+        return ''
+    }
+
     let normalized = name.trim()
                          .replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')
                          .toLowerCase()
@@ -139,9 +144,10 @@ export async function processUrl(url) {
           urlSheets: `https://sheets.googleapis.com/v4/spreadsheets/1PAMTvGLetBM0wVjCslgKg36326NqSnGJz-OF8zDMnM8/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
       }
   }
+  // console.log({config})
 
   const album = await extractAlbum(GOOGLE_PHOTOS_ALBUM)
-  console.log(album)
+  // console.log(album)
 
   let headers = []
 
@@ -216,6 +222,8 @@ export async function processUrl(url) {
       });
   }
 
+  // console.log({colName, colSex})
+
   let members = [];
   let numMen = 0;
   let numWomen = 0;
@@ -226,6 +234,7 @@ export async function processUrl(url) {
 
   let recents = [];
 
+  // console.log(json.values)
   if (!alias) {
     json.values = uniqByKeepLast(json.values, item => normalize(item[colName]));
   }
@@ -236,8 +245,8 @@ export async function processUrl(url) {
       if (!item.length) { continue;  }  // Skip empty rows.
 
       let timestamp  = item[0];
-      let name       = item[colName].trim();
-      let sex        = item[colSex];
+      let name       = item[colName]?.trim() || '';
+      let sex        = item[colSex] || '';
       let referer    = '';
       let rawMessage = item[colMessage];
       let gift       = item[colGift];
