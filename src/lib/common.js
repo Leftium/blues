@@ -121,7 +121,7 @@ export async function processUrl(url) {
     config.ctaUrl = '/form?party=sun'
     config.sheetsId= '1TVjaMPhqccX7bqQ6k1icslajh5yAAbPtghJtzU0cvRI'
   } else if (party) {
-    config.urlForm = 'https://forms.gle/8EKEMbfpDu4sSxsU9'
+    config.urlForm = 'https://han.gl/kLtnZy'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
     config.ctaUrl = '/form?party=tue'
     config.sheetsId= '1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI'
@@ -205,7 +205,7 @@ export async function processUrl(url) {
           if ((colName == -1) && header.includes('닉네임')) {
               colName = i;
           }
-          if (header.includes('성별') || header.includes('리드 / 팔로우')) {
+          if (header.includes('성별') || header.includes('리드 / 팔로우') || header.includes('Role')) {
               colSex = i;
           }
           if (header.includes('추천인') ||
