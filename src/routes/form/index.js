@@ -31,6 +31,11 @@ export async function GET({ url }) {
         confirmUrl = '/?class=tue';
     }
 
+    if (clazz == 'sun') {
+        formUrl = 'https://forms.gle/KM5VEMoURYGUUwT37';
+        confirmUrl = '/?class=sun';
+    }
+
     if (party == 'sun') {
         formUrl = 'https://forms.gle/RwZpwLf64Y8MAkKw6';
         confirmUrl = '/?party=sun';

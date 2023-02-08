@@ -134,6 +134,13 @@ export async function processUrl(url) {
     config.sheetsId= '1PFqHC16qs7fxKlhUfGQuuHqNzUZf75v9mt8kWaOMJwg'
   }
 
+  if (clazz == 'sun') {
+    config.urlForm = 'https://forms.gle/KM5VEMoURYGUUwT37'
+    config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/13-5fdTSlA5uq3TfzwHHWGIwCoX-DQAfgIswbgcHmUqw/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
+    config.ctaUrl = '/form?class=sun'
+    config.sheetsId= '1PFqHC16qs7fxKlhUfGQuuHqNzUZf75v9mt8kWaOMJwg'
+  }
+
 
   const subdomain = url.hostname.split(".")[0];
 
