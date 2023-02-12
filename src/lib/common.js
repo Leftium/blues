@@ -121,7 +121,7 @@ export async function processUrl(url) {
     config.ctaUrl = '/form?party=sun'
     config.sheetsId= '1TVjaMPhqccX7bqQ6k1icslajh5yAAbPtghJtzU0cvRI'
   } else if (party) {
-    config.urlForm = 'https://han.gl/kLtnZy'
+    config.urlForm = 'https://docs.google.com/forms/d/e/1FAIpQLScg0ISOTwggQgsRcJqu1cLv7Jyfo8HtARbtL-BvCSi4niv1yg/viewform'
     config.urlSheets = `https://sheets.googleapis.com/v4/spreadsheets/1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`
     config.ctaUrl = '/form?party=tue'
     config.sheetsId= '1oylL0ICASvekFKRjpkxmFE_MIB2bO8TtrofS2DdVBhI'
