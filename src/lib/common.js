@@ -49,6 +49,8 @@ export function shuffle(array, random=Math.random) {
       라이언: 'ryan',
       레오: 'leo',
       꾸기: '꾹이',
+      몬세: '먼시',
+      페주: '페즈',
   };
 
  export function normalize(name) {
