@@ -290,12 +290,12 @@ export async function processUrl(url) {
 
       let backgroundImage = `/img/special/bear.jpg`;
 
-      if (['male', '남(men)', '리더', '리드'].includes(sex)) {
+      if (['male', '남(men)', '리더', '리드', '- 리더 (Lead)'].includes(sex)) {
           sex = 'male';
           numMen++;
           backgroundImage = `/img/special/male.jpg`;
       }
-      if (['female', '여(women)', '팔로어', '팔뤄', '팔로우'].includes(sex)) {
+      if (['female', '여(women)', '팔로어', '팔뤄', '팔로우', '팔로어 (Follow)'].includes(sex)) {
           sex = 'female'
           numWomen++;
           backgroundImage = `/img/special/female.jpg`;
