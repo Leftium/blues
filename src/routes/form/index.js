@@ -88,6 +88,10 @@ export async function GET({ url }) {
     let formParams = [];
 
     function extractOptions(options) {
+        if (!options) {
+            return []
+        }
+
         let result = [];
         for (let option of options) {
             if (option[0] != '') {
