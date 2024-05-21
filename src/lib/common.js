@@ -52,6 +52,8 @@ export const aliases = {
   꾸기: "꾹이",
   몬세: "먼시",
   페주: "페즈",
+  "페르소나(감사함에토닥토닥)": "페르소나",
+  임차장: "임과장",
 };
 
 export function normalize(name) {
