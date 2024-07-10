@@ -54,6 +54,8 @@ export const aliases = {
   페주: "페즈",
   "페르소나(감사함에토닥토닥)": "페르소나",
   임차장: "임과장",
+  조성신: "리스",
+  레메: "레인메이커",
 };
 
 export function normalize(name) {
