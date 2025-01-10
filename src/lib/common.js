@@ -84,7 +84,7 @@ const GCP_API_KEY = import.meta.env.VITE_GCP_API_KEY;
 const SPREADSHEET_ID = "1Tn03kxww080pAQ9ZBsIc0mitJX5TZPv8vuvL2Gv9ohs";
 const URL_FORM = "https://forms.gle/3onUGgqwoSHDmuVZ9";
 const URL_SHEETS = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/%EC%84%A4%EB%AC%B8%EC%A7%80+%EC%9D%91%EB%8B%B5+%EC%8B%9C%ED%8A%B81?majorDimension=ROWS&key=${GCP_API_KEY}`;
-const GOOGLE_PHOTOS_ALBUM = "https://photos.app.goo.gl/hmSxuujqsS2Em2Y98";
+const GOOGLE_PHOTOS_ALBUM = "https://photos.app.goo.gl/xxwaAJGbiYjVjqbv6";
 
 let random = null;
 
